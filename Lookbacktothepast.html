@@ -14,20 +14,20 @@
   <meta name="baidu-site-verification" content="true">
   <meta name="msvalidate.01" content="BBA0F05A054A52937A445B0457B5D099">
   
-  <title style="text-align:center">预处理和词法分析器 | 月之燃梦</title>
+  <title style="text-align:center">回首过去 | 月之燃梦</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="结合课程实验和课程设计，时间跨度为一个月，完成预处理，词法分析器。(词法分析器已作为JavaSwing项目上传至GitHub。)">
-<meta name="keywords" content="编译原理,预处理,词法分析">
+  <meta name="description" content="20190317-20191222，一段历程，一段心声；一点感动，一点生动。追逐的东西过于宏大遥远，不如只顾眼前，过好每一秒钟。辩证唯物主义告诉我们，要有目的有计划的活着，才能在这个客观世界活得游刃有余。">
+<meta name="keywords" content="反思">
 <meta property="og:type" content="article">
-<meta property="og:title" content="预处理和词法分析器">
-<meta property="og:url" content="https://www.lightdream.xyz/CompilerPrinciple-preProcessAndLexAnalysis.html">
+<meta property="og:title" content="回首过去">
+<meta property="og:url" content="https://www.lightdream.xyz/Lookbacktothepast.html">
 <meta property="og:site_name" content="月之燃梦">
-<meta property="og:description" content="结合课程实验和课程设计，时间跨度为一个月，完成预处理，词法分析器。(词法分析器已作为JavaSwing项目上传至GitHub。)">
+<meta property="og:description" content="20190317-20191222，一段历程，一段心声；一点感动，一点生动。追逐的东西过于宏大遥远，不如只顾眼前，过好每一秒钟。辩证唯物主义告诉我们，要有目的有计划的活着，才能在这个客观世界活得游刃有余。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-11T04:09:29.665Z">
+<meta property="og:updated_time" content="2020-01-05T12:46:53.544Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="预处理和词法分析器">
-<meta name="twitter:description" content="结合课程实验和课程设计，时间跨度为一个月，完成预处理，词法分析器。(词法分析器已作为JavaSwing项目上传至GitHub。)">
+<meta name="twitter:title" content="回首过去">
+<meta name="twitter:description" content="20190317-20191222，一段历程，一段心声；一点感动，一点生动。追逐的东西过于宏大遥远，不如只顾眼前，过好每一秒钟。辩证唯物主义告诉我们，要有目的有计划的活着，才能在这个客观世界活得游刃有余。">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -113,14 +113,14 @@ ga('send', 'pageview');
 </header>
       <div id="main" class="wrapper">
         <div id="primary" class="site-content">
-			<div id="content" role="main"><article id="post-CompilerPrinciple-preProcessAndLexAnalysis" class="post-CompilerPrinciple-preProcessAndLexAnalysis post type-post status-publish format-standard hentry">
+			<div id="content" role="main"><article id="post-Lookbacktothepast" class="post-Lookbacktothepast post type-post status-publish format-standard hentry">
 		
       <center><header class="entry-header">
         
         
   
     <h1 class="entry-title article-title">
-      预处理和词法分析器
+      回首过去
     </h1>
   
 
@@ -129,7 +129,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">670字</span>
+        <span class="post-count">149字</span>
       </span>
     </span>
 	&nbsp;|
@@ -137,7 +137,7 @@ ga('send', 'pageview');
     <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">阅读时长:约</span>
-        <span class="post-count">3&nbsp;分钟</span>
+        <span class="post-count">1&nbsp;分钟</span>
       </span>
     </span>
 </div>
@@ -150,143 +150,24 @@ ga('send', 'pageview');
 		总阅读量<span id="busuanzi_value_page_pv"></span>次
 		</span></center>
 		</br></br>
-        <script src="\assets\js\APlayer.min.js"> </script><p>结合课程实验和课程设计，时间跨度为一个月，完成预处理，词法分析器。(词法分析器已作为JavaSwing项目上传至<a href="https://github.com/lightingmoon/My-project">GitHub</a>。)<br><a id="more"></a></p>
-<h3 id="预处理程序"><a href="#预处理程序" class="headerlink" title="预处理程序"></a>预处理程序</h3><pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;fstream&gt;
-using namespace std;
-
-void processSpace(ifstream &amp;fin, const char);    // 处理空格
-void processMargin(ifstream &amp;fin, const char);    // 处理注释
-void processCrLf(ifstream &amp;fin, const char);    // 处理回车换行
-int main()
-{
-    ifstream fin(&quot;F:\\CompilerPrinciple\\Test1\\demo.cpp&quot;, ios::in);    // 预处理源代码文件
-    freopen(&quot;F:\\CompilerPrinciple\\Test1\\out.cpp&quot;,&quot;w&quot;,stdout);    // 输出结果文件
-    char now, last;
-    fin.get(last);
-
-    while(!fin.eof() &amp;&amp; isspace(last))    // 一个字符测试空文件
-        fin.get(last);
-    fin.unget();
-    while(!fin.eof())
-    {
-        fin.get(now);
-        switch(now)
-        {
-        case &#39; &#39;:
-            processSpace(fin, last);
-            fin.unget();    // 超前搜索回退
-            break;
-        case &#39;/&#39;:
-            processMargin(fin, last);
-            break;
-        case &#39;\n&#39;:          // 只存在Mac和windows下\r\n,\r
-            processCrLf(fin, last);
-            last = &#39;\n&#39;;
-            break;
-        case &#39;\t&#39;: break;
-        default:
-            putchar(now);
-        }
-        last = now;
-    }
-    return 0;
-}
-void processSpace(ifstream &amp;fin, const char st)
-{
-    /*         一.去多余空格:
-    *            1.判定当前字符，是空格则转第二步；否则输出
-    *            2.判定记录的上一个字符，如果是换行符，则是行首空格，不输出；
-    *                   如果是赋值号，则是多余空格，不输出
-    *                   继续判定下一个字符，如果是斜线，则是行末与注释间的空格，不输出
-    *                   如果是分号，则是行末多余字符，不输出。
-    *                   如果是空格，则是多余空格，不输出
-    */
-
-    char next;
-    fin.get(next);
-    while(!fin.eof() &amp;&amp; isspace(next))  // 去多个连续空格
-        fin.get(next);
-    if(st != &#39;\n&#39; &amp;&amp; st != &#39;=&#39; 
-        &amp;&amp; next != &#39;/&#39; &amp;&amp; next != &#39;;&#39; &amp;&amp; next != &#39;=&#39;)
-        putchar(&#39; &#39;);
-}
-
-void processCrLf(ifstream &amp;fin, const char st)
-{
-    /* 二. 去回车换行
-    *    1.超前搜索：如果下一个字符不是换行符，为Mac下源文件，回退文件指针，输出一个空格。否则
-    *      不回退，输出一个空格
-    *   考虑到兼容性，windows下\r\n，unix下 \n ，Mac下是 \r，过滤
-    */
-    char next;
-    if(!fin.eof())
-    {
-        fin.get(next);
-        if(next != &#39;\n&#39;)
-            fin.unget();
-        putchar(&#39; &#39;);
-    }
-}
-
-void processMargin(ifstream &amp;fin, const char st)
-{
-    /*          三. 去注释
-    *             1.判定当前字符是否为  / ，是则进入第2步；否则输出
-    *             2.超前搜索下一个字符是否为  / ，是则为单行注释，直接结束本行；否则转第3步
-    *             3.超前搜索下一个字符是否为  * ，进入下一次循环，转第4步
-    *             4.判定当前字符是否为  *  ，是则进入第5步；否则放弃当前字符，进入下一次循环
-    *             5.超前搜索下一个字符是否为 &#39;/&#39;，是则结束循环退出子程序；
-    *               否则进入下一次循环，转第4步
-    */
-    char next, now;
-    fin.get(next);
-    if(!fin.eof())
-    {
-        if(next == &#39;/&#39;)     // 单行注释
-        {
-            while(!fin.eof())
-            {
-                fin.get(now);
-                if(now == &#39;\r&#39; || now == &#39;\n&#39;)
-                    break;
-            }
-            if(now == &#39;\n&#39;)     // 不是回车换行符，回退
-                fin.unget();
-        }
-        else if(next == &#39;*&#39;)    //多行注释
-        {
-            while(!fin.eof())
-            {
-                fin.get(next);
-                if(next == &#39;*&#39;)
-                {
-                    fin.get(next);
-                    if(next == &#39;/&#39;)
-                        break;
-                }
-            }
-        }
-    }
-}
-</code></pre>	
+        <script src="\assets\js\APlayer.min.js"> </script><p>　　20190317-20191222，一段历程，一段心声；一点感动，一点生动。追逐的东西过于宏大遥远，不如只顾眼前，过好每一秒钟。<br>辩证唯物主义告诉我们，要有目的有计划的活着，才能在这个<strong>客观世界</strong>活得游刃有余。<br><a id="more"></a><br>　　在过去的308天里，在我的认识里，我应该是全身心的投入到了这件事中，不管结果如何，这只是自己应得的(deserve it)。下面的总结分为两部分，一部分是知识，一部分是认识。对应学与思。</p>
+<h2 id="学"><a href="#学" class="headerlink" title="学"></a><strong>学</strong></h2>	
 		</br>
 		<footer style="text-align: center" class="entry-meta">雪林于
 		<a href="">
-   <time datetime="2019-05-21T13:51:20.000Z" class="entry-date">
-        2019年05月21日 21:51
+   <time datetime="2019-12-29T15:09:05.000Z" class="entry-date">
+        2019年12月29日 23:09
     </time>
 </a>
 		
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="categories/编译原理/">编译原理</a>
+  <a class="article-category-link" href="categories/静夜思/">静夜思</a>
   </div>
 
 		
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/编译原理/">编译原理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/词法分析/">词法分析</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/预处理/">预处理</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/反思/">反思</a></li></ul>
 
 		
 			<!-- 来必力City版安装代码 -->
@@ -320,10 +201,8 @@ void processMargin(ifstream &amp;fin, const char st)
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="Lookbacktothepast.html" rel="prev"><span class="meta-nav">←</span> 回首过去</a></span>
     
-    
-        <span class="nav-next"><a href="AssemblyLanguage-SwapSort.html" rel="next">汇编语言实现冒泡排序算法 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="CompilerPrinciple-preProcessAndLexAnalysis.html" rel="next">预处理和词法分析器 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
@@ -353,11 +232,11 @@ void processMargin(ifstream &amp;fin, const char st)
       <ul>
         
           <li>
-            <a href="Lookbacktothepast.html">回首过去</a>
+            <a href="">回首过去</a>
           </li>
         
           <li>
-            <a href="">预处理和词法分析器</a>
+            <a href="CompilerPrinciple-preProcessAndLexAnalysis.html">预处理和词法分析器</a>
           </li>
         
           <li>

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>回首过去</title>
+    <url>/Lookbacktothepast.html</url>
+    <content><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　20190317-20191222，一段历程，一段心声；一点感动，一点生动。追逐的东西过于宏大遥远，不如只顾眼前，过好每一秒钟。<br>辩证唯物主义告诉我们，要有目的有计划的活着，才能在这个<strong>客观世界</strong>活得游刃有余。<br><a id="more"></a><br>　　在过去的308天里，在我的认识里，我应该是全身心的投入到了这件事中，不管结果如何，这只是自己应得的(deserve it)。下面的总结分为两部分，一部分是知识，一部分是认识。对应学与思。</p>
+<h2 id="学"><a href="#学" class="headerlink" title="学"></a><strong>学</strong></h2>]]></content>
+      <categories>
+        <category>静夜思</category>
+      </categories>
+      <tags>
+        <tag>反思</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>预处理和词法分析器</title>
     <url>/CompilerPrinciple-preProcessAndLexAnalysis.html</url>
     <content><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>结合课程实验和课程设计，时间跨度为一个月，完成预处理，词法分析器。(词法分析器已作为JavaSwing项目上传至<a href="https://github.com/lightingmoon/My-project">GitHub</a>。)<br><a id="more"></a></p>
@@ -312,7 +324,7 @@ end main
     <url>/EulerFormula.html</url>
     <content><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　数学的确是人们从感性认知世界到理性度量世界的巨大的转变，既然历史已经走到了这里，那我们可以称它为是一种进步。So，我在这里观叹“上帝创造”的公式——<strong>欧拉公式</strong>（又称为欧拉恒等式）。<br><a id="more"></a></p>
 <h1 id="e-pi-i-1-0"><a href="#e-pi-i-1-0" class="headerlink" title="e^{\pi i}+1=0"></a><strong><script type="math/tex">e^{\pi i}+1=0</script></strong></h1><p>这个公式将复数单位——i，圆周率——$\pi$，自然对数的底数——e，整数的单位——1以及人类最伟大的发明——0，联系在了一起，并由此产生了无限的可能。比如，我们可以解出类似于$x^{2}=-1$方程的解（$i^2=-1$)。也可以将对数函数的定义域扩展到全体实数（扩展这个词是借鉴复数将实数所在的一维数轴扩展成具有实轴和虚轴的二维复平面），例如</p>
-<script type="math/tex; mode=display">ln(-5)=ln(5e^{\pi i})</script><script type="math/tex; mode=display">=ln5+ln(e^{\pi i})=ln5+\pi i</script><p>是不是打开了新世界的大门？本来在实数集上，$y=lnx$的定义域为$D_{f}={x|x\gt 0}$，而当扩展到了复数集时，ln(-5)就有意义了。再多说一点，既然复数能扩展到二维复平面，那么它还能不能扩展到更多的维度呢？答案是可以的，比如<a href="https://www.zhihu.com/question/23005815">四元组</a>。<br>下面我以证明欧拉公式为目的，从泰勒公式开始总结：</p>
+<script type="math/tex; mode=display">ln(-5)=ln(5e^{\pi i})</script><script type="math/tex; mode=display">=ln5+ln(e^{\pi i})=ln5+\pi i</script><p>是不是打开了新世界的大门？本来在实数集上，$y=lnx$的定义域为$D_{f}=\{x|x\gt 0\}$，而当扩展到了复数集时，ln(-5)就有意义了。再多说一点，既然复数能扩展到二维复平面，那么它还能不能扩展到更多的维度呢？答案是可以的，比如<a href="https://www.zhihu.com/question/23005815">四元组</a>。<br>下面我以证明欧拉公式为目的，从泰勒公式开始总结：</p>
 <h4 id="泰勒公式"><a href="#泰勒公式" class="headerlink" title="泰勒公式"></a>泰勒公式</h4><p>　　我们知道当$x→0$时，会存在一些等价无穷小，例如$sin(x)$~$x,tan(x)$~$x$。而采用等价无穷小后，会方便我们对一些函数的性态做研究。一方面，我们令$P(n)$为$f(x)$在$x_{0}$处的等价的多项式，它与$f(x)$之间相差一个无穷小。</p>
 <script type="math/tex; mode=display">P(n)=a_{0}+a_{1}(x-x_{0})+a_{2}(x-x_{0})^{2}+</script><script type="math/tex; mode=display">...+a_{n}(x-x_{0})^{n}　(*)</script><p>可以想象一下我们拟合曲线时的操作，尽量让拟合的曲线的走势与被拟合的函数一致，说到曲线的趋势，我们必会提到导数。所以，设</p>
 <script type="math/tex; mode=display">P(x_0)=f(x_0), P'(x_0)=f'(x_0)</script><script type="math/tex; mode=display">P''(x_0)=f''(x_0),..., P^{(n)}(x_0)=f^{(n)}(x_0)</script><p>即是</p>
@@ -685,12 +697,12 @@ int main()
 <p><center><img src="image/linerRegression.png" width="450" height="300"/></center><br>由图片e表示假设函数结果与训练样本之间的误差。</p>
 <script type="math/tex; mode=display">e_{0}=h_{\theta}(1)-y_{0}</script><script type="math/tex; mode=display">e_{1}=h_{\theta}(2)-y_{1}</script><script type="math/tex; mode=display">e_{2}=h_{\theta}(3)-y_{2}</script><script type="math/tex; mode=display">...</script><p>所有误差的和即为</p>
 <script type="math/tex; mode=display">\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})</script><p>要想得到拟合最好的效果，我们必须要让误差和最小。但是通常我们都用平均每个训练样本的误差的一半来表示。也即代价函数：</p>
-<script type="math/tex; mode=display">J(\theta_{0},\theta_{1})=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^2</script><p>此时得到的参数$\theta<em>{0},\theta</em>{1}$为最合适的参数。 </p>
+<script type="math/tex; mode=display">J(\theta_{0},\theta_{1})=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^2</script><p>此时得到的参数$\theta_{0},\theta_{1}$为最合适的参数。 </p>
 <hr>
-<h3 id="梯度下降算法-Gradient-Descent-Algorithm"><a href="#梯度下降算法-Gradient-Descent-Algorithm" class="headerlink" title="梯度下降算法(Gradient Descent Algorithm)"></a>梯度下降算法(Gradient Descent Algorithm)</h3><script type="math/tex; mode=display">\theta_{j}=\theta_{j}-\alpha\frac{\partial{J(\theta_{0},\theta_{1})}}{\partial{j}}</script><p>其中$\theta$表示参数，$\alpha(\geq0)$表示学习效率，后面表示$\theta<em>{j}$的偏导。<br>为了叙述方便，下面令$\theta</em>{0}=0$，此时$J({\theta<em>{1}})$只有一个参数$\theta</em>{1}$，令$J(\theta)$最小值对应于$\theta_{min}$   </p>
+<h3 id="梯度下降算法-Gradient-Descent-Algorithm"><a href="#梯度下降算法-Gradient-Descent-Algorithm" class="headerlink" title="梯度下降算法(Gradient Descent Algorithm)"></a>梯度下降算法(Gradient Descent Algorithm)</h3><script type="math/tex; mode=display">\theta_{j}=\theta_{j}-\alpha\frac{\partial{J(\theta_{0},\theta_{1})}}{\partial{j}}</script><p>其中$\theta$表示参数，$\alpha(\geq0)$表示学习效率，后面表示$\theta_{j}$的偏导。<br>为了叙述方便，下面令$\theta_{0}=0$，此时$J({\theta_{1}})$只有一个参数$\theta_{1}$，令$J(\theta)$最小值对应于$\theta_{min}$   </p>
 <ul>
-<li>假如$\theta<em>{1}&gt;\theta</em>{min}$，则该点切线斜率大于等于0，即$\frac{dJ(\theta<em>{1})}{d\theta</em>{1}}\geq 0$(因为只有一个参数，所以退化为求微分)，所以<script type="math/tex">\theta_{1}=\theta_{1}-\alpha\frac{dJ(\theta_{1})}{d\theta_{1}}</script>，$\theta<em>{1}$减去一个正数，$\theta</em>{1}$减小，则$\theta<em>{1}$更靠近$\theta</em>{min}$</li>
-<li>$\theta<em>{1}&lt;\theta</em>{min}$分析方法类似    </li>
+<li>假如$\theta_{1}&gt;\theta_{min}$，则该点切线斜率大于等于0，即$\frac{dJ(\theta_{1})}{d\theta_{1}}\geq 0$(因为只有一个参数，所以退化为求微分)，所以<script type="math/tex">\theta_{1}=\theta_{1}-\alpha\frac{dJ(\theta_{1})}{d\theta_{1}}</script>，$\theta_{1}$减去一个正数，$\theta_{1}$减小，则$\theta_{1}$更靠近$\theta_{min}$</li>
+<li>$\theta_{1}&lt;\theta_{min}$分析方法类似    </li>
 </ul>
 <h3 id="梯度下降算法在线性回归中的应用"><a href="#梯度下降算法在线性回归中的应用" class="headerlink" title="梯度下降算法在线性回归中的应用"></a>梯度下降算法在线性回归中的应用</h3><p>　　将之前的代价函数带入梯度下降算法里，得到(其实就是复合函数求导，可以手动算一下):</p>
 <script type="math/tex; mode=display">\theta_{0}=\theta_{0}-\alpha\frac{1}{m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})</script><script type="math/tex; mode=display">\theta_{1}=\theta_{1}-\alpha\frac{1}{m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})*x_{1}</script><h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2><p>有数据集如下:    </p>
@@ -699,7 +711,7 @@ int main()
 <thead>
 <tr>
 <th style="text-align:center">$x_{0}$</th>
-<th style="text-align:center">房子面积/$m<em>{2}(x</em>{1})$</th>
+<th style="text-align:center">房子面积/$m_{2}(x_{1})$</th>
 <th style="text-align:center">卧室数量$(x_{2})$</th>
 <th style="text-align:center">层数$(x_{3})$</th>
 <th style="text-align:center">房子寿命$(x_{4})$</th>
@@ -742,7 +754,7 @@ int main()
 </tbody>
 </table>
 </div>
-<p><strong>数据集2</strong><br><strong>PS:为了$\theta<em>{i}$与$x</em>{j}$下标一致，所以多加一列，其所有值都为1</strong></p>
+<p><strong>数据集2</strong><br><strong>PS:为了$\theta_{i}$与$x_{j}$下标一致，所以多加一列，其所有值都为1</strong></p>
 <p>补充字母含义:    </p>
 <div class="table-container">
 <table>
@@ -774,18 +786,18 @@ int main()
 <script type="math/tex; mode=display">J(\theta)=\frac{1}{2m}\sum_{i=1}^{m}((\sum_{j=0}^{n}\theta_{j}x_{j}^{(i)})-y^{(i)})^2</script><p>则梯度下降算法对应的偏导为:</p>
 <script type="math/tex; mode=display">\theta_{j}=\theta_{j}-\alpha\frac{1}{m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})*x_{j}^{(i)}</script><h3 id="加快梯度下降算法收敛方法"><a href="#加快梯度下降算法收敛方法" class="headerlink" title="加快梯度下降算法收敛方法"></a>加快梯度下降算法收敛方法</h3><ol>
 <li>特征缩放(feature scaling)<br>　保证每个特征量范围都在$-1\geq x_{i}\geq 1$，每个特征值除以该特征范围。</li>
-<li>均值归一化(mean normalization)<br>　保证特征变量在$-0.5\geq x_{i} \geq 0.5$，令<script type="math/tex; mode=display">x_{i}=\frac{x_{i}-\mu_{i}}{s_{i}}</script>其中，$\mu<em>{i}$表示$i^{th}$特征的均值，$s</em>{i}$表示表示$i^{th}$特征的范围或标准差。</li>
+<li>均值归一化(mean normalization)<br>　保证特征变量在$-0.5\geq x_{i} \geq 0.5$，令<script type="math/tex; mode=display">x_{i}=\frac{x_{i}-\mu_{i}}{s_{i}}</script>其中，$\mu_{i}$表示$i^{th}$特征的均值，$s_{i}$表示表示$i^{th}$特征的范围或标准差。</li>
 <li>调整学习效率$\alpha$<br>　$\alpha$必须足够小，且$J(\theta)$必须在每一次迭代后减小，可以以每次为原来的3倍来调整$\alpha$。<ul>
 <li>当$\alpha$太小，算法收敛过慢。</li>
 <li>当$\alpha$太大，$J(\theta)$可能在迭代若干次后开始增加，最终算法不能收敛。   </li>
 </ul>
 </li>
 </ol>
-<h2 id="多项式线性回归"><a href="#多项式线性回归" class="headerlink" title="多项式线性回归"></a>多项式线性回归</h2><p>　当假设函数不再是线性时，可以通过平方，立方，开平方来进行多项式拟合。<br>e.g<br>$h<em>{\theta}(x)=\theta</em>{0}+\theta<em>{1}x</em>{1}$<br>对于<strong>数据集1</strong>，可以令</p>
+<h2 id="多项式线性回归"><a href="#多项式线性回归" class="headerlink" title="多项式线性回归"></a>多项式线性回归</h2><p>　当假设函数不再是线性时，可以通过平方，立方，开平方来进行多项式拟合。<br>e.g<br>$h_{\theta}(x)=\theta_{0}+\theta_{1}x_{1}$<br>对于<strong>数据集1</strong>，可以令</p>
 <ol>
-<li>$h<em>{\theta}(x)=\theta</em>{0}+\theta<em>{1}x</em>{1}^{2}$<br> 此函数为二次函数，根据实际情况，房价不可能随面积增大而减小。</li>
-<li>$h<em>{\theta}(x)=\theta</em>{0}+\theta<em>{1}x+\theta</em>{1}x<em>{1}^{2}+\theta</em>{2}x<em>{1}^{3}$<br> 此函数中，令$x</em>{2}=x<em>{1}^{2}，x</em>{3}=x^{3}_{1}$，此时，三个特征范围相差过大，对于特征值归一化有不利影响。</li>
-<li>$h<em>{\theta}(x)=\theta</em>{0}+\theta<em>{1}x</em>{1}+\theta<em>{2}\surd{x</em>{1}}$<br> 此时较符合模型。运用此方法 ，特征缩放很重要，而且特征之间关联程度要小。</li>
+<li>$h_{\theta}(x)=\theta_{0}+\theta_{1}x_{1}^{2}$<br> 此函数为二次函数，根据实际情况，房价不可能随面积增大而减小。</li>
+<li>$h_{\theta}(x)=\theta_{0}+\theta_{1}x+\theta_{1}x_{1}^{2}+\theta_{2}x_{1}^{3}$<br> 此函数中，令$x_{2}=x_{1}^{2}，x_{3}=x^{3}_{1}$，此时，三个特征范围相差过大，对于特征值归一化有不利影响。</li>
+<li>$h_{\theta}(x)=\theta_{0}+\theta_{1}x_{1}+\theta_{2}\surd{x_{1}}$<br> 此时较符合模型。运用此方法 ，特征缩放很重要，而且特征之间关联程度要小。</li>
 </ol>
 <h2 id="正规方程-Normal-Equation"><a href="#正规方程-Normal-Equation" class="headerlink" title="正规方程(Normal Equation)"></a>正规方程(Normal Equation)</h2><p>　对于训练样本数为m，特征数为n，<br>令矩阵  </p>
 <script type="math/tex; mode=display">X=\left[   \begin{matrix} x_0^{i} & x_1^{i} & x_2^{i} & x_3^{i} &...\end{matrix}   \right]^{T}</script><p>其中<script type="math/tex">(1\leq i \leq m)</script>，X为m*(n+1)阶矩阵。</p>
@@ -894,9 +906,9 @@ int main()
 <p>给出N个线段长度，试将它们头尾相接组合成一个凸多边形，使凸多边形的外接圆（多边形每个顶点都在圆上）的半径最大，求该最大半径。其中N&lt;=10^5，线段长度均不超过100，要求算法中不涉及坐标的计算。    </p>
 </blockquote>
 <h4 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h4><h5 id="思路1"><a href="#思路1" class="headerlink" title="思路1"></a>思路1</h5><p>首先，因为圆心不确定，想涉及坐标计算也无能为力啊😂。<br>其次，考验数学时候来啦。我们可以确定当圆是凸多边形外接圆时，该多边形内角和为$π*(n-2)$，对于每一条弦（题中线段），与两条半径组成等腰三角形，解该等腰三角形其底角为  </p>
-<script type="math/tex; mode=display">α_{i}=arccos(\frac{s_{i}/2}{r})</script><p>则凸多边形内角和为$\sum<em>{i=0}^{n-1}α</em>{i}$。此时则可以二分$r$，当内角和小于误差限时，即得到最大半径。</p>
+<script type="math/tex; mode=display">α_{i}=arccos(\frac{s_{i}/2}{r})</script><p>则凸多边形内角和为$\sum_{i=0}^{n-1}α_{i}$。此时则可以二分$r$，当内角和小于误差限时，即得到最大半径。</p>
 <h5 id="思路2"><a href="#思路2" class="headerlink" title="思路2"></a>思路2</h5><p>换一个角度，一条线段(弦)对应的圆心角为  </p>
-<script type="math/tex; mode=display">α_{i}=arcsin(\frac{s_{i}/2}{r})</script><p>而当r确定，所有的弦对应的圆心角和$\sum<em>{i=0}^{n-1}α</em>{i}=2π$，此时可以二分$r$，当内角和小于误差限时，即得到最大半径。<br>思路1和2，C++代码链接：<a href="https://github.com/lightingmoon/BlogResourceCode/blob/master/二分算法总结/findMaxRadius.cpp">二分思想题解</a></p>
+<script type="math/tex; mode=display">α_{i}=arcsin(\frac{s_{i}/2}{r})</script><p>而当r确定，所有的弦对应的圆心角和$\sum_{i=0}^{n-1}α_{i}=2π$，此时可以二分$r$，当内角和小于误差限时，即得到最大半径。<br>思路1和2，C++代码链接：<a href="https://github.com/lightingmoon/BlogResourceCode/blob/master/二分算法总结/findMaxRadius.cpp">二分思想题解</a></p>
 ]]></content>
       <categories>
         <category>算法与数据结构</category>
@@ -1040,7 +1052,7 @@ ElementType HeapSort( ElementType A[], int N )
 <h3 id="3-遗传算子-操作算子"><a href="#3-遗传算子-操作算子" class="headerlink" title="3.遗传算子(操作算子)"></a>3.遗传算子(操作算子)</h3><h5 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h5><p>　　根据个体的适应度选择进入下一代的个体，个体的适应度越大，则其越有可能被选入下一代。选择机制有轮盘赌方法，最佳个体保存法、期望值方法、排序选择方法、联赛选择方法、排挤方法等。一般都采用轮盘赌方法。下面描述一下轮盘赌算法：</p>
 <hr>
 <p>1.设种群数量为n，先计算出种群内所有个体适应度<script type="math/tex">f(x_{i})</script>，<br>再计算出种群总适应度<script type="math/tex">sum=\sum\limits_{i=0}^{n-1}f(x_{i})</script>，<br>个体适应度与种群总适应度的比值得到个体选择概率<script type="math/tex">\large p(x_{i})=\frac{f(x_{i})}{sum}</script>。<br>积累概率<script type="math/tex">q_{i}=\sum\limits_{j=0}^{n-1}p(x_{i})</script>表示从第一个个体的选择概率累加，累加到某项即为相应染色体的积累概率。<br>2.生成一个随机数<script type="math/tex">r</script>，若<script type="math/tex">r\leq q_{0}</script>,则选中<script type="math/tex">0</script>号染色体;<br>3.若<script type="math/tex">q_{i-1}<r\le q_{i}(1\leq i<n)</script>，则<script type="math/tex">i</script>号染色体被选中。<br>对于积累概率，如下图先给出个体选中概率:</p>
-<p><center><img src="image/selectionProb.png" width="300" height="200"/></center><br>由图得积累概率:<br>$q(x<em>{0})=0.2$<br>$q(x</em>{1})=0.3$<br>$q(x<em>{2})=0.7$<br>$q(x</em>{3})=1$<br><strong>染色体的选择概率越大，在上面饼图占的比例也就越大，被选入下一代可能性也就越大</strong><br>轮盘赌选择算子在个体较少时，可能会出现不正确的反映个体适应度的选择过程，即适应的高的个体可能被淘汰了。此时就要考虑其他的选择算子。</p>
+<p><center><img src="image/selectionProb.png" width="300" height="200"/></center><br>由图得积累概率:<br>$q(x_{0})=0.2$<br>$q(x_{1})=0.3$<br>$q(x_{2})=0.7$<br>$q(x_{3})=1$<br><strong>染色体的选择概率越大，在上面饼图占的比例也就越大，被选入下一代可能性也就越大</strong><br>轮盘赌选择算子在个体较少时，可能会出现不正确的反映个体适应度的选择过程，即适应的高的个体可能被淘汰了。此时就要考虑其他的选择算子。</p>
 <hr>
 <h5 id="交叉"><a href="#交叉" class="headerlink" title="交叉"></a>交叉</h5><p>　　交叉算子即把两个亲代个体的部分结构进行替换重组而生成新子代个体的操作。其两个特点：</p>
 <ul>
@@ -1114,10 +1126,10 @@ ElementType HeapSort( ElementType A[], int N )
 </div>
 <p>这样就完成了一次一点交叉运算。</p>
 <ul>
-<li>对于实数编码，主要采用算术交叉算子。假设存在个体$P<em>{1}$、$P</em>{2}$，对于它们进行算术交叉后得到新个体$P<em>{1}’$、$P</em>{2}’$的运算如下,其中伪随机数$\lambda$$\in$[0,1]：</li>
+<li>对于实数编码，主要采用算术交叉算子。假设存在个体$P_{1}$、$P_{2}$，对于它们进行算术交叉后得到新个体$P_{1}’$、$P_{2}’$的运算如下,其中伪随机数$\lambda$$\in$[0,1]：</li>
 </ul>
 <hr>
-<p>$\large P<em>{1}’=\lambda P</em>{1}+(1-\lambda) P<em>{2}$<br>$\large P</em>{2}’=(1-\lambda) P<em>{1}+\lambda P</em>{2}$</p>
+<p>$\large P_{1}’=\lambda P_{1}+(1-\lambda) P_{2}$<br>$\large P_{2}’=(1-\lambda) P_{1}+\lambda P_{2}$</p>
 <hr>
 <h5 id="变异"><a href="#变异" class="headerlink" title="变异"></a>变异</h5><p>引入变异算子有两个目的：</p>
 <ul>
