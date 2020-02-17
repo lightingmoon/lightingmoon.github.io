@@ -14,23 +14,20 @@
   <meta name="baidu-site-verification" content="true">
   <meta name="msvalidate.01" content="BBA0F05A054A52937A445B0457B5D099">
   
-  <title style="text-align:center">用遗传算法解决一个简单问题 | 月之燃梦</title>
+  <title style="text-align:center">1003 Emergency😏 | 月之燃梦</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习算法，就我看来，其实就是学习解决问题的一种思想或者方法，应该是一种体验过程的学习，在过程中感悟与升华，最终把它吸收转化成自己的独特的思想；在学习中感受与惊叹先贤的解决问题的思想，未尝不是一种乐趣?这不也昭示了学习本身就是快乐的过程吗？如果连学习都体验不到快乐，那还有什么能体验到快乐呢？　　本文是可以作为遗传算法介绍性文章，是关于一次简单、浅显的利用遗传算法来解决函数优化问题的介绍性文章。">
-<meta name="keywords" content="遗传算法">
+  <meta name="description" content="多加思考。">
+<meta name="keywords" content="DFS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用遗传算法解决一个简单问题">
-<meta property="og:url" content="https://www.lightdream.xyz/GeneticAlgorithm.html">
+<meta property="og:title" content="1003 Emergency😏">
+<meta property="og:url" content="https://www.lightdream.xyz/1003-Emergency.html">
 <meta property="og:site_name" content="月之燃梦">
-<meta property="og:description" content="学习算法，就我看来，其实就是学习解决问题的一种思想或者方法，应该是一种体验过程的学习，在过程中感悟与升华，最终把它吸收转化成自己的独特的思想；在学习中感受与惊叹先贤的解决问题的思想，未尝不是一种乐趣?这不也昭示了学习本身就是快乐的过程吗？如果连学习都体验不到快乐，那还有什么能体验到快乐呢？　　本文是可以作为遗传算法介绍性文章，是关于一次简单、浅显的利用遗传算法来解决函数优化问题的介绍性文章。">
+<meta property="og:description" content="多加思考。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://www.lightdream.xyz/image/example.png">
-<meta property="og:image" content="https://www.lightdream.xyz/image/selectionProb.png">
-<meta property="og:updated_time" content="2019-01-18T05:45:45.059Z">
+<meta property="og:updated_time" content="2020-02-17T09:08:17.982Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用遗传算法解决一个简单问题">
-<meta name="twitter:description" content="学习算法，就我看来，其实就是学习解决问题的一种思想或者方法，应该是一种体验过程的学习，在过程中感悟与升华，最终把它吸收转化成自己的独特的思想；在学习中感受与惊叹先贤的解决问题的思想，未尝不是一种乐趣?这不也昭示了学习本身就是快乐的过程吗？如果连学习都体验不到快乐，那还有什么能体验到快乐呢？　　本文是可以作为遗传算法介绍性文章，是关于一次简单、浅显的利用遗传算法来解决函数优化问题的介绍性文章。">
-<meta name="twitter:image" content="https://www.lightdream.xyz/image/example.png">
+<meta name="twitter:title" content="1003 Emergency😏">
+<meta name="twitter:description" content="多加思考。">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -116,14 +113,14 @@ ga('send', 'pageview');
 </header>
       <div id="main" class="wrapper">
         <div id="primary" class="site-content">
-			<div id="content" role="main"><article id="post-GeneticAlgorithm" class="post-GeneticAlgorithm post type-post status-publish format-standard hentry">
+			<div id="content" role="main"><article id="post-1003-Emergency" class="post-1003-Emergency post type-post status-publish format-standard hentry">
 		
       <center><header class="entry-header">
         
         
   
     <h1 class="entry-title article-title">
-      用遗传算法解决一个简单问题
+      1003 Emergency😏
     </h1>
   
 
@@ -132,7 +129,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">2,310字</span>
+        <span class="post-count">715字</span>
       </span>
     </span>
 	&nbsp;|
@@ -140,7 +137,7 @@ ga('send', 'pageview');
     <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">阅读时长:约</span>
-        <span class="post-count">8&nbsp;分钟</span>
+        <span class="post-count">4&nbsp;分钟</span>
       </span>
     </span>
 </div>
@@ -153,146 +150,139 @@ ga('send', 'pageview');
 		总阅读量<span id="busuanzi_value_page_pv"></span>次
 		</span></center>
 		</br></br>
-        <script src="\assets\js\APlayer.min.js"> </script><p>　　学习算法，就我看来，其实就是学习解决问题的一种思想或者方法，应该是一种体验过程的学习，在过程中感悟与升华，最终把它吸收转化成自己的独特的思想；在学习中感受与惊叹先贤的解决问题的思想，未尝不是一种乐趣?这不也昭示了学习本身就是快乐的过程吗？如果连学习都体验不到快乐，那还有什么能体验到快乐呢？<br>　　本文是可以作为遗传算法介绍性文章，是关于一次简单、浅显的利用遗传算法来解决函数优化问题的介绍性文章。<br><a id="more"></a></p>
-<h1 id="要解决的问题"><a href="#要解决的问题" class="headerlink" title="要解决的问题"></a>要解决的问题</h1><blockquote>
-<p>求解函数 <script type="math/tex">f(x)=x*sin(10\pi +x)+1.0</script> 在区间<script type="math/tex">[-1，2]</script>的最大值。</p>
-</blockquote>
-<h1 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h1><p>　　首先列举一下遗传算法的构成要素</p>
-<h3 id="1-染色体的编码以及编码方法"><a href="#1-染色体的编码以及编码方法" class="headerlink" title="1.染色体的编码以及编码方法"></a>1.染色体的编码以及编码方法</h3><p>　　我们要把问题的解空间进行编码，以便于遗传算法能进行操作。编码方式主要有二进制编码，浮点数编码，格雷码等。</p>
-<h5 id="二进制编码"><a href="#二进制编码" class="headerlink" title="二进制编码"></a>二进制编码</h5><p>　　假设参数范围为<script type="math/tex">[A,B] (A<B)</script>,我们有长度为a的二进制串来编码，则共有<script type="math/tex">2^a</script>种不同编码，可以将<script type="math/tex">[A,B]</script>分成<script type="math/tex">2^a-1</script>份，等分长度为<script type="math/tex">α</script>，</p>
-<hr>
-<p><center><img src="image/example.png" width="300" height="200"/></center></p>
-<hr>
-<p>因为当二进制串长度过长时会影响遗传算法的运行效率，所以这类问题就要重新考虑编码方式了。</p>
-<h5 id="浮点数编码"><a href="#浮点数编码" class="headerlink" title="浮点数编码"></a>浮点数编码</h5><p>　　对于函数优化问题，例如本题，浮点数编码则更合适了。浮点数编码就是用在一定范围内的浮点数表示每个个体的染色体。</p>
-<h5 id="格雷码"><a href="#格雷码" class="headerlink" title="格雷码"></a>格雷码</h5><p>　　其是一种绝对编码的格式，是具有反射特性和循环特性的单步自补码。这些特性保证了它不会出现重大错误。因为它的每次变化都只有相邻两位发生变化，即每次变化与上一次都只有一位不相同。而自然二进制串在向高位进位时却<strong>至少有$1$位不同</strong>。相比于改变多位，明显格雷码的改变一位更稳定些，且出错几率也更小些。其构造方法：</p>
-<hr>
-<p>以二进制$0$为第$0$项，第$1$项改变最右边的位，第二项改变右起第一位非$0$的位，如此反复，即可得到<script type="math/tex">n</script>个位的Gray code.</p>
-<hr>
-<h3 id="2-群体初始化以及计算个体适应度"><a href="#2-群体初始化以及计算个体适应度" class="headerlink" title="2.群体初始化以及计算个体适应度"></a>2.群体初始化以及计算个体适应度</h3><p>　　适应度函数是评估个体的适应性的唯一标准，也是后面选择个体阶段的唯一标准。对于很多问题可以直接将目标函数作为适应度函数。遗传算法的目标函数不受连续可微的约束且定义域可以是任意集合。但对适应度函数有一个要求：针对输入可以计算出的、能加以比较的结果，必须是非负的。</p>
-<h3 id="3-遗传算子-操作算子"><a href="#3-遗传算子-操作算子" class="headerlink" title="3.遗传算子(操作算子)"></a>3.遗传算子(操作算子)</h3><h5 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h5><p>　　根据个体的适应度选择进入下一代的个体，个体的适应度越大，则其越有可能被选入下一代。选择机制有轮盘赌方法，最佳个体保存法、期望值方法、排序选择方法、联赛选择方法、排挤方法等。一般都采用轮盘赌方法。下面描述一下轮盘赌算法：</p>
-<hr>
-<p>1.设种群数量为n，先计算出种群内所有个体适应度<script type="math/tex">f(x_{i})</script>，<br>再计算出种群总适应度<script type="math/tex">sum=\sum\limits_{i=0}^{n-1}f(x_{i})</script>，<br>个体适应度与种群总适应度的比值得到个体选择概率<script type="math/tex">\large p(x_{i})=\frac{f(x_{i})}{sum}</script>。<br>积累概率<script type="math/tex">q_{i}=\sum\limits_{j=0}^{n-1}p(x_{i})</script>表示从第一个个体的选择概率累加，累加到某项即为相应染色体的积累概率。<br>2.生成一个随机数<script type="math/tex">r</script>，若<script type="math/tex">r\leq q_{0}</script>,则选中<script type="math/tex">0</script>号染色体;<br>3.若<script type="math/tex">q_{i-1}<r\le q_{i}(1\leq i<n)</script>，则<script type="math/tex">i</script>号染色体被选中。<br>对于积累概率，如下图先给出个体选中概率:</p>
-<p><center><img src="image/selectionProb.png" width="300" height="200"/></center><br>由图得积累概率:<br>$q(x_{0})=0.2$<br>$q(x_{1})=0.3$<br>$q(x_{2})=0.7$<br>$q(x_{3})=1$<br><strong>染色体的选择概率越大，在上面饼图占的比例也就越大，被选入下一代可能性也就越大</strong><br>轮盘赌选择算子在个体较少时，可能会出现不正确的反映个体适应度的选择过程，即适应的高的个体可能被淘汰了。此时就要考虑其他的选择算子。</p>
-<hr>
-<h5 id="交叉"><a href="#交叉" class="headerlink" title="交叉"></a>交叉</h5><p>　　交叉算子即把两个亲代个体的部分结构进行替换重组而生成新子代个体的操作。其两个特点：</p>
-<ul>
-<li>设计的交叉算子必须保证亲代的优良性状能在子代个体中得到遗传和继承。</li>
-<li>交叉算子的设计与问题的编码是相互协调的，即编码-交叉设计。</li>
-<li>对于二进制串编码，交叉算子主要有一点交叉，两点交叉，多点交叉，一致交叉。其中一点交叉的操作如下：</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">个体</th>
-<th style="text-align:center">对应编码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$P_{1}$</td>
-<td style="text-align:center">01010010</td>
-</tr>
-<tr>
-<td style="text-align:center">$P_{2}$</td>
-<td style="text-align:center">00101110</td>
-</tr>
-</tbody>
-</table>
-</div>
-<hr>
-<p>假设从左起第$5$位开始进行一点交叉，得到</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">个体</th>
-<th style="text-align:center">取出的二进制串</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$P_{1}$</td>
-<td style="text-align:center">0010</td>
-</tr>
-<tr>
-<td style="text-align:center">$P_{2}$</td>
-<td style="text-align:center">1110</td>
-</tr>
-</tbody>
-</table>
-</div>
-<hr>
-<p>进行一点交叉后得到两个新个体，</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">个体</th>
-<th style="text-align:center">对应编码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$P_{1}’$</td>
-<td style="text-align:center">00101110</td>
-</tr>
-<tr>
-<td style="text-align:center">$P_{2}’$</td>
-<td style="text-align:center">01010010</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>这样就完成了一次一点交叉运算。</p>
-<ul>
-<li>对于实数编码，主要采用算术交叉算子。假设存在个体$P_{1}$、$P_{2}$，对于它们进行算术交叉后得到新个体$P_{1}’$、$P_{2}’$的运算如下,其中伪随机数$\lambda$$\in$[0,1]：</li>
-</ul>
-<hr>
-<p>$\large P_{1}’=\lambda P_{1}+(1-\lambda) P_{2}$<br>$\large P_{2}’=(1-\lambda) P_{1}+\lambda P_{2}$</p>
-<hr>
-<h5 id="变异"><a href="#变异" class="headerlink" title="变异"></a>变异</h5><p>引入变异算子有两个目的：</p>
-<ul>
-<li>使遗传算法具备局部搜索能力。当遗传算子通过交叉算子接近最优解领域时，变异算子可以使遗传算法快速向最优解收敛。在这种情况下，变异概率应取较小的值。</li>
-<li>使种群具备较好的群体多样性，防止遗传算法出现未成熟收敛情况。此时，比那一概率应取较大的值。</li>
-</ul>
-<hr>
-<p>1.对于二进制编码，其变异方式为随机的选择某些基因位，对这些基因位进行概率性的翻转变异，即$0$变为$1$,$1$变为$0$。<br>2.对于实数编码，其变异方式为随机变异。使变异个体变量分量加上一个伪随机数，该随机数为均匀分布或高斯分布。<br> 变异方式还有逆转变异算子，自适应变异算子等。</p>
-<h5 id="遗传算子的性质"><a href="#遗传算子的性质" class="headerlink" title="遗传算子的性质"></a>遗传算子的性质</h5><p>　　交叉算子具备良好的全局搜索能力，是遗传算法的主要操作算子；变异算子具备局部搜索能力，是遗传算法的辅助操作算子。交叉和变异使遗传算法具备均衡的全局搜索能力和局部搜索能力。</p>
-<h3 id="回到上面的问题，"><a href="#回到上面的问题，" class="headerlink" title="回到上面的问题，"></a>回到上面的问题，</h3><p>　　对于这个问题，我采取浮点数编码，下面是遗传算法的运行参数：</p>
-<pre><code>const double PI = 3.1415927;                 // π
-#define N 50                                  // 群体规模
-#define T 100                               // 进化代数
-#define PC  0.75                              // 参加交配概率
-#define PM 0.0875                            // 变异概率
-</code></pre><p><strong>完整实现代码请移至我的<a href="https://github.com/lightingmoon/BlogResourceCode/tree/master/GeneticAlgorithm">Github</a></strong></p>
-<hr>
-<p>　　说一下感想，对于解决问题的范式，无外乎就是从所有可能解决问题的方法中将这个方法找出来，也即搜索。最开始我们有广度搜索和深度搜索，它们都可能在有限时间内搜索到问题的解决方法。但是，它们是盲目搜索，在今天的计算机条件下，一来计算机能表示的状态空间有限，二来其运行速度对一些状态空间稍微大一些的问题，往往要花大量的时间去计算。所以睿智的前人就发明了启发式搜索，通过预先设置一些方法，引导搜索的方向，使它能更快速的进行搜索，得到更满意的答案。根据达尔文进化论，物竞天择，适者生存，不适者淘汰。我们有一种思想叫做类比，既然大自然能淘汰掉不适合生存其中的物种，保留适合的物种，那我们是否可以借鉴这种方式，淘汰掉不合适的搜索路径，留下适合的搜索路径，这样最后得到的就是最佳解决路径了。这就是遗传算法的本质了。这里只是见到了它的冰山一角而已。就当做领略风光了。</p>
-<hr>
-<h4 id="另外，在这里总结一下c语言获取伪随机数方法"><a href="#另外，在这里总结一下c语言获取伪随机数方法" class="headerlink" title="另外，在这里总结一下c语言获取伪随机数方法"></a>另外，在这里总结一下c语言获取伪随机数方法</h4><p>1.先设置伪随机数种子</p>
-<pre><code>srand((int)time(0));
-</code></pre><p>2.其次，获取随机数，假如要在子函数里生成随机数，则只能在主函数里设置随机数种子。也就是只用在主函数最开始设置一次种子就可以了。<br>下面是获取伪随机数的一般形式：</p>
-<pre><code>rand()%y + x
-</code></pre><p>表示生成$[x,y+x)$的伪随机整数。<br>如果需要闭区间$[x,y+x]$的话，可以再给y加个1，即</p>
-<pre><code>rand()%(y+1) + x
+        <script src="\assets\js\APlayer.min.js"> </script><pre><code>多加思考。
+</code></pre><a id="more"></a>
+<pre><code>As an emergency rescue team leader of a city, you are given a special map of your country. 
+The map shows several scattered cities connected by some roads. 
+Amount of rescue teams in each city and the length of each road between any pair of cities
+ are marked on the map. When there is an emergency call to you from some other city, 
+your job is to lead your men to the place as quickly as possible, and at the mean time, call up as many hands on the way as possible.
+
+Input Specification:
+Each input file contains one test case. 
+For each test case, the first line contains 4 positive integers: 
+N (≤500) - the number of cities (and the cities are numbered from 0 to N−1), 
+M - the number of roads, C1 and C2- the cities that you are currently in and that you must save, 
+respectively. The next line contains N integers, where the i-th integer is the number of rescue teams in the i-th city. 
+Then M lines follow, each describes a road with three integers c1, c2 and L, 
+which are the pair of cities connected by a road and the length of that road, respectively. 
+It is guaranteed that there exists at least one path from C1 to C2.
+
+Output Specification:
+For each test case, print in one line two numbers: 
+the number of different shortest paths between C1 and C2, 
+and the maximum amount of rescue teams you can possibly gather. 
+All the numbers in a line must be separated by exactly one space, and there is no extra space allowed at the end of a line.
+Sample Input:
+5 6 0 2
+1 2 1 5 3
+0 1 1
+0 2 2
+0 3 1
+1 2 1
+2 4 1
+3 4 1   
+Sample Output:
+2 4  
+作者: CHEN, Yue
+单位: 浙江大学
+时间限制: 400 ms
+内存限制: 64 MB
+</code></pre><p>思路提点:<br>　　考虑DFS，从指定城市$c_1$出发，依次访问邻接城市，直到目标城市$c_2$。用$LL$记录到达目标城市最短路径长度，$L$记录当前长度；$gather$记录最短路径最多的援救队，$gt$记录当前路径援救队，shortest记录最短路径条数。每次访问到目标城市就对$LL,gather,shortest$进行更新。之后进行回溯继续搜索。C++代码如下：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;array&gt;
+using namespace std;
+
+const int INF=0x3fffffff;
+array&lt;array&lt;int,507&gt;,507&gt; pic;
+array&lt;int,503&gt; team;
+array&lt;int, 507&gt; vis;
+
+// 结果
+int shortest,gather=0;
+// DFS信息
+int LL=INF;    // 
+int L=0;
+int gt;
+
+void DFS(int v, int d, int n)
+{
+    if(v == d)
+    {
+        if(L &lt; LL)        // 找到比之前路径更短路径，最短路径条数置1，更新最短路径长度
+        {                // 更新最多搜救队数目
+            shortest = 1;
+            LL = L;
+            gather = gt;
+        }
+        else if(L == LL)    // 不止一条最短路径，更新最多搜救队数目
+        {
+            shortest++;
+            gather=max(gather, gt);
+        }
+        return;                // 返回
+    }
+
+    vis[v]=1;   //置访问标记
+    for(int i=0; i&lt;n; ++i)
+    {
+        if(pic[v][i]!=INF &amp;&amp; vis[i] == 0)
+        {
+            L += pic[v][i];
+            gt += team[i];
+
+            DFS(i, d, n);
+
+            gt -= team[i];
+            L -= pic[v][i];
+        }
+    }
+    vis[v]=0;   // 回溯取消标记
+}
+int main()
+{
+    ios::sync_with_stdio(0);
+
+    int n, m, c1, c2;
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;c1&gt;&gt;c2;
+    for(int i=0; i&lt;n; ++i)
+        cin&gt;&gt;team[i];
+
+    for(int i=0; i&lt;n; ++i)
+        pic[i].fill(INF);
+
+    int t1,t2,s;
+    for(int i=0; i&lt;m; ++i)
+    {
+        cin&gt;&gt;t1&gt;&gt;t2&gt;&gt;s;
+        pic[t1][t2]=pic[t2][t1]=s;    // 无向图！
+    }
+
+    vis.fill(0);
+    gt = team[c1];            // 源城市援救队数目
+
+    DFS(c1,c2,n);
+
+    cout&lt;&lt;shortest&lt;&lt;&#39; &#39;&lt;&lt;gather&lt;&lt;endl;
+    return 0 ;
+}
 </code></pre>	
 		</br>
 		<footer style="text-align: center" class="entry-meta">雪林于
 		<a href="">
-   <time datetime="2019-01-11T04:33:08.000Z" class="entry-date">
-        2019年01月11日 12:33
+   <time datetime="2020-01-17T08:22:20.000Z" class="entry-date">
+        2020年01月17日 16:22
     </time>
 </a>
 		
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="categories/算法与数据结构/">算法与数据结构</a>
+  <a class="article-category-link" href="categories/PAT/">PAT</a>
   </div>
 
 		
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/遗传算法/">遗传算法</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/DFS/">DFS</a></li></ul>
 
 		
 			<!-- 来必力City版安装代码 -->
@@ -326,10 +316,8 @@ ga('send', 'pageview');
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="FindMiddleNumber.html" rel="prev"><span class="meta-nav">←</span> 6-11 求自定类型元素序列的中位数</a></span>
     
-    
-        <span class="nav-next"><a href="LRUalgorithm.html" rel="next">页置换算法之LRU(最近最久未使用) <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="Lookbacktothepast.html" rel="next">回望 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
@@ -359,7 +347,7 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="1003-Emergency.html">1003 Emergency😏</a>
+            <a href="">1003 Emergency😏</a>
           </li>
         
           <li>

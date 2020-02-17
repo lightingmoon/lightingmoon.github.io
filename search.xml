@@ -1,14 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>1003 Emergency😏</title>
+    <url>/1003-Emergency.html</url>
+    <content><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><pre><code>多加思考。
+</code></pre><a id="more"></a>
+<pre><code>As an emergency rescue team leader of a city, you are given a special map of your country. 
+The map shows several scattered cities connected by some roads. 
+Amount of rescue teams in each city and the length of each road between any pair of cities
+ are marked on the map. When there is an emergency call to you from some other city, 
+your job is to lead your men to the place as quickly as possible, and at the mean time, call up as many hands on the way as possible.
+
+Input Specification:
+Each input file contains one test case. 
+For each test case, the first line contains 4 positive integers: 
+N (≤500) - the number of cities (and the cities are numbered from 0 to N−1), 
+M - the number of roads, C1 and C2- the cities that you are currently in and that you must save, 
+respectively. The next line contains N integers, where the i-th integer is the number of rescue teams in the i-th city. 
+Then M lines follow, each describes a road with three integers c1, c2 and L, 
+which are the pair of cities connected by a road and the length of that road, respectively. 
+It is guaranteed that there exists at least one path from C1 to C2.
+
+Output Specification:
+For each test case, print in one line two numbers: 
+the number of different shortest paths between C1 and C2, 
+and the maximum amount of rescue teams you can possibly gather. 
+All the numbers in a line must be separated by exactly one space, and there is no extra space allowed at the end of a line.
+Sample Input:
+5 6 0 2
+1 2 1 5 3
+0 1 1
+0 2 2
+0 3 1
+1 2 1
+2 4 1
+3 4 1   
+Sample Output:
+2 4  
+作者: CHEN, Yue
+单位: 浙江大学
+时间限制: 400 ms
+内存限制: 64 MB
+</code></pre><p>思路提点:<br>　　考虑DFS，从指定城市$c_1$出发，依次访问邻接城市，直到目标城市$c_2$。用$LL$记录到达目标城市最短路径长度，$L$记录当前长度；$gather$记录最短路径最多的援救队，$gt$记录当前路径援救队，shortest记录最短路径条数。每次访问到目标城市就对$LL,gather,shortest$进行更新。之后进行回溯继续搜索。C++代码如下：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;array&gt;
+using namespace std;
+
+const int INF=0x3fffffff;
+array&lt;array&lt;int,507&gt;,507&gt; pic;
+array&lt;int,503&gt; team;
+array&lt;int, 507&gt; vis;
+
+// 结果
+int shortest,gather=0;
+// DFS信息
+int LL=INF;    // 
+int L=0;
+int gt;
+
+void DFS(int v, int d, int n)
+{
+    if(v == d)
+    {
+        if(L &lt; LL)        // 找到比之前路径更短路径，最短路径条数置1，更新最短路径长度
+        {                // 更新最多搜救队数目
+            shortest = 1;
+            LL = L;
+            gather = gt;
+        }
+        else if(L == LL)    // 不止一条最短路径，更新最多搜救队数目
+        {
+            shortest++;
+            gather=max(gather, gt);
+        }
+        return;                // 返回
+    }
+
+    vis[v]=1;   //置访问标记
+    for(int i=0; i&lt;n; ++i)
+    {
+        if(pic[v][i]!=INF &amp;&amp; vis[i] == 0)
+        {
+            L += pic[v][i];
+            gt += team[i];
+
+            DFS(i, d, n);
+
+            gt -= team[i];
+            L -= pic[v][i];
+        }
+    }
+    vis[v]=0;   // 回溯取消标记
+}
+int main()
+{
+    ios::sync_with_stdio(0);
+
+    int n, m, c1, c2;
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;c1&gt;&gt;c2;
+    for(int i=0; i&lt;n; ++i)
+        cin&gt;&gt;team[i];
+
+    for(int i=0; i&lt;n; ++i)
+        pic[i].fill(INF);
+
+    int t1,t2,s;
+    for(int i=0; i&lt;m; ++i)
+    {
+        cin&gt;&gt;t1&gt;&gt;t2&gt;&gt;s;
+        pic[t1][t2]=pic[t2][t1]=s;    // 无向图！
+    }
+
+    vis.fill(0);
+    gt = team[c1];            // 源城市援救队数目
+
+    DFS(c1,c2,n);
+
+    cout&lt;&lt;shortest&lt;&lt;&#39; &#39;&lt;&lt;gather&lt;&lt;endl;
+    return 0 ;
+}
+</code></pre>]]></content>
+      <categories>
+        <category>PAT</category>
+      </categories>
+      <tags>
+        <tag>DFS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>回望</title>
     <url>/Lookbacktothepast.html</url>
     <content><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　20190317-20191222，一段历程，一点感动。新近读了刘慈欣的《球状闪电》，里面提到了一种人生观，让我衷心的赞同。人这一生有一种活法，就是从始至终对某种事物着迷，也就是这种东西值得自己一生为之付出而不求有所收获。我应当是寻找到了。只需要再具体一些，将之化成无数的计划和目标。<br>　　辩证唯物主义告诉我们，要有目的有计划的活着，才能在这个<strong>客观世界</strong>活得游刃有余。<br><a id="more"></a><br>　　在过去的308天里，在我的认识里，我应该是全身心的投入到了这件事中，不管结果如何，这只是自己应得的(deserve it)。下面的总结分为两部分，一部分是知识，一部分是认识。对应学与思。</p>
 <h2 id="学"><a href="#学" class="headerlink" title="学"></a><strong>学</strong></h2><pre><code>总结也就是“背目录”了，但是背目录也不仅仅是背目录，而是无限的回忆目录项下的知识细节，形成体系。古语“将一本书学薄”即是此道理。但是还是**实践**出真知。
-</code></pre><ul>
-<li>高数部分</li>
-</ul>
-<ol>
+</code></pre><h4 id="高数部分"><a href="#高数部分" class="headerlink" title="高数部分"></a>高数部分</h4><ol>
 <li>高等数学<ul>
 <li>函数（初等函数，性质（定义域，值域，对应法则.映射，周期，奇偶） 极限（无穷小，无穷大，等价、同阶、高阶无穷小，单调有界、夹逼定理） 连续定义（间断点第一类、第二类）</li>
 <li>一元函数微分学（导数和微分关系，$\Delta y=f^\prime(x)\Delta x+o(\Delta (x))$，常用函数微分，高阶导）</li>
@@ -32,14 +156,9 @@
 <li>随机变量函数（随机变量函数性质，离散型常用随机变量函数(两点分布，二项分布，几何分布，超几何分布，泊松分布)，连续型常用随机变量函数(均匀分布 ，指数分布，正态分布)，多位随机变量函数）</li>
 <li>数理统计基础（数字变量的基本特征(期望、方差、协方差、相关系数$\rho$)，n阶中心矩，n阶原点矩）</li>
 <li>参数估计（矩估计，最大似然估计，区间估计(1-$\alpha$置信区间)）</li>
-<li>假设检验(弃真，纳伪假设)</li>
+<li>假设检验(弃真，纳伪假设)<h4 id="专业课部分"><a href="#专业课部分" class="headerlink" title="专业课部分"></a>专业课部分</h4></li>
 </ul>
 </li>
-</ol>
-<ul>
-<li>专业课部分</li>
-</ul>
-<ol>
 <li>数据结构{逻辑结构{线性结构，非线性结构}，存储结构}<ul>
 <li>线性表(分别只有一个前驱和后继，就是顺序表和链表，各种对顺序表和链表的操作，以及它们的性质)</li>
 <li>栈和队列（其是一种逻辑结构，对元素的添加和删除仅能在一端进行，其存储结构可以用顺序表和链表实现）</li>
