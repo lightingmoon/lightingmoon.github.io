@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>粒子群算法研究</title>
+    <url>/ParticleSwamOptimization.html</url>
+    <content><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　粒子群算法（ Particle Swarm Optimization, PSO）最早是由Eberhart和Kennedy于1995年提出，它的基本概念源于对鸟群觅食行为的研究。设想这样一个场景:一群鸟在随机搜寻食物，在这个区域里只有一块食物，所有的鸟都不知道食物在哪里，但是它们知道当前的位置离食物还有多远。那么找到食物的最优策略是什么呢?最简单有效的就是搜寻目前离食物最近的鸟的周围区域。 PSO算法就从这种生物种群行为特性中得到启发并用于求解优化问题。在PSO中，每个优化问题的潜在解都可以想象成d维搜索空间上的一个点，我们称之为“粒子”（Particle），所有的粒子都有一个被目标函数决定的适应值(Fitness Value )，每个粒子还有一个速度决定他们飞翔的方向和距离，然后粒子们就追随当前的最优粒子在解空间中搜索。随着位置更新迭代次数增加，粒子最终在搜索空间上收敛于最优值。<br><a id="more"></a>
+　　</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>优化算法</tag>
+        <tag>PSO</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>1003 Emergency😏</title>
     <url>/1003-Emergency.html</url>
     <content><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　DFS活络思维一下。<br><a id="more"></a><br>    As an emergency rescue team leader of a city, you are given a special map of your country.<br>    The map shows several scattered cities connected by some roads.<br>    Amount of rescue teams in each city and the length of each road between any pair of cities<br>     are marked on the map. When there is an emergency call to you from some other city,<br>    your job is to lead your men to the place as quickly as possible, and at the mean time, call up as many hands on the way as possible.</p>

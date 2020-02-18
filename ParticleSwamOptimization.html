@@ -14,23 +14,20 @@
   <meta name="baidu-site-verification" content="true">
   <meta name="msvalidate.01" content="BBA0F05A054A52937A445B0457B5D099">
   
-  <title style="text-align:center">机器学习之线性回归 | 月之燃梦</title>
+  <title style="text-align:center">粒子群算法研究 | 月之燃梦</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="自己早已对机器学习观望已久，现在不入门，更待何时？在找到Coursera时，发现教学方法很对胃口，于是开始ML之旅…现在在这里总结一下机器学习之线性回归。">
-<meta name="keywords" content="ML,监督学习,线性回归,梯度下降算法,正规方程">
+  <meta name="description" content="粒子群算法（ Particle Swarm Optimization, PSO）最早是由Eberhart和Kennedy于1995年提出，它的基本概念源于对鸟群觅食行为的研究。设想这样一个场景:一群鸟在随机搜寻食物，在这个区域里只有一块食物，所有的鸟都不知道食物在哪里，但是它们知道当前的位置离食物还有多远。那么找到食物的最优策略是什么呢?最简单有效的就是搜寻目前离食物最近的鸟的周围区域。 PS">
+<meta name="keywords" content="优化算法,PSO">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习之线性回归">
-<meta property="og:url" content="https://www.lightdream.xyz/MachineLearning-LinerRegression.html">
+<meta property="og:title" content="粒子群算法研究">
+<meta property="og:url" content="https://www.lightdream.xyz/ParticleSwamOptimization.html">
 <meta property="og:site_name" content="月之燃梦">
-<meta property="og:description" content="自己早已对机器学习观望已久，现在不入门，更待何时？在找到Coursera时，发现教学方法很对胃口，于是开始ML之旅…现在在这里总结一下机器学习之线性回归。">
+<meta property="og:description" content="粒子群算法（ Particle Swarm Optimization, PSO）最早是由Eberhart和Kennedy于1995年提出，它的基本概念源于对鸟群觅食行为的研究。设想这样一个场景:一群鸟在随机搜寻食物，在这个区域里只有一块食物，所有的鸟都不知道食物在哪里，但是它们知道当前的位置离食物还有多远。那么找到食物的最优策略是什么呢?最简单有效的就是搜寻目前离食物最近的鸟的周围区域。 PS">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://www.lightdream.xyz/image/LinerRgressionModel.png">
-<meta property="og:image" content="https://www.lightdream.xyz/image/linerRegression.png">
-<meta property="og:updated_time" content="2019-04-06T15:11:16.870Z">
+<meta property="og:updated_time" content="2020-02-18T07:20:15.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习之线性回归">
-<meta name="twitter:description" content="自己早已对机器学习观望已久，现在不入门，更待何时？在找到Coursera时，发现教学方法很对胃口，于是开始ML之旅…现在在这里总结一下机器学习之线性回归。">
-<meta name="twitter:image" content="https://www.lightdream.xyz/image/LinerRgressionModel.png">
+<meta name="twitter:title" content="粒子群算法研究">
+<meta name="twitter:description" content="粒子群算法（ Particle Swarm Optimization, PSO）最早是由Eberhart和Kennedy于1995年提出，它的基本概念源于对鸟群觅食行为的研究。设想这样一个场景:一群鸟在随机搜寻食物，在这个区域里只有一块食物，所有的鸟都不知道食物在哪里，但是它们知道当前的位置离食物还有多远。那么找到食物的最优策略是什么呢?最简单有效的就是搜寻目前离食物最近的鸟的周围区域。 PS">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -116,14 +113,14 @@ ga('send', 'pageview');
 </header>
       <div id="main" class="wrapper">
         <div id="primary" class="site-content">
-			<div id="content" role="main"><article id="post-MachineLearning-LinerRegression" class="post-MachineLearning-LinerRegression post type-post status-publish format-standard hentry">
+			<div id="content" role="main"><article id="post-ParticleSwamOptimization" class="post-ParticleSwamOptimization post type-post status-publish format-standard hentry">
 		
       <center><header class="entry-header">
         
         
   
     <h1 class="entry-title article-title">
-      机器学习之线性回归
+      粒子群算法研究
     </h1>
   
 
@@ -132,7 +129,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">1,493字</span>
+        <span class="post-count">298字</span>
       </span>
     </span>
 	&nbsp;|
@@ -140,7 +137,7 @@ ga('send', 'pageview');
     <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">阅读时长:约</span>
-        <span class="post-count">6&nbsp;分钟</span>
+        <span class="post-count">1&nbsp;分钟</span>
       </span>
     </span>
 </div>
@@ -153,242 +150,25 @@ ga('send', 'pageview');
 		总阅读量<span id="busuanzi_value_page_pv"></span>次
 		</span></center>
 		</br></br>
-        <script src="\assets\js\APlayer.min.js"> </script><p>　　自己早已对机器学习观望已久，现在不入门，更待何时？在找到<a href="https://www.coursera.org/learn/machine-learning">Coursera</a>时，发现教学方法很对胃口，于是开始ML之旅…现在在这里总结一下机器学习之线性回归。<br><a id="more"></a><br>　　机器学习有很多种方式，比如监督学习，半监督学习，无监督学习等。它们区别于训练集的种类，比如监督学习的训练集其每一个训练样本都有正确的答案，而无监督学习则没有，只能通过算法自动分类。而半监督学习，顾名思义，一部分是监督学习，一部分是无监督学习。  </p>
-<h3 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h3><p>　　监督学习又分为聚类和回归。其中聚类是预测连续值，回归是预测离散值。例如垃圾邮件识别，网页类别划分等是聚类。预测房价、股票涨跌等是回归。<br>下面总结一下线性回归。</p>
-<h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p>线性回归模型</p>
-<blockquote>
-<p>截取自Coursera课程课件    </p>
-</blockquote>
-<p><center><img src="image/LinerRgressionModel.png" width="450" height="300"/></center><br>假设有房价数据集如下:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">房子面积/$m_{2}$(x)</th>
-<th style="text-align:center">价格/w(y)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">80</td>
-<td style="text-align:center">40</td>
-</tr>
-<tr>
-<td style="text-align:center">90</td>
-<td style="text-align:center">60</td>
-</tr>
-<tr>
-<td style="text-align:center">100</td>
-<td style="text-align:center">80</td>
-</tr>
-<tr>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>数据集1</strong><br>以下为一些字母的含义：     </p>
-<hr>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">字母</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$m$</td>
-<td style="text-align:center">表示训练样本数量</td>
-</tr>
-<tr>
-<td style="text-align:center">$x$</td>
-<td style="text-align:center">表示输入特征(特征量)</td>
-</tr>
-<tr>
-<td style="text-align:center">$y$</td>
-<td style="text-align:center">表示输出变量(目标量)</td>
-</tr>
-<tr>
-<td style="text-align:center">$(x,y)$</td>
-<td style="text-align:center">表示一个训练样本</td>
-</tr>
-<tr>
-<td style="text-align:center">$(x^{(i)},y^{(i)})$</td>
-<td style="text-align:center">表示第i个训练样本</td>
-</tr>
-</tbody>
-</table>
-</div>
-<hr>
-<p>对应于线性回归的<strong>假设函数(hypothesis function)</strong>为 </p>
-<script type="math/tex; mode=display">h_{\theta}(x)=\theta_{0}+\theta_{1}x</script><p>其中$\theta$为参数<br>对应的<strong>代价函数(cost function)</strong>(其图像为一个凹函数)为</p>
-<script type="math/tex; mode=display">J(\theta_{0},\theta_{1})=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^2</script><p>这个方程有什么<strong>意义</strong>呢？<br>下面是一个散点图:</p>
-<p><center><img src="image/linerRegression.png" width="450" height="300"/></center><br>由图片e表示假设函数结果与训练样本之间的误差。</p>
-<script type="math/tex; mode=display">e_{0}=h_{\theta}(1)-y_{0}</script><script type="math/tex; mode=display">e_{1}=h_{\theta}(2)-y_{1}</script><script type="math/tex; mode=display">e_{2}=h_{\theta}(3)-y_{2}</script><script type="math/tex; mode=display">...</script><p>所有误差的和即为</p>
-<script type="math/tex; mode=display">\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})</script><p>要想得到拟合最好的效果，我们必须要让误差和最小。但是通常我们都用平均每个训练样本的误差的一半来表示。也即代价函数：</p>
-<script type="math/tex; mode=display">J(\theta_{0},\theta_{1})=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^2</script><p>此时得到的参数$\theta_{0},\theta_{1}$为最合适的参数。 </p>
-<hr>
-<h3 id="梯度下降算法-Gradient-Descent-Algorithm"><a href="#梯度下降算法-Gradient-Descent-Algorithm" class="headerlink" title="梯度下降算法(Gradient Descent Algorithm)"></a>梯度下降算法(Gradient Descent Algorithm)</h3><script type="math/tex; mode=display">\theta_{j}=\theta_{j}-\alpha\frac{\partial{J(\theta_{0},\theta_{1})}}{\partial{j}}</script><p>其中$\theta$表示参数，$\alpha(\geq0)$表示学习效率，后面表示$\theta_{j}$的偏导。<br>为了叙述方便，下面令$\theta_{0}=0$，此时$J({\theta_{1}})$只有一个参数$\theta_{1}$，令$J(\theta)$最小值对应于$\theta_{min}$   </p>
-<ul>
-<li>假如$\theta_{1}&gt;\theta_{min}$，则该点切线斜率大于等于0，即$\frac{dJ(\theta_{1})}{d\theta_{1}}\geq 0$(因为只有一个参数，所以退化为求微分)，所以<script type="math/tex">\theta_{1}=\theta_{1}-\alpha\frac{dJ(\theta_{1})}{d\theta_{1}}</script>，$\theta_{1}$减去一个正数，$\theta_{1}$减小，则$\theta_{1}$更靠近$\theta_{min}$</li>
-<li>$\theta_{1}&lt;\theta_{min}$分析方法类似    </li>
-</ul>
-<h3 id="梯度下降算法在线性回归中的应用"><a href="#梯度下降算法在线性回归中的应用" class="headerlink" title="梯度下降算法在线性回归中的应用"></a>梯度下降算法在线性回归中的应用</h3><p>　　将之前的代价函数带入梯度下降算法里，得到(其实就是复合函数求导，可以手动算一下):</p>
-<script type="math/tex; mode=display">\theta_{0}=\theta_{0}-\alpha\frac{1}{m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})</script><script type="math/tex; mode=display">\theta_{1}=\theta_{1}-\alpha\frac{1}{m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})*x_{1}</script><h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2><p>有数据集如下:    </p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$x_{0}$</th>
-<th style="text-align:center">房子面积/$m_{2}(x_{1})$</th>
-<th style="text-align:center">卧室数量$(x_{2})$</th>
-<th style="text-align:center">层数$(x_{3})$</th>
-<th style="text-align:center">房子寿命$(x_{4})$</th>
-<th style="text-align:center">价格/w(y)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">80</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">50</td>
-<td style="text-align:center">50</td>
-</tr>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">90</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">60</td>
-<td style="text-align:center">60</td>
-</tr>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">70</td>
-<td style="text-align:center">60</td>
-</tr>
-<tr>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>数据集2</strong><br><strong>PS:为了$\theta_{i}$与$x_{j}$下标一致，所以多加一列，其所有值都为1</strong></p>
-<p>补充字母含义:    </p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">字母</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">n</td>
-<td style="text-align:center">特征数量</td>
-</tr>
-<tr>
-<td style="text-align:center">$x^{(i)}$</td>
-<td style="text-align:center">第i个训练样本</td>
-</tr>
-<tr>
-<td style="text-align:center">$x^{(i)}_{j}$</td>
-<td style="text-align:center">$i^{th}$训练样本$j^{th}$特征值</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>此时,假设函数为:</p>
-<script type="math/tex; mode=display">h_{\theta}(x)=\theta_{0}x_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+...+\theta_{n}x_{n}</script><p>代价函数:</p>
-<script type="math/tex; mode=display">J(\theta)=\frac{1}{2m}\sum_{i=1}^{m}(\theta^{T}x^{(i)}-y^{(i)})^2</script><p>也等价于</p>
-<script type="math/tex; mode=display">J(\theta)=\frac{1}{2m}\sum_{i=1}^{m}((\sum_{j=0}^{n}\theta_{j}x_{j}^{(i)})-y^{(i)})^2</script><p>则梯度下降算法对应的偏导为:</p>
-<script type="math/tex; mode=display">\theta_{j}=\theta_{j}-\alpha\frac{1}{m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})*x_{j}^{(i)}</script><h3 id="加快梯度下降算法收敛方法"><a href="#加快梯度下降算法收敛方法" class="headerlink" title="加快梯度下降算法收敛方法"></a>加快梯度下降算法收敛方法</h3><ol>
-<li>特征缩放(feature scaling)<br>　保证每个特征量范围都在$-1\geq x_{i}\geq 1$，每个特征值除以该特征范围。</li>
-<li>均值归一化(mean normalization)<br>　保证特征变量在$-0.5\geq x_{i} \geq 0.5$，令<script type="math/tex; mode=display">x_{i}=\frac{x_{i}-\mu_{i}}{s_{i}}</script>其中，$\mu_{i}$表示$i^{th}$特征的均值，$s_{i}$表示表示$i^{th}$特征的范围或标准差。</li>
-<li>调整学习效率$\alpha$<br>　$\alpha$必须足够小，且$J(\theta)$必须在每一次迭代后减小，可以以每次为原来的3倍来调整$\alpha$。<ul>
-<li>当$\alpha$太小，算法收敛过慢。</li>
-<li>当$\alpha$太大，$J(\theta)$可能在迭代若干次后开始增加，最终算法不能收敛。   </li>
-</ul>
-</li>
-</ol>
-<h2 id="多项式线性回归"><a href="#多项式线性回归" class="headerlink" title="多项式线性回归"></a>多项式线性回归</h2><p>　当假设函数不再是线性时，可以通过平方，立方，开平方来进行多项式拟合。<br>e.g<br>$h_{\theta}(x)=\theta_{0}+\theta_{1}x_{1}$<br>对于<strong>数据集1</strong>，可以令</p>
-<ol>
-<li>$h_{\theta}(x)=\theta_{0}+\theta_{1}x_{1}^{2}$<br> 此函数为二次函数，根据实际情况，房价不可能随面积增大而减小。</li>
-<li>$h_{\theta}(x)=\theta_{0}+\theta_{1}x+\theta_{1}x_{1}^{2}+\theta_{2}x_{1}^{3}$<br> 此函数中，令$x_{2}=x_{1}^{2}，x_{3}=x^{3}_{1}$，此时，三个特征范围相差过大，对于特征值归一化有不利影响。</li>
-<li>$h_{\theta}(x)=\theta_{0}+\theta_{1}x_{1}+\theta_{2}\surd{x_{1}}$<br> 此时较符合模型。运用此方法 ，特征缩放很重要，而且特征之间关联程度要小。</li>
-</ol>
-<h2 id="正规方程-Normal-Equation"><a href="#正规方程-Normal-Equation" class="headerlink" title="正规方程(Normal Equation)"></a>正规方程(Normal Equation)</h2><p>　对于训练样本数为m，特征数为n，<br>令矩阵  </p>
-<script type="math/tex; mode=display">X=\left[   \begin{matrix} x_0^{i} & x_1^{i} & x_2^{i} & x_3^{i} &...\end{matrix}   \right]^{T}</script><p>其中<script type="math/tex">(1\leq i \leq m)</script>，X为m*(n+1)阶矩阵。</p>
-<script type="math/tex; mode=display">y=\left[ \begin{matrix} y^{(1)} \\
-            y^{(2)} \\
-            ... \\
-            y^{(m)} \end{matrix} \right]</script><p>有正规方程，在数学上可证明其正确性:</p>
-<script type="math/tex; mode=display">\theta=(X^{T}X)^{-1}X^{T}y</script><p>最终$\theta为1*(n+1)矩阵$    </p>
-<h3 id="梯度下降算法与正规方程比较"><a href="#梯度下降算法与正规方程比较" class="headerlink" title="梯度下降算法与正规方程比较"></a>梯度下降算法与正规方程比较</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">梯度下降算法</th>
-<th style="text-align:center">正规方程</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">需要选择$\alpha$</td>
-<td style="text-align:center">不需要选择$\alpha$</td>
-</tr>
-<tr>
-<td style="text-align:center">需要多次迭代</td>
-<td style="text-align:center">不需要迭代</td>
-</tr>
-<tr>
-<td style="text-align:center">时间复杂度为$O(kn^{2}$)</td>
-<td style="text-align:center">$O(n^{3}$)，主要在矩阵求逆</td>
-</tr>
-<tr>
-<td style="text-align:center">当n很大时，能运行得不错</td>
-<td style="text-align:center">当n很大时，因为矩阵求逆而速度很慢</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>注: 当n大于10000时，考虑用梯度下降算法</strong></p>
-<h3 id="正规方程不可逆"><a href="#正规方程不可逆" class="headerlink" title="正规方程不可逆"></a>正规方程不可逆</h3><ol>
-<li>存在多余的特征，即存在关联程度很大的特征，此时可以分析特征，删去关联程度大的特征中一个。</li>
-<li>特征值太多，例如$m&lt;n$。此时可以删去存在关联的特征，或进行正则化。</li>
-</ol>
-<p>夜已深，就总结到这里，接下来准备做一个小项目。晚安~</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p>　　粒子群算法（ Particle Swarm Optimization, PSO）最早是由Eberhart和Kennedy于1995年提出，它的基本概念源于对鸟群觅食行为的研究。设想这样一个场景:一群鸟在随机搜寻食物，在这个区域里只有一块食物，所有的鸟都不知道食物在哪里，但是它们知道当前的位置离食物还有多远。那么找到食物的最优策略是什么呢?最简单有效的就是搜寻目前离食物最近的鸟的周围区域。 PSO算法就从这种生物种群行为特性中得到启发并用于求解优化问题。在PSO中，每个优化问题的潜在解都可以想象成d维搜索空间上的一个点，我们称之为“粒子”（Particle），所有的粒子都有一个被目标函数决定的适应值(Fitness Value )，每个粒子还有一个速度决定他们飞翔的方向和距离，然后粒子们就追随当前的最优粒子在解空间中搜索。随着位置更新迭代次数增加，粒子最终在搜索空间上收敛于最优值。<br><a id="more"></a>
+　　</p>
 	
 		</br>
 		<footer style="text-align: center" class="entry-meta">雪林于
 		<a href="">
-   <time datetime="2019-02-20T08:41:06.000Z" class="entry-date">
-        2019年02月20日 16:41
+   <time datetime="2020-02-18T02:29:34.000Z" class="entry-date">
+        2020年02月18日 10:29
     </time>
 </a>
 		
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="categories/机器学习/">机器学习</a>
+  <a class="article-category-link" href="categories/优化算法/">优化算法</a>
   </div>
 
 		
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/ML/">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/梯度下降算法/">梯度下降算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/正规方程/">正规方程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/监督学习/">监督学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/线性回归/">线性回归</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/PSO/">PSO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/优化算法/">优化算法</a></li></ul>
 
 		
 			<!-- 来必力City版安装代码 -->
@@ -422,10 +202,8 @@ ga('send', 'pageview');
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="num2Chinese.html" rel="prev"><span class="meta-nav">←</span> 7-23 币值转换 （20 分）</a></span>
     
-    
-        <span class="nav-next"><a href="BinaryPractice.html" rel="next">二分算法总结 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="1003-Emergency.html" rel="next">1003 Emergency😏 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
@@ -455,7 +233,7 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="ParticleSwamOptimization.html">粒子群算法研究</a>
+            <a href="">粒子群算法研究</a>
           </li>
         
           <li>
