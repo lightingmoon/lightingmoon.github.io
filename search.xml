@@ -13,7 +13,7 @@
       </tags>
   </entry>
   <entry>
-    <title>粒子群算法导论</title>
+    <title>粒子群算法研究(1)</title>
     <url>/ParticleSwamOptimization.html</url>
     <content><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　粒子群算法（ Particle Swarm Optimization, PSO）最早是由Eberhart和Kennedy于1995年提出，它的基本概念源于对鸟群觅食行为的研究。设想这样一个场景:一群鸟在随机搜寻食物，在这个区域里只有一块食物，所有的鸟都不知道食物在哪里，但是它们知道当前的位置离食物还有多远。那么找到食物的最优策略是什么呢?最简单有效的就是搜寻目前离食物最近的鸟的周围区域。<br><a id="more"></a><br>　　PSO算法就从这种生物种群行为特性中得到启发并用于求解优化问题。在PSO中，每个优化问题的潜在解都可以想象成d维搜索空间上的一个点，我们称之为“粒子”（Particle），所有的粒子都有一个被目标函数决定的适应值(Fitness Value )，每个粒子还有一个速度决定他们飞翔的方向和距离，然后粒子们就追随当前的最优粒子在解空间中搜索。随着位置更新迭代次数增加，粒子最终在搜索空间上收敛于最优值。    </p>
 <h3 id="标准粒子群算法（全局版本）"><a href="#标准粒子群算法（全局版本）" class="headerlink" title="标准粒子群算法（全局版本）"></a>标准粒子群算法（全局版本）</h3><p>　　例如，求函数$y=1-cos(3x)e^{-x}$在$[0,4]$上的最大值，并在[0,4]之间放置了两个随机的点，假设为$x_1=1.5,x_2=2.5$，则$x_1,x_2$为标量。对于高维情况，比如二维，求$z=2x_1+{x_2}^{2}$，此时每个粒子都是二维的，记</p>
@@ -771,8 +771,8 @@ void printExpTotal(double a1, double b1, double a2, double b2, char x)
         <category>PAT</category>
       </categories>
       <tags>
-        <tag>PAT</tag>
         <tag>反思</tag>
+        <tag>PAT</tag>
       </tags>
   </entry>
   <entry>
