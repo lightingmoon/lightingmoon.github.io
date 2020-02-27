@@ -35,7 +35,13 @@ P_n=(x_{n1},x_{n2})</script><p>这里$n$为粒子群群体规模，也是粒子�
 <li>环形</li>
 <li>随机环形</li>
 <li>轮形</li>
-<li>随机轮形<br>　<center><img src="image/PSONeiborhood.png" width="388" height="394"/></center><br>— 环形取法如上<strong>图1</strong>中:<br>　　对编号为1的粒子来说，当粒子邻域个数k为0时，则邻域是其本身；粒子邻域个数k为1时，则其邻域为{2,8};粒子邻域个数k为2时，其邻域为{2,8,7,3}…当邻域个数为4时，粒子的邻域就为整个粒子群了。<br>— 轮形取法如上图3<br>　　对于指定粒子i，其位于邻域中心，其它粒子以一定规则与粒子i相连。只有中心粒子与其它相连粒子进行信息交换，中心粒子通过比较邻域中所有粒子携带信息而向其中最优粒子靠近。同时，邻域内最优信息通过中心粒子的性能改善而传播到种群的其它粒子。因此，中心个体令较好信息在种群中的传播速度变慢而增大了全局搜索能力，不至于早收敛。<h3 id="动态邻域"><a href="#动态邻域" class="headerlink" title="动态邻域"></a>动态邻域</h3></li>
+<li>随机轮形<br>　<center><img src="image/PSONeiborhood.png" width="388" height="394"/></center></li>
+</ul>
+<ul>
+<li>环形取法如上<strong>图1</strong>中:<br>　　对编号为1的粒子来说，当粒子邻域个数k为0时，则邻域是其本身；粒子邻域个数k为1时，则其邻域为{2,8};粒子邻域个数k为2时，其邻域为{2,8,7,3}…当邻域个数为4时，粒子的邻域就为整个粒子群了。</li>
+<li>轮形取法如上<strong>图3</strong><br>　　对于指定粒子i，其位于邻域中心，其它粒子以一定规则与粒子i相连。只有中心粒子与其它相连粒子进行信息交换，中心粒子通过比较邻域中所有粒子携带信息而向其中最优粒子靠近。同时，邻域内最优信息通过中心粒子的性能改善而传播到种群的其它粒子。因此，中心个体令较好信息在种群中的传播速度变慢而增大了全局搜索能力，不至于早收敛。<h3 id="动态邻域"><a href="#动态邻域" class="headerlink" title="动态邻域"></a>动态邻域</h3></li>
+</ul>
+<ul>
 <li>按照粒子的欧式距离取粒子的邻域<br>　　记录任何两个粒子间最大距离为$d_m$,对每一粒子按照$\frac{||x_a - x_b||}{d_m}$,其中$||x_a-x_b||$为粒子a与粒子b的欧氏距离。而选择阈值$frac$根据迭代次数而变化，当另一粒子b满足$\frac{||x_a-x_b||}{d_m} &lt; frac$，认为b是当前粒子的邻域内。由于要计算所有粒子之间的距离，计算量大且需要很多额外的存储空间，所以该方法不常用。<br>参考文献：<br><a href="https://blog.csdn.net/niuyongjie/category_294976.html">粒子群算法研究</a><br>[1]李丽,牛奔.[M]粒子群优化算法.北京:冶金工业出版社,2009</li>
 </ul>
 ]]></content>
@@ -771,8 +777,8 @@ void printExpTotal(double a1, double b1, double a2, double b2, char x)
         <category>PAT</category>
       </categories>
       <tags>
-        <tag>反思</tag>
         <tag>PAT</tag>
+        <tag>反思</tag>
       </tags>
   </entry>
   <entry>
