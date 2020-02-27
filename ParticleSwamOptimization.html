@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.lightdream.xyz/image/PSO.png">
 <meta property="og:image" content="https://www.lightdream.xyz/image/PSONeiborhood.png">
-<meta property="og:updated_time" content="2020-02-27T05:55:31.637Z">
+<meta property="og:updated_time" content="2020-02-27T06:12:29.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="粒子群算法导论">
 <meta name="twitter:description" content="粒子群算法（ Particle Swarm Optimization, PSO）最早是由Eberhart和Kennedy于1995年提出，它的基本概念源于对鸟群觅食行为的研究。设想这样一个场景:一群鸟在随机搜寻食物，在这个区域里只有一块食物，所有的鸟都不知道食物在哪里，但是它们知道当前的位置离食物还有多远。那么找到食物的最优策略是什么呢?最简单有效的就是搜寻目前离食物最近的鸟的周围区域。">
@@ -133,7 +133,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">1,552字</span>
+        <span class="post-count">1,549字</span>
       </span>
     </span>
 	&nbsp;|
@@ -174,8 +174,8 @@ P_n=(x_{n1},x_{n2})</script><p>这里$n$为粒子群群体规模，也是粒子�
 <li>环形</li>
 <li>随机环形</li>
 <li>轮形</li>
-<li>随机轮形<br>　<center><img src="image/PSONeiborhood.png" width="388" height="394"/></center><br>— 环形取法如上<strong>图1</strong>中:<br>　　对编号为1的粒子来说，当粒子邻域个数k为0时，则邻域是其本身；粒子邻域个数k为1时，则其邻域为{2,8};粒子邻域个数k为2时，其邻域为{2,8,7,3}…当邻域个数为4时，粒子的邻域就为整个粒子群了。<br>— 轮形取法如上图3<br>　　对于指定粒子i，其位于邻域中心，其它粒子以一定规则与粒子i相连。只有中心粒子与其它相连粒子进行信息交换，中心粒子通过比较邻域中所有粒子携带信息而向其中最优粒子靠近。同时，邻域内最优信息通过中心粒子的性能改善而传播到种群的其它粒子。因此，中心个体令较好信息在种群中的传播速度变慢而增大了全局搜索能力，不至于早收敛。<h3 id="动态邻域的取法"><a href="#动态邻域的取法" class="headerlink" title="动态邻域的取法"></a>动态邻域的取法</h3></li>
-<li>按照粒子的欧式距离取粒子的邻域<br>　　记录任何两个粒子间最大距离为$d_m$,对每一粒子按照$||x_a-x_b||\ frac d_m$,其中$||x_a-x_b||$为粒子a与粒子b的欧氏距离。而选择阈值$frac$根据迭代次数而变化，当另一粒子b满足$||x_a-x_b||\frac d_m &lt; frac$，认为b是当前粒子的邻域内。由于要计算所有粒子之间的距离，计算量大且需要很多额外的存储空间，所以该方法不常用。<br>参考文献：<br><a href="https://blog.csdn.net/niuyongjie/category_294976.html">粒子群算法研究</a><br>[1]李丽,牛奔.[M]粒子群优化算法.北京:冶金工业出版社,2009</li>
+<li>随机轮形<br>　<center><img src="image/PSONeiborhood.png" width="388" height="394"/></center><br>— 环形取法如上<strong>图1</strong>中:<br>　　对编号为1的粒子来说，当粒子邻域个数k为0时，则邻域是其本身；粒子邻域个数k为1时，则其邻域为{2,8};粒子邻域个数k为2时，其邻域为{2,8,7,3}…当邻域个数为4时，粒子的邻域就为整个粒子群了。<br>— 轮形取法如上图3<br>　　对于指定粒子i，其位于邻域中心，其它粒子以一定规则与粒子i相连。只有中心粒子与其它相连粒子进行信息交换，中心粒子通过比较邻域中所有粒子携带信息而向其中最优粒子靠近。同时，邻域内最优信息通过中心粒子的性能改善而传播到种群的其它粒子。因此，中心个体令较好信息在种群中的传播速度变慢而增大了全局搜索能力，不至于早收敛。<h3 id="动态邻域"><a href="#动态邻域" class="headerlink" title="动态邻域"></a>动态邻域</h3></li>
+<li>按照粒子的欧式距离取粒子的邻域<br>　　记录任何两个粒子间最大距离为$d_m$,对每一粒子按照$\frac{||x_a - x_b||}{d_m}$,其中$||x_a-x_b||$为粒子a与粒子b的欧氏距离。而选择阈值$frac$根据迭代次数而变化，当另一粒子b满足$\frac{||x_a-x_b||}{d_m} &lt; frac$，认为b是当前粒子的邻域内。由于要计算所有粒子之间的距离，计算量大且需要很多额外的存储空间，所以该方法不常用。<br>参考文献：<br><a href="https://blog.csdn.net/niuyongjie/category_294976.html">粒子群算法研究</a><br>[1]李丽,牛奔.[M]粒子群优化算法.北京:冶金工业出版社,2009</li>
 </ul>
 	
 		</br>
