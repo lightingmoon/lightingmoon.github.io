@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="月之燃梦">
 <meta property="og:description" content="最近在做操作系统上机实验。有一个关于页置换算法的实验，实验所给的代码是先进先出调页算法，一时手痒就想着自己模拟一下LRU调页算法，就作为一个小开始吧。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-09T16:09:55.518Z">
+<meta property="og:updated_time" content="2020-02-28T14:31:42.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="页置换算法之LRU(最近最久未使用)">
 <meta name="twitter:description" content="最近在做操作系统上机实验。有一个关于页置换算法的实验，实验所给的代码是先进先出调页算法，一时手痒就想着自己模拟一下LRU调页算法，就作为一个小开始吧。">
@@ -130,7 +130,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">529字</span>
+        <span class="post-count">1,310字</span>
       </span>
     </span>
 	&nbsp;|
@@ -138,7 +138,7 @@ ga('send', 'pageview');
     <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">阅读时长:约</span>
-        <span class="post-count">2&nbsp;分钟</span>
+        <span class="post-count">5&nbsp;分钟</span>
       </span>
     </span>
 </div>
@@ -208,7 +208,69 @@ std::vector&lt;pageNode&gt; mainMem;
 15      3        4 3 1
 缺页中断次数为9
 缺页率9/15=60.00%%
-</code></pre><h3 id="完整测试代码见我的Github"><a href="#完整测试代码见我的Github" class="headerlink" title="完整测试代码见我的Github."></a>完整测试代码见我的<a href="https://github.com/lightingmoon">Github</a>.</h3>	
+</code></pre><h3 id="完整测试代码见我的Github。"><a href="#完整测试代码见我的Github。" class="headerlink" title="完整测试代码见我的Github。"></a>完整测试代码见我的<a href="https://github.com/lightingmoon">Github</a>。</h3><p>————————————————————————————————————————————————我是分割线—————————<br><strong>更新于2020.2.28</strong></p>
+<h2 id="上面的构想还是学生时代初期的构想，太过于理想化，只考虑到了模拟，其它一概不考虑。真是一颗傲娇的心。"><a href="#上面的构想还是学生时代初期的构想，太过于理想化，只考虑到了模拟，其它一概不考虑。真是一颗傲娇的心。" class="headerlink" title="上面的构想还是学生时代初期的构想，太过于理想化，只考虑到了模拟，其它一概不考虑。真是一颗傲娇的心。"></a>上面的构想还是学生时代初期的构想，太过于理想化，只考虑到了模拟，其它一概不考虑。真是一颗傲娇的心。</h2><p>最近在<a href="https://leetcode-cn.com/problems/lru-cache/solution/lru-ce-lue-xiang-jie-he-shi-xian-by-labuladong/">LeetCode</a>上刷题，遇到了一道关于设计实现LRU算法的题，才发现当年写的LRU算法真是只有当年才能写出来。<br>　　真正在页置换算法应用实现中是根本不会为页设置访问次数属性并由该属性进行排序的，这效率低且浪费内存。光时间复杂度就高达O(nlogn)，实在是不可忍受。<br>下面开始分析优化：<br>　　在页置换算法中，没有必要对工作集内的页进行按访问次数排序，从而得到最近最少访问次数。而是因为我们只要求得到最近最少访问的页，只用<strong>将经常访问的页放到页表首部</strong>，则每次都能以O(1)的时间复杂度访问；而当调入新的页时，若OS为进程分配的页帧已用完，采用LRU算法，应删除最近最少访问的页，也就是页表尾部页；若页帧没有用完，则直接将新页加入到页表首部。这里这样描述是因为这个LRU算法实现基本就是这个思想。<br><strong>由以上，要以O(1)删除尾部元素，以O(1)插入元素到表首，以O(1)查找某元素(hash)，且有顺序(list)。综上分析，形成了新的数据结构——哈希链表。</strong><br>　　当时在LeetCode上接触这道题时，感觉思维被打乱了，甚至没读懂题意。后来看了题解才恍然大悟。也触摸到了分析这种题的一些诀窍。下面是cpp代码：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;list&gt;
+#include&lt;unordered_map&gt;
+
+using namespace std;
+// 哈希链表
+class LRUCache
+{
+public:
+    LRUCache(int capacity):_capacity(capacity) {}
+    int get(int key)
+    {
+        auto it = mp.find(key);                 // C++11中迭代器类似于指针
+        if(it == mp.end())
+            return -1;
+
+        int val = it-&gt;second-&gt;second;           // 取出key对应的value
+        cache.erase(it-&gt;second);                //从cache中删除k-v
+        cache.push_front(make_pair(key,val));   // 重新构造k-v放入cache头
+        mp[key] = cache.begin();                // 更新该key hash映射的迭代器
+        return val;
+    }
+
+    void put(int key, int value)
+    {
+        auto it = mp.find(key);
+        if(mp.end() == it)                      // k-v不存在
+        {
+            if(cache.size() == _capacity)       // cache 已满，删除尾部，清理出空间
+            {
+                auto temp = cache.back();
+                cache.pop_back();
+                mp.erase(temp.first);           // 删除尾部的key在hash中对应的结点
+            }
+        }
+        else   cache.erase(mp[key]);            // k-v存在,更新value,并放入cache头
+
+        cache.push_front(make_pair(key,value)); // 将结点直接加入头部
+        mp[key] = cache.begin();                // 更新该key对应的迭代器
+    }
+private:
+    unsigned int _capacity;
+    list&lt;pair&lt;int,int&gt;&gt; cache;                  // 模拟cache双链表
+    unordered_map&lt;int,list&lt;pair&lt;int,int&gt;&gt;::iterator&gt; mp;    // hash表
+};
+
+int main()
+{
+    LRUCache cache(2);
+    cache.put(1, 1);
+    cache.put(2, 2);
+    cout&lt;&lt;cache.get(1)&lt;&lt;endl;       // 返回  1
+    cache.put(3, 3);    // 该操作会使得密钥 2 作废
+    cout&lt;&lt;cache.get(2)&lt;&lt;endl;       // 返回 -1 (未找到)
+    cache.put(4, 4);    // 该操作会使得密钥 1 作废
+    cout&lt;&lt;cache.get(1)&lt;&lt;endl;       // 返回 -1 (未找到)
+    cout&lt;&lt;cache.get(3)&lt;&lt;endl;       // 返回  3
+    cout&lt;&lt;cache.get(4)&lt;&lt;endl;       // 返回  4
+    return 0;
+}
+</code></pre>	
 		</br>
 		<footer style="text-align: center" class="entry-meta">雪林于
 		<a href="">
@@ -323,7 +385,7 @@ std::vector&lt;pageNode&gt; mainMem;
   <aside class="widget">
     <h3 class="widget-title">文以类聚</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/C/">C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="categories/PAT/">PAT</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="categories/优化算法/">优化算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/机器学习/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/汇编语言/">汇编语言</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/算法与数据结构/">算法与数据结构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="categories/编译原理/">编译原理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/述梦/">述梦</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/迷人数学/">迷人数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/静夜思/">静夜思</a><span class="category-list-count">4</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/C/">C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="categories/PAT/">PAT</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="categories/优化算法/">优化算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/机器学习/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/汇编语言/">汇编语言</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/算法与数据结构/">算法与数据结构</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="categories/编译原理/">编译原理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/述梦/">述梦</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/迷人数学/">迷人数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/静夜思/">静夜思</a><span class="category-list-count">4</span></li></ul>
     </div>
   </aside>
 

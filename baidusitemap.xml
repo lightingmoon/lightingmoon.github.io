@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.lightdream.xyz/ParticleSwamOptimization.html</loc>
-    <lastmod>2020-02-27</lastmod>
+    <loc>https://www.lightdream.xyz/LRUalgorithm.html</loc>
+    <lastmod>2020-02-28</lastmod>
   </url>  <url>
     <loc>https://www.lightdream.xyz/Lookbacktothepast.html</loc>
-    <lastmod>2020-02-20</lastmod>
+    <lastmod>2020-02-28</lastmod>
+  </url>  <url>
+    <loc>https://www.lightdream.xyz/ParticleSwamOptimization.html</loc>
+    <lastmod>2020-02-28</lastmod>
+  </url>  <url>
+    <loc>https://www.lightdream.xyz/GeneticAlgorithm.html</loc>
+    <lastmod>2020-02-28</lastmod>
+  </url>  <url>
+    <loc>https://www.lightdream.xyz/FindMiddleNumber.html</loc>
+    <lastmod>2020-02-28</lastmod>
   </url>  <url>
     <loc>https://www.lightdream.xyz/StrangeDream1.html</loc>
     <lastmod>2020-02-20</lastmod>
@@ -28,9 +37,6 @@
     <loc>https://www.lightdream.xyz/SummaryofDynamicPaogramming.html</loc>
     <lastmod>2019-03-16</lastmod>
   </url>  <url>
-    <loc>https://www.lightdream.xyz/FindMiddleNumber.html</loc>
-    <lastmod>2019-03-12</lastmod>
-  </url>  <url>
     <loc>https://www.lightdream.xyz/C++SocketTest.html</loc>
     <lastmod>2019-03-01</lastmod>
   </url>  <url>
@@ -52,17 +58,11 @@
     <loc>https://www.lightdream.xyz/unionFindSet.html</loc>
     <lastmod>2019-01-22</lastmod>
   </url>  <url>
-    <loc>https://www.lightdream.xyz/GeneticAlgorithm.html</loc>
-    <lastmod>2019-01-18</lastmod>
-  </url>  <url>
     <loc>https://www.lightdream.xyz/C++std-regex.html</loc>
     <lastmod>2019-01-16</lastmod>
   </url>  <url>
     <loc>https://www.lightdream.xyz/BehaveMyself.html</loc>
     <lastmod>2018-12-16</lastmod>
-  </url>  <url>
-    <loc>https://www.lightdream.xyz/LRUalgorithm.html</loc>
-    <lastmod>2018-12-09</lastmod>
   </url>  <url>
     <loc>https://www.lightdream.xyz/TheReflectionof14thCSP.html</loc>
     <lastmod>2018-11-20</lastmod>
