@@ -79,6 +79,7 @@ ga('send', 'pageview');
 		s.parentNode.insertBefore(bp, s);
 	})();
 	</script>
+	<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 <link rel="alternate" href="atom.xml" title="月之燃梦" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head></html>
 <body class="home blog custom-background custom-font-enabled single-author">
@@ -114,6 +115,7 @@ ga('send', 'pageview');
                 </ul>
             </div>
     </nav>
+	<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 </header>
       <div id="main" class="wrapper">
         <div id="primary" class="site-content">
@@ -396,22 +398,14 @@ ga('send', 'pageview');
 <div id="lv-container" data-id="city" data-uid="MTAyMC8zODM0Mi8xNDg3MA==">
 <div> </br> 抛砖引玉 亦或 他山之石，可以攻玉。
 </div>
-<script type="text/javascript">
-   (function(d, s) {
-       var j, e = d.getElementsByTagName(s)[0];
-
-       if (typeof LivereTower === 'function') { return; }
-
-       j = d.createElement(s);
-       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       j.async = true;
-
-       e.parentNode.insertBefore(j, e);
-   })(document, 'script');
-</script>
-<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-</div>
-<!-- City版安装代码已完成 -->
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'BcwJfKAtl8xeKihdgIxxzKUN-gzGzoHsz',
+            appKey: 'YmFEsmcyLDgy8AaXNjFoY9Ge'
+        })
+    </script>
 			
 		</footer>
 		
