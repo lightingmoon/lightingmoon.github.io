@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lightdream.xyz/"/>
-  <updated>2020-03-09T13:12:32.162Z</updated>
+  <updated>2020-03-10T07:38:05.176Z</updated>
   <id>https://www.lightdream.xyz/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://www.lightdream.xyz/NeteaseMusicOutchainPlayer.html"/>
     <id>https://www.lightdream.xyz/NeteaseMusicOutchainPlayer.html</id>
     <published>2020-03-09T11:55:45.000Z</published>
-    <updated>2020-03-09T13:12:32.162Z</updated>
+    <updated>2020-03-10T07:38:05.176Z</updated>
     
-    <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　最近想更新一下博客sidebar里面音乐插件的歌单，遇到一些问题，在以前遇到过，但是却忘了。故以防以后再忘，写下博客以记录。<br><a id="more"></a></p><h3 id="1-关于如何创建网易云音乐歌单外链播放器"><a href="#1-关于如何创建网易云音乐歌单外链播放器" class="headerlink" title="1.关于如何创建网易云音乐歌单外链播放器"></a>1.关于如何创建网易云音乐歌单外链播放器</h3><ol><li>打开网页版<a href="https://music.163.com">网易云音乐</a>，登上自己账号，并找到自己想要制作外链播放器的歌单，按以下流程来：<br><img src="image/netease1.png" width="610" height="300">    </li></ol><hr><p><img src="image/netease2.png" width="600" height="300">   </p><hr><p><img src="image/netease3.png" width="700" height="300"></p><hr><p><img src="image/netease4.png" width="800" height="300"></p><hr><p><img src="image/netease5.png" width="700" height="300"></p><hr><p>单曲外链播放器也类似。进入制作外链播放器后就按照官方教程走即可。     </p><h3 id="2-其中最需谨记的就是歌单里面的歌曲必须有版权可以用来制作外链播放器，如果忽视了这个，那么会产生以下两个问题："><a href="#2-其中最需谨记的就是歌单里面的歌曲必须有版权可以用来制作外链播放器，如果忽视了这个，那么会产生以下两个问题：" class="headerlink" title="2. 其中最需谨记的就是歌单里面的歌曲必须有版权可以用来制作外链播放器，如果忽视了这个，那么会产生以下两个问题："></a>2. <strong>其中最需谨记的就是歌单里面的歌曲必须有版权可以用来制作外链播放器，如果忽视了这个，那么会产生以下两个问题：</strong></h3><ul><li>不能制作外链播放器，提示没有版权。</li><li>就算制作成功了，但不能进行播放。最难受的就是你点击播放时，播放器不会进行提示。百思不得其解之时，忽然想起以前遇到这个问题。但是也浪费了好多时间。</li></ul>]]></content>
+    <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　最近想更新一下博客sidebar里面音乐插件的歌单，遇到一些问题，在以前遇到过，但是却忘了。故以防以后再忘，写下博客以记录。<br><a id="more"></a></p><h3 id="1-关于如何创建网易云音乐歌单外链播放器"><a href="#1-关于如何创建网易云音乐歌单外链播放器" class="headerlink" title="1.关于如何创建网易云音乐歌单外链播放器"></a>1.关于如何创建网易云音乐歌单外链播放器</h3><ol><li>打开网页版<a href="https://music.163.com">网易云音乐</a>，登上自己账号，并找到自己想要制作外链播放器的歌单，按以下流程来：<br><img src="image/netease1.png" width="auto" height="auto">    </li></ol><hr><p><img src="image/netease2.png" width="auto" height="auto">   </p><hr><p><img src="image/netease3.png" width="auto" height="auto"></p><hr><p><img src="image/netease4.png" width="auto" height="auto"></p><hr><p><img src="image/netease5.png" width="auto" height="auto"></p><hr><p>单曲外链播放器也类似。进入制作外链播放器后就按照官方教程走即可。     </p><h3 id="2-其中最需谨记的就是歌单里面的歌曲必须有版权可以用来制作外链播放器，如果忽视了这个，那么会产生以下两个问题："><a href="#2-其中最需谨记的就是歌单里面的歌曲必须有版权可以用来制作外链播放器，如果忽视了这个，那么会产生以下两个问题：" class="headerlink" title="2. 其中最需谨记的就是歌单里面的歌曲必须有版权可以用来制作外链播放器，如果忽视了这个，那么会产生以下两个问题："></a>2. <strong>其中最需谨记的就是歌单里面的歌曲必须有版权可以用来制作外链播放器，如果忽视了这个，那么会产生以下两个问题：</strong></h3><ul><li>不能制作外链播放器，提示没有版权。</li><li>就算制作成功了，但不能进行播放。最难受的就是你点击播放时，播放器不会进行提示。百思不得其解之时，忽然想起以前遇到这个问题。但是也浪费了好多时间。</li></ul>]]></content>
     
     <summary type="html">
     
