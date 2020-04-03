@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="月之燃梦">
 <meta property="og:description" content="小米OJ里的题有一个独特的数据输入方式，迫使我不得不去掌握一些高效处理字符串的方法，从正则开始。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-16T03:48:05.698Z">
+<meta property="og:updated_time" content="2020-03-30T07:53:39.435Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++正则表达式库(std::regex)">
 <meta name="twitter:description" content="小米OJ里的题有一个独特的数据输入方式，迫使我不得不去掌握一些高效处理字符串的方法，从正则开始。">
@@ -161,7 +161,7 @@ ga('send', 'pageview');
 <li>regex_replace()，搜索匹配并替换。</li>
 <li>std::regex_iterator，不分组多次全词匹配，可获取整个正则结果。  </li>
 </ul>
-<h4 id="regex-match（全词匹配）用法"><a href="#regex-match（全词匹配）用法" class="headerlink" title="regex_match（全词匹配）用法"></a>regex_match（全词匹配）用法</h4><pre><code>#include&lt;iostream&gt;
+<h4 id="regex-match（全词匹配）用法"><a href="#regex-match（全词匹配）用法" class="headerlink" title="regex_match（全词匹配）用法"></a>regex_match（全词匹配）用法</h4><pre><code class="lang-c++">#include&lt;iostream&gt;
 #include&lt;string&gt;
 #include&lt;regex&gt;
 using std::cin;
@@ -189,7 +189,8 @@ int main()
         cout&lt;&lt;&quot;[&quot;&lt;&lt;y&lt;&lt;&quot;]&quot;&lt;&lt;endl;
     return 0;
 }
-</code></pre><p><strong>注:捕获的结果中，第一条一般都是字符串本身</strong><br>运行结果:</p>
+</code></pre>
+<p><strong>注:捕获的结果中，第一条一般都是字符串本身</strong><br>运行结果:</p>
 <pre><code>the match is successful!
 string literal with 4 matches
 [122   622]

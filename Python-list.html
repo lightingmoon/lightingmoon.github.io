@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="月之燃梦">
 <meta property="og:description" content="最近在用Python实现粒子群算法时，我要用列表记录粒子群算法迭代时种群的情况，但是却发生了一些问题。调试浪费了一些时间，故在此记录下来。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-16T06:16:01.592Z">
+<meta property="og:updated_time" content="2020-03-29T08:26:43.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python append()方法与深、浅拷贝">
 <meta name="twitter:description" content="最近在用Python实现粒子群算法时，我要用列表记录粒子群算法迭代时种群的情况，但是却发生了一些问题。调试浪费了一些时间，故在此记录下来。">
@@ -132,7 +132,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">352字</span>
+        <span class="post-count">353字</span>
       </span>
     </span>
 	&nbsp;|
@@ -167,7 +167,7 @@ ga('send', 'pageview');
 <h3 id="深入剖析"><a href="#深入剖析" class="headerlink" title="深入剖析"></a>深入剖析</h3><p>继续看这段代码：</p>
 <pre><code>&gt;&gt;&gt; id(list2) == id(list1[0])
 True
-</code></pre><p>　　这表明list2在内存中的起始位置与list1[0]在内层中的位置是一样的。实际上列表list1的append()方法是将list2进行浅拷贝，把list2引用直接赋给list1[0], list2直接作为一个对象追加到list1[0]上。这样改变list2也会改变list1[0]，这就很危险了。</p>
+</code></pre><p>　　这表明list2在内存中的起始位置与list1[0]在内存中的位置是一样的。实际上列表list1的append()方法是将list2进行浅拷贝，把list2引用直接赋值给list1[0], list2直接作为一个对象追加到list1[0]上。这样改变list2也会改变list1[0]，这就很危险了。</p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>　　导入copy模块，对list2进行深拷贝再追加到list1尾部即可：</p>
 <pre><code>&gt;&gt;&gt; import copy
 &gt;&gt;&gt; list1 = []
