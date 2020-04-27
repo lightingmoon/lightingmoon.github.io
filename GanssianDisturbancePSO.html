@@ -14,21 +14,24 @@
   <meta name="baidu-site-verification" content="true">
   <meta name="msvalidate.01" content="BBA0F05A054A52937A445B0457B5D099">
   
-  <title style="text-align:center">split函数实现 | 月之燃梦</title>
+  <title style="text-align:center">基于高斯扰动的粒子群优化算法算法 | 月之燃梦</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="description" content="字符串分割函数split,将一个字符串按给定的定界符delim分割成字符串数组。实现的方式多种多样，由浅入深，从易到难，开始分割…">
-<meta name="keywords" content="C++11,split函数,STL,字符串分割">
+  <meta name="description" content="在碎片时间被智能手机APP大肆压榨的时代，我们只能从增强自我管理开始。以上是自己最近的一些思考。欢迎一起来讨论（👉👇）。下面开始本篇主题">
+<meta name="keywords" content="PSO,高斯扰动学习策略">
 <meta property="og:type" content="article">
-<meta property="og:title" content="split函数实现">
-<meta property="og:url" content="https://www.lightdream.xyz/theConstructofSplit.html">
+<meta property="og:title" content="基于高斯扰动的粒子群优化算法算法">
+<meta property="og:url" content="https://www.lightdream.xyz/GanssianDisturbancePSO.html">
 <meta property="og:site_name" content="月之燃梦">
-<meta property="og:description" content="字符串分割函数split,将一个字符串按给定的定界符delim分割成字符串数组。实现的方式多种多样，由浅入深，从易到难，开始分割…">
+<meta property="og:description" content="在碎片时间被智能手机APP大肆压榨的时代，我们只能从增强自我管理开始。以上是自己最近的一些思考。欢迎一起来讨论（👉👇）。下面开始本篇主题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-04T15:28:01.662Z">
+<meta property="og:image" content="https://www.lightdream.xyz/image/GDPSO_2000.png">
+<meta property="og:image" content="https://www.lightdream.xyz/image/GDPSO_20000.png">
+<meta property="og:updated_time" content="2020-04-27T15:46:22.934Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="split函数实现">
-<meta name="twitter:description" content="字符串分割函数split,将一个字符串按给定的定界符delim分割成字符串数组。实现的方式多种多样，由浅入深，从易到难，开始分割…">
+<meta name="twitter:title" content="基于高斯扰动的粒子群优化算法算法">
+<meta name="twitter:description" content="在碎片时间被智能手机APP大肆压榨的时代，我们只能从增强自我管理开始。以上是自己最近的一些思考。欢迎一起来讨论（👉👇）。下面开始本篇主题">
+<meta name="twitter:image" content="https://www.lightdream.xyz/image/GDPSO_2000.png">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -117,14 +120,14 @@ ga('send', 'pageview');
 </header>
       <div id="main" class="wrapper">
         <div id="primary" class="site-content">
-			<div id="content" role="main"><article id="post-theConstructofSplit" class="post-theConstructofSplit post type-post status-publish format-standard hentry">
+			<div id="content" role="main"><article id="post-GanssianDisturbancePSO" class="post-GanssianDisturbancePSO post type-post status-publish format-standard hentry">
 		
       <center><header class="entry-header">
         
         
   
     <h1 class="entry-title article-title">
-      split函数实现
+      基于高斯扰动的粒子群优化算法算法
     </h1>
   
 
@@ -133,7 +136,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">408字</span>
+        <span class="post-count">1,105字</span>
       </span>
     </span>
 	&nbsp;|
@@ -141,7 +144,7 @@ ga('send', 'pageview');
     <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">阅读时长:约</span>
-        <span class="post-count">2&nbsp;分钟</span>
+        <span class="post-count">5&nbsp;分钟</span>
       </span>
     </span>
 </div>
@@ -154,111 +157,85 @@ ga('send', 'pageview');
 		总阅读量<span id="busuanzi_value_page_pv"></span>次
 		</span></center>
 		</br></br>
-        <script src="\assets\js\APlayer.min.js"> </script><p>字符串分割函数split,将一个字符串按给定的定界符delim分割成字符串数组。实现的方式多种多样，由浅入深，从易到难，开始分割…<br><a id="more"></a><br>实现的方式有以下3种:</p>
-<ul>
-<li>用cstring 库中的strtok函数实现</li>
-<li>string类对字符串直接处理实现</li>
-<li>正则表达式结合STL实现  </li>
-</ul>
-<h2 id="用strtok函数实现"><a href="#用strtok函数实现" class="headerlink" title="用strtok函数实现"></a>用strtok函数实现</h2><pre><code class="lang-c++">std::vector&lt;std::string&gt; split0(const std::string &amp;str, const std::string &amp;deli)
-{
-    std::vector&lt;std::string&gt; out;
-    if(str.empty())
-    {
-        return out;
-    }
-    if(deli.empty())
-    {
-        out.emplace_back(str);
-        return out;
-    }
-    // c_str()返回当前string对象的c 风格常量字符串,即const char *
-    const char *del=deli.c_str();
-
-    // 将str重新放入流中，再用char数组读取
-    std::stringstream ot(str);
-    char strTemp[str.size()+1];
-    ot&gt;&gt;strTemp;
-
-    char *p=strtok(strTemp,del);
-    while(p != nullptr)
-    {
-        out.emplace_back(p);
-        p = strtok(nullptr,del);
-    }
-    return out;
-}
+        <script src="\assets\js\APlayer.min.js"> </script><p>　　在碎片时间被智能手机APP大肆压榨的时代，我们只能从增强自我管理开始。以上是自己最近的一些思考。欢迎一起来讨论（👉👇）。下面开始本篇主题</p>
+<a id="more"></a>
+<h2 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h2><p>基于高斯扰动的粒子群算法<a href="Particle Swarm Optimization based on Ganssian Disturbance, GDPSO">^1</a>，其很巧妙的在标准粒子群算法速度迭代公式基础上增加一个高斯扰动，使得算法收敛速度加快，且既能帮助算法有效跳出局部最优值，又能扩大粒子搜索范围。<br>具体GDPSO速度迭代公式如下：</p>
+<script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r_{1}(p_{id}^{(t)} + r_{2}gauss_{id}^{(t)}-x_{id}^{(t)})\\
+    +c_{2}r_{3}(p_{gd}^{(t)}-x_{id}^{(t)})</script><script type="math/tex; mode=display">x_{id}^{(t+1)} = x_{id}^{(t)} + v_{id}^{(t+1)}</script><script type="math/tex; mode=display">gauss_{id}^{(t)} = r_4gaussian(\mu, \sigma ^{2})</script><p>其中$\mu = 0，\sigma ^{2} = |p_{id}|$，其它参数与标准粒子群算法一致。<br>据算法分析，令$c_1 = c_2 = \lambda $，当算法参数满足：</p>
+<script type="math/tex; mode=display">\left\{ {| \omega | < 1}\atop
+ {0 < \lambda < 2 + 2\omega}\right.</script><p> 且个体极值、高斯扰动值和全局极值保持不变时，算法在$E[x]^{*}$处渐进稳定</p>
+<h2 id="算法进化模式分析"><a href="#算法进化模式分析" class="headerlink" title="算法进化模式分析"></a>算法进化模式分析</h2><p>令$c_1 = c_2$， $r_1 = r_2 = r_3 = r$，那么种群所有粒子可分以下情况：    </p>
+<ol>
+<li><p>粒子$i$当前位置为其历史最优位置，但不是全局最优位置，即<br>$x_{id} = p_{id}, x_{id} \not= p_{gd}$。<br>则算法进化模式为 ：</p>
+<p> $v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\<br> +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\<br> =  \omega v_{id}^{(t)} + c_1r^2gauss_{id}^{(t)} + c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)}) $</p>
+<p> 此时GDPSO速度增量比PSO更大，其全局搜索能力更强，收敛速度更快，且高斯扰动选项能帮助算法逃离局部最优。</p>
+</li>
+<li><p>粒子$i$当前位置为其历史最优位置，同时又是全局最优位置，即$x_{id} = p_{id} = p_{gd}$。<br>则算法进化模式为：</p>
+<p> $v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\<br> +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\<br>  = \omega v_{id}^{(t)} + c_1r^2gauss_{id}^{(t)}$</p>
+<p>  此时GDPSO速度项比标准PSO增加了一个高斯扰动值，有助于算法跳出当前局部最优解。</p>
+</li>
+<li><p>粒子$i$当前位置不是其历史最优位置，同时又不是全局最优位置，但是粒子$i$的历史最优位置恰好是全局最优位置，即<br>$x_{id} \not= p_{id}，x_{id} \not= p_{gd}, 且p_{id} = p_{gd}$。<br>此时算法的进化模式为：</p>
+<p> $v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\<br> +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\<br> =\omega v_{id}^{(t)} + 2c_1r(p_{gd}^{(t)} - x_{id}^{(t)} + \frac{1}{2}rgauss_{id}^{(t)})$</p>
+<p> 此时，对于PSO，种群中粒子完全向当前全局最优值移动，很容易陷入局部最优值。而GDPSO一方面保证其收敛速度比PSO更快，另一方面由于增加了高斯扰动项，很好的避免了算法陷入局部最优值。</p>
+</li>
+<li><p>粒子 $i$当前位置不是其历史最优位置，同时又不是全局最优位置，且粒子$i$的历史最优位置不是当前种群全局最优位置，即<br>$x_{id} \not= p_{id}，x_{id} \not= p_{gd}，且 p_{id} \not= p_{gd}$ 。算法的进化模式为：</p>
+<p> $v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\<br> +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\<br> = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)}-x_{id}^{(t)})+c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\<br> +c_1r^2gauss_{id}^{(t)}$</p>
+<p> 此时相比于PSO的速度项，GDPSO增加了一个高斯扰动项，其可以帮助粒子扩大搜索范围，增强全局寻优能力，且提高了算法收敛速度。</p>
+</li>
+</ol>
+<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><ol>
+<li>选择测试函数<br>$Griewank$函数(取值范围为$[一600，600]$，理论最优值为0)：<script type="math/tex; mode=display">f(x) = \frac{1}{4000}\sum_{i=1}^{D}x_i^2 - \prod_{i=1}^{D}cos(\frac{x_i}{\sqrt{i}}) + 1</script></li>
+<li>环境<br>JetBrains PyCharm + Python3.7</li>
+<li>参数设置</li>
+</ol>
+<pre><code class="lang-Python3">W = 0.6  # 惯性权重，根据论文会随着迭代次数改变
+C1 = 2.0  # 认知
+C2 = 2.0  # 社会
+P = []  # 第i个粒子搜索到的历史最优位值
+Pifitness = []  # 记录第i个粒子搜索到的历史最优值
+Pg = []  # 整个粒子群搜索到的最优位值
+Pgfitness = float(&#39;inf&#39;)  # 记录整个粒子群搜索到的最优值
+PgfitnessRecord = []
+intervalMin = -600  # 种群搜索区间下限
+intervalMax = 600  # 种群搜索区间上限
+Vmin = -120  # 粒子的速度下限
+Vmax = 120  # 粒子的速度上限
+N = 10  # 粒子个数
+T = 2000  # 迭代次数
+D = 30  # 粒子的维度
 </code></pre>
-<h2 id="用string类实现"><a href="#用string类实现" class="headerlink" title="用string类实现"></a>用string类实现</h2><pre><code class="lang-C++">std::vector&lt;std::string&gt; split1(const std::string &amp;str, const std::string &amp;deli)
-{
-    std::vector&lt;std::string&gt; out;
-    if(str.empty())
-    {
-        return out;
-    }
-    if(deli.empty())
-    {
-        out.emplace_back(str);
-        return out;
-    }
-    // 直接处理字符串
-    std::string p=str;
-    p+=deli;                                // 保证结尾有一个定界符
-    size_t cur;                             // 记录处理过的子串
-    while((cur = p.find(deli)) != std::string ::npos)
-    {
-        out.emplace_back(p.substr(0,cur));  // 截取分割子串
-
-        p=p.substr(cur+deli.size());        // 向后滑动
-    }
-    return out;
-}
-</code></pre>
-<h2 id="用std-regex实现"><a href="#用std-regex实现" class="headerlink" title="用std::regex实现"></a>用std::regex实现</h2><pre><code class="lang-c++">std::vector&lt;std::string&gt; split2(const std::string &amp;str, const std::string &amp;deli)
-{
-    std::vector&lt;std::string&gt; out;
-    if(str.empty())
-    {
-        return out;
-    }
-    if(deli.empty())
-    {
-        out.emplace_back(str);
-        return out;
-    }
-
-    // 构造定界符正则
-    std::regex re(deli);
-
-    // 获取匹配该定界符的串的前缀
-    std::sregex_token_iterator p(str.begin(), str.end(), re, -1);
-    std::sregex_token_iterator end;
-
-    while (p != end)
-    {
-        out.emplace_back(*p++);
-    }
-    return out;
-}
-</code></pre>
-<p>完整测试代码见我的<a href="https://github.com/lightingmoon">Github</a><br>参考资料:<br><a href="http://www.cplusplus.com/reference/regex/regex_token_iterator/regex_token_iterator/">C++ Reference</a><br><a href="https://www.cnblogs.com/qianlicao/p/9274444.html">几种c++字符串split 函数实现的比较</a></p>
+<ol>
+<li>实验结果</li>
+</ol>
+<p><img src="../image/GDPSO_2000.png" alt="GDPSO_2000"></p>
+<blockquote>
+<p>GDPSO算法迭代2000次</p>
+</blockquote>
+<p><img src="../image/GDPSO_20000.png" alt="GDPSO_20000"></p>
+<blockquote>
+<p>GDPSO算法迭代20000次</p>
+</blockquote>
+<p>完整实验代码见我的<a href="https://github.com/lightingmoon/BlogResourceCode/tree/master/GDPSO">Github</a></p>
+<blockquote id="fn_1">
+<sup>1</sup>. 通讯作者：孙辉，邮箱: sunhui@nit.edu.cn<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
 	
 		</br>
 		<footer style="text-align: center" class="entry-meta">雪林于
 		<a href="">
-   <time datetime="2018-10-04T07:48:44.000Z" class="entry-date">
-        2018年10月04日 15:48
+   <time datetime="2020-04-11T12:53:28.000Z" class="entry-date">
+        2020年04月11日 20:53
     </time>
 </a>
 		
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="categories/C/">C++</a>
+  <a class="article-category-link" href="categories/优化算法/">优化算法</a>
   </div>
 
 		
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/C-11/">C++11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/STL/">STL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/split函数/">split函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/字符串分割/">字符串分割</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/PSO/">PSO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/高斯扰动学习策略/">高斯扰动学习策略</a></li></ul>
 
 		
 			<!-- 来必力City版安装代码 -->
@@ -284,10 +261,8 @@ ga('send', 'pageview');
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="SwapSort.html" rel="prev"><span class="meta-nav">←</span> 从最少交换次数到交换排序</a></span>
     
-    
-        <span class="nav-next"><a href="C++std-regex.html" rel="next">C++正则表达式库(std::regex) <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="Python-list.html" rel="next">Python append()方法与深、浅拷贝 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
@@ -317,7 +292,7 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="GanssianDisturbancePSO.html">基于高斯扰动的粒子群优化算法算法</a>
+            <a href="">基于高斯扰动的粒子群优化算法算法</a>
           </li>
         
           <li>
