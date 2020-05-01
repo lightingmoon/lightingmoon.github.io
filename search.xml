@@ -7,7 +7,8 @@
 <a id="more"></a>
 <h2 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h2><p>基于高斯扰动的粒子群算法<a href="Particle Swarm Optimization based on Ganssian Disturbance, GDPSO">^1</a>，其很巧妙的在标准粒子群算法速度迭代公式基础上增加一个高斯扰动，使得算法收敛速度加快，且既能帮助算法有效跳出局部最优值，又能扩大粒子搜索范围。<br>具体GDPSO速度迭代公式如下：</p>
 <script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r_{1}(p_{id}^{(t)} + r_{2}gauss_{id}^{(t)}-x_{id}^{(t)})\\
-    +c_{2}r_{3}(p_{gd}^{(t)}-x_{id}^{(t)})</script><script type="math/tex; mode=display">x_{id}^{(t+1)} = x_{id}^{(t)} + v_{id}^{(t+1)}</script><script type="math/tex; mode=display">gauss_{id}^{(t)} = r_4gaussian(\mu, \sigma ^{2})</script><p>其中$\mu = 0，\sigma ^{2} = |p_{id}|$，其它参数与标准粒子群算法一致。<br>据算法分析，令$c_1 = c_2 = \lambda $，当算法参数满足：</p>
+    +c_{2}r_{3}(p_{gd}^{(t)}-x_{id}^{(t)})</script><pre><code>    $$x_{id}^{(t+1)} = x_{id}^{(t)} + v_{id}^{(t+1)}$$
+</code></pre><script type="math/tex; mode=display">gauss_{id}^{(t)} = r_4gaussian(\mu, \sigma ^{2})</script><p>其中$\mu = 0，\sigma ^{2} = |p_{id}|$，其它参数与标准粒子群算法一致。<br>据算法分析，令$c_1 = c_2 = \lambda $，当算法参数满足：</p>
 <script type="math/tex; mode=display">\left\{ {| \omega | < 1}\atop
  {0 < \lambda < 2 + 2\omega}\right.</script><p> 且个体极值、高斯扰动值和全局极值保持不变时，算法在$E[x]^{*}$处渐进稳定</p>
 <h2 id="算法进化模式分析"><a href="#算法进化模式分析" class="headerlink" title="算法进化模式分析"></a>算法进化模式分析</h2><p>令$c_1 = c_2$， $r_1 = r_2 = r_3 = r$，那么种群所有粒子可分以下情况：    </p>
