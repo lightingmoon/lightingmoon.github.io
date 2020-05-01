@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.lightdream.xyz/image/GDPSO_2000.png">
 <meta property="og:image" content="https://www.lightdream.xyz/image/GDPSO_20000.png">
-<meta property="og:updated_time" content="2020-05-01T05:25:48.836Z">
+<meta property="og:updated_time" content="2020-05-01T05:31:29.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于高斯扰动的粒子群优化算法算法">
 <meta name="twitter:description" content="在碎片时间被智能手机APP大肆压榨的时代，我们只能从增强自我管理开始。以上是自己最近的一些思考。欢迎一起来讨论（👉👇）。下面开始本篇主题">
@@ -136,7 +136,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">1,116字</span>
+        <span class="post-count">1,124字</span>
       </span>
     </span>
 	&nbsp;|
@@ -159,7 +159,7 @@ ga('send', 'pageview');
 		</br></br>
         <script src="\assets\js\APlayer.min.js"> </script><p>　　在碎片时间被智能手机APP大肆压榨的时代，我们只能从增强自我管理开始。以上是自己最近的一些思考。欢迎一起来讨论（👉👇）。下面开始本篇主题</p>
 <a id="more"></a>
-<h2 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h2><p>基于高斯扰动的粒子群算法<a href="Particle Swarm Optimization based on Ganssian Disturbance, GDPSO">^1</a>，其很巧妙的在标准粒子群算法速度迭代公式基础上增加一个高斯扰动，使得算法收敛速度加快，且既能帮助算法有效跳出局部最优值，又能扩大粒子搜索范围。<br>具体GDPSO速度迭代公式如下：</p>
+<h2 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h2><p>基于高斯扰动的粒子群算法(Particle Swarm Optimization based on Ganssian Disturbance, GDPSO)<sup><a href="#fn_1" id="reffn_1">1</a></sup>，其很巧妙的在标准粒子群算法速度迭代公式基础上增加一个高斯扰动，使得算法收敛速度加快，且既能帮助算法有效跳出局部最优值，又能扩大粒子搜索范围。<br>具体GDPSO速度迭代公式如下：</p>
 <script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r_{1}(p_{id}^{(t)} + r_{2}gauss_{id}^{(t)}-x_{id}^{(t)})\\
     +c_{2}r_{3}(p_{gd}^{(t)}-x_{id}^{(t)})</script><pre><code>    $$x_{id}^{(t+1)} = x_{id}^{(t)} + v_{id}^{(t+1)}$$
 </code></pre><script type="math/tex; mode=display">gauss_{id}^{(t)} = r_4gaussian(\mu, \sigma ^{2})</script><p>其中$\mu = 0，\sigma ^{2} = |p_{id}|$，其它参数与标准粒子群算法一致。<br>据算法分析，令$c_1 = c_2 = \lambda $，当算法参数满足：</p>
