@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lightdream.xyz/"/>
-  <updated>2020-05-02T10:34:20.938Z</updated>
+  <updated>2020-05-18T02:09:17.142Z</updated>
   <id>https://www.lightdream.xyz/</id>
   
   <author>
@@ -21,13 +21,13 @@
     <link href="https://www.lightdream.xyz/someWordOperationTips.html"/>
     <id>https://www.lightdream.xyz/someWordOperationTips.html</id>
     <published>2020-05-02T09:54:48.000Z</published>
-    <updated>2020-05-02T10:34:20.938Z</updated>
+    <updated>2020-05-18T02:09:17.142Z</updated>
     
-    <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　最近想吐槽一下当今的软件设计技术还是太死板。且听我举一例：我向某翻译软件上传一个word文件(.docx)（是一篇英文论文，里面图片比较多），翻译好后还是下载的Word(.docx)格式。我打开后开始对照修改，改到中间有部分内容缺失（超过那一页的边界之外），我准备打回车把那部分内容顶到下一页去，结果死活顶不下去。仔细一看，好家伙，原来那个翻软件给生成了一个表格，只有一个格子，它把整个翻译后的内容放进格子里，那个格子超过了Word纸张大小，只能看见一部分内容。所以你打回车是永远也顶不到下一页，只会在看不见的地方增长格子大小。明白了以后，<del>我就口吐芬芳了一句</del>，从此与这类软件做路人。下面开始本篇主题。<br><a id="more"></a></p><h3 id="1-关于设置页码"><a href="#1-关于设置页码" class="headerlink" title="1. 关于设置页码"></a>1. 关于设置页码</h3><p>1.1 从任意页开始设置页码<br>　　在功能区<strong>布局-页面设置-分隔符-分节符-下一页</strong>，就可以在生成页码</p>]]></content>
+    <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　最近想吐槽一下当今的软件设计技术还是太死板。且听我举一例：我向某翻译软件上传一个word文件(.docx)（是一篇英文论文，里面图片比较多），翻译好后还是下载的Word(.docx)格式。我打开后开始对照修改，改到中间有部分内容缺失（超过那一页的边界之外），我准备打回车把那部分内容顶到下一页去，结果死活顶不下去。<br><a id="more"></a><br>仔细一看，好家伙，原来那个翻软件给生成了一个表格，只有一个格子，它把整个翻译后的内容放进格子里，那个格子超过了Word纸张大小，只能看见一部分内容。所以你打回车是永远也顶不到下一页，只会在看不见的地方增长格子大小。明白了以后，<del>我就口吐芬芳了一句</del>，从此与这类软件做路人。虽说可以用表格来排版，但是您也要用的标准啊。这样做简直坑人于无形。下面开始本篇主题。</p><h3 id="1-关于设置页码"><a href="#1-关于设置页码" class="headerlink" title="1. 关于设置页码"></a>1. 关于设置页码</h3><p>1.1 从任意页开始设置页码<br>　　在功能区<strong>布局-页面设置-分隔符-分节符-下一页</strong>，接着在该页面<strong>插入页码</strong>，之后双击这一页的页码，在功能区<strong>设计-链接到前一节</strong>，取消<strong>链接到前一节</strong>，再删除前一页的页码即可。<br>1.2 设置奇偶页不同的页眉页脚，再添加连续的页码<br>　　其实就是分别在第一页添加<strong>从1开始的页码、第二页从2开始的页码</strong>，但是也要注意，文档内不要有多余的分节符，否则会很麻烦（Word在添加一些比较大的图片时候会自动添加分节符，有他的道理吧）。具体查看分节符的方法：<strong>功能区的文件-选项-显示-始终在屏幕上显示这些格式标记-显示所有格式标记</strong>，选中它即可。一般分节符长这样子：<br><img src="../image/SectionBreak.png" alt="image"><br>想要删除分节符，将光标移至分节符后面，按<strong>delete</strong>即可</p><h3 id="2-关于Word输入公式"><a href="#2-关于Word输入公式" class="headerlink" title="2. 关于Word输入公式"></a>2. 关于Word输入公式</h3><p>　　按Alt 和 = 键，即可输入Latex公式，且微软支持的很好，渲染的也很漂亮。但是却只支持.docx文件，一般学校都用的是.doc文件。不过在将.docx文件转为.doc文件时，Word会自动将Latex公式转化为图片，支持的很好。欣赏一下Word输入的公式吧。<br><img src="../image/Formula.png" alt="Formula"></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;　　最近想吐槽一下当今的软件设计技术还是太死板。且听我举一例：我向某翻译软件上传一个word文件(.docx)（是一篇英文论文，里面图片比较多），翻译好后还是下载的Word(.docx)格式。我打开后开始对照修改，改到中间有部分内容缺失（超过那一页的边界之外），我准备打回车把那部分内容顶到下一页去，结果死活顶不下去。仔细一看，好家伙，原来那个翻软件给生成了一个表格，只有一个格子，它把整个翻译后的内容放进格子里，那个格子超过了Word纸张大小，只能看见一部分内容。所以你打回车是永远也顶不到下一页，只会在看不见的地方增长格子大小。明白了以后，&lt;del&gt;我就口吐芬芳了一句&lt;/del&gt;，从此与这类软件做路人。下面开始本篇主题。&lt;br&gt;
+      &lt;p&gt;　　最近想吐槽一下当今的软件设计技术还是太死板。且听我举一例：我向某翻译软件上传一个word文件(.docx)（是一篇英文论文，里面图片比较多），翻译好后还是下载的Word(.docx)格式。我打开后开始对照修改，改到中间有部分内容缺失（超过那一页的边界之外），我准备打回车把那部分内容顶到下一页去，结果死活顶不下去。&lt;br&gt;
     
     </summary>
     
