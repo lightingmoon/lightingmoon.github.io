@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lightdream.xyz/"/>
-  <updated>2020-06-10T15:08:57.620Z</updated>
+  <updated>2020-06-12T01:55:27.162Z</updated>
   <id>https://www.lightdream.xyz/</id>
   
   <author>
@@ -17,13 +17,35 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>autoSubmitTableSystem</title>
+    <link href="https://www.lightdream.xyz/autoSubmitTableSystem.html"/>
+    <id>https://www.lightdream.xyz/autoSubmitTableSystem.html</id>
+    <published>2020-06-12T01:55:27.000Z</published>
+    <updated>2020-06-12T01:55:27.162Z</updated>
+    
+    <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>将Hexo博客部署至腾讯云服务器初体验</title>
     <link href="https://www.lightdream.xyz/deployHexoProjecttoTencentCloud.html"/>
     <id>https://www.lightdream.xyz/deployHexoProjecttoTencentCloud.html</id>
     <published>2020-06-10T03:02:27.000Z</published>
-    <updated>2020-06-10T15:08:57.620Z</updated>
+    <updated>2020-06-12T01:58:08.767Z</updated>
     
-    <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　最近根据相关法律法规要求：域名在哪个云服务提供商备案就必须将该域名解析到云服务提供商的服务器，这波操作秀啊。这下白嫖了两年的Github Pages服务也用不了了，为了不放弃我这个域名。😐。弱弱地买了一个弱弱的学生(qióngbi)版低配服务器，花了一天时间将博客弱弱的部署到服务器上了。在这里总结一下自己踩的坑。<br><a id="more"></a></p><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>　　考虑到网上有很多写的不错的<strong>将Hexo博客部署到服务器</strong>的博客，我就不重复造轮子了。下面是一些我当时参考的博客的链接：</p><ul><li><a href="https://blog.csdn.net/qq_35561857/article/details/81590953">带你跳过各种坑，一次性把 Hexo 博客部署到自己的服务器</a></li><li><a href="https://blog.csdn.net/wx_15323880413/article/details/104576799?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase">记录Hexo部署到阿里云服务器全过程</a></li><li><a href="https://blog.csdn.net/NoCortY/article/details/99631249?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase">从零搭建Hexo博客并部署阿里云服务器（奶妈级教学）</a></li><li><a href="https://blog.csdn.net/StaunchKai/article/details/82878928?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase">Hexo 博客部署到腾讯云服务器全流程</a></li></ul><p>　　<strong>只要一步步仔细跟着教程走，应该不会遇到问题。如果遇到了问题，可以参考博客下面评论区或者在搜索引擎上搜索。最后还是解决不了的话，可以请教周围的大神或者在教程博客评论区留言。感谢互联网，让我能站在巨人的肩膀上</strong>。</p><h3 id="踩坑-gt-跳出坑"><a href="#踩坑-gt-跳出坑" class="headerlink" title="踩坑-&gt;跳出坑"></a>踩坑-&gt;跳出坑</h3><h4 id="1-安装nginx中间的问题"><a href="#1-安装nginx中间的问题" class="headerlink" title="1.安装nginx中间的问题"></a>1.安装nginx中间的问题</h4><p>在解压完  [nginx-1.15.2]  包后执行指令：</p><pre><code>./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-file-aio --with-http_realip_module</code></pre><p>会出现类似于这样的错：</p><pre><code>checking for OS + Linux 3.10.0-957.el7.x86_64 x86_64 checking for *** ... not found ./config</code></pre><p>中间的<em>*</em>可以是任何软件，此时只需要手动安装那些软件即可，例如：</p><pre><code>yum -y install gcc</code></pre><h4 id="2-万恶的403错误"><a href="#2-万恶的403错误" class="headerlink" title="2.万恶的403错误"></a>2.万恶的403错误</h4><p>　　这个错误应该是相当玄学了，如果没有这个错，我一下午应该就部署好了。反思一下，其实自己一来对linux系统操作不精通，二来对Git操作也不精通，三来对服务器nginx了解也有限…大神的博客也不可能面面俱到，所以在自己知识有限的情况下，只能找寻前人解决的经验了。<br>　　这个错误，我在试遍了评论区的方法后没有作用，后来不太清楚过程的最终解决了。所以现在只能模糊的猜测当时自己修改的条件。<br>　　我在修改好本地的配置文件后，运行以下指令：</p><pre><code>hexo cl &amp;&amp; hexo g -d</code></pre><p>在命令运行后并没有发生错误，我登录进服务器发现网站根目录并没有文件，在我用git上传成功的条件下，网站根目录并没有文件，这说明建立的裸露（bare）仓库的钩子(hooks)没有作用，这就有两个原因：</p><ul><li><ol><li>写的钩子，即linux脚本没有作用，可能没有执行权限。</li></ol></li><li><ol><li>用户git没有博客根目录的权限。</li></ol></li></ul><p>所以，我从这两个角度入手：<br>将教程中关于这两部分的步骤检查并重新进行了一遍，设置完后让服务器nginx 运行reload指令一下。之后我访问我的服务器的80端口，在失望透底之下竟然出现柳暗花明——访问成功了。</p><hr><p>之后的工作就是等域名的证书验证好了配置HTTPS</p><hr><p>Ok，HTTPS配置好了，具体没有踩太大的坑。主要参考以下文章：</p><ul><li><a href="https://blog.csdn.net/Tencentfly/article/details/87990722?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase">腾讯云服务器申请SSL证书, 配置Nginx, 实现HTTPS</a></li><li><a href="https://blog.csdn.net/yelin042/article/details/78584172?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-1">腾讯云服务器https证书安装指引</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　最近根据相关法律法规要求：域名在哪个云服务提供商备案就必须将该域名解析到云服务提供商的服务器，这波操作秀啊。这下白嫖了两年的Github Pages服务也用不了了，为了不放弃我这个域名。😐。弱弱地买了一个弱弱的学生(qióngbi)版低配服务器，花了一天时间将博客弱弱的部署到服务器上了。在这里总结一下自己踩的坑。<br><a id="more"></a></p><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>　　考虑到网上有很多写的不错的<strong>将Hexo博客部署到服务器</strong>的博客，我就不重复造轮子了。下面是一些我当时参考的博客的链接：</p><ul><li><a href="https://blog.csdn.net/qq_35561857/article/details/81590953">带你跳过各种坑，一次性把 Hexo 博客部署到自己的服务器</a></li><li><a href="https://blog.csdn.net/wx_15323880413/article/details/104576799?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase">记录Hexo部署到阿里云服务器全过程</a></li><li><a href="https://blog.csdn.net/NoCortY/article/details/99631249?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase">从零搭建Hexo博客并部署阿里云服务器（奶妈级教学）</a></li><li><a href="https://blog.csdn.net/StaunchKai/article/details/82878928?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase">Hexo 博客部署到腾讯云服务器全流程</a></li></ul><p>　　<strong>只要一步步仔细跟着教程走，应该不会遇到问题。如果遇到了问题，可以参考博客下面评论区或者在搜索引擎上搜索。最后还是解决不了的话，可以请教周围的大神或者在教程博客评论区留言。感谢互联网，让我能站在巨人的肩膀上</strong>。</p><h3 id="踩坑-gt-跳出坑"><a href="#踩坑-gt-跳出坑" class="headerlink" title="踩坑-&gt;跳出坑"></a>踩坑-&gt;跳出坑</h3><h4 id="1-安装nginx中间的问题"><a href="#1-安装nginx中间的问题" class="headerlink" title="1.安装nginx中间的问题"></a>1.安装nginx中间的问题</h4><p>在解压完  [nginx-1.15.2]  包后执行指令：</p><pre><code>./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-file-aio --with-http_realip_module</code></pre><p>会出现类似于这样的错：</p><pre><code>checking for OS + Linux 3.10.0-957.el7.x86_64 x86_64 checking for *** ... not found ./config</code></pre><p>中间的<em>*</em>可以是任何软件，此时只需要手动安装那些软件即可，例如：</p><pre><code>yum -y install gcc</code></pre><h4 id="2-万恶的403错误"><a href="#2-万恶的403错误" class="headerlink" title="2.万恶的403错误"></a>2.万恶的403错误</h4><p>　　这个错误应该是相当玄学了，如果没有这个错，我一下午应该就部署好了。反思一下，其实自己一来对linux系统操作不精通，二来对Git操作也不精通，三来对服务器nginx了解也有限…大神的博客也不可能面面俱到，所以在自己知识有限的情况下，只能找寻前人解决的经验了。<br>　　这个错误，我在试遍了评论区的方法后没有作用，后来不太清楚过程的最终解决了。所以现在只能模糊的猜测当时自己修改的条件。<br>　　我在修改好本地的配置文件后，运行以下指令：</p><pre><code>hexo cl &amp;&amp; hexo g -d</code></pre><p>在命令运行后并没有发生错误，我登录进服务器发现网站根目录并没有文件，在我用git上传成功的条件下，网站根目录并没有文件，这说明建立的裸露（bare）仓库的钩子(hooks)没有作用，这就有两个原因：</p><ul><li><ol><li>写的钩子，即linux脚本没有作用，可能没有执行权限。</li></ol></li><li><ol><li>用户git没有博客根目录的权限。</li></ol></li></ul><p>所以，我从这两个角度入手：<br>将教程中关于这两部分的步骤检查并重新进行了一遍，设置完后让服务器nginx 运行reload指令一下。之后我访问我的服务器的80端口，在失望透底之下竟然出现柳暗花明——访问成功了。</p><hr><p>最终解释：写的钩子没有运行，在服务器手动运行一下折衷。还在找解决办法！</p><hr><hr><p>之后的工作就是等域名的证书验证好了配置HTTPS</p><hr><p>Ok，HTTPS配置好了，具体没有踩太大的坑。主要参考以下文章：</p><ul><li><a href="https://blog.csdn.net/Tencentfly/article/details/87990722?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase">腾讯云服务器申请SSL证书, 配置Nginx, 实现HTTPS</a></li><li><a href="https://blog.csdn.net/yelin042/article/details/78584172?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-1">腾讯云服务器https证书安装指引</a></li></ul>]]></content>
     
     <summary type="html">
     

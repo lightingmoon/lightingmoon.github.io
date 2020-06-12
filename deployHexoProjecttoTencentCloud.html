@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="月之燃梦">
 <meta property="og:description" content="最近根据相关法律法规要求：域名在哪个云服务提供商备案就必须将该域名解析到云服务提供商的服务器，这波操作秀啊。这下白嫖了两年的Github Pages服务也用不了了，为了不放弃我这个域名。😐。弱弱地买了一个弱弱的学生(qióngbi)版低配服务器，花了一天时间将博客弱弱的部署到服务器上了。在这里总结一下自己踩的坑。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-10T15:08:57.620Z">
+<meta property="og:updated_time" content="2020-06-12T01:58:08.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="将Hexo博客部署至腾讯云服务器初体验">
 <meta name="twitter:description" content="最近根据相关法律法规要求：域名在哪个云服务提供商备案就必须将该域名解析到云服务提供商的服务器，这波操作秀啊。这下白嫖了两年的Github Pages服务也用不了了，为了不放弃我这个域名。😐。弱弱地买了一个弱弱的学生(qióngbi)版低配服务器，花了一天时间将博客弱弱的部署到服务器上了。在这里总结一下自己踩的坑。">
@@ -133,7 +133,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">917字</span>
+        <span class="post-count">948字</span>
       </span>
     </span>
 	&nbsp;|
@@ -184,6 +184,9 @@ ga('send', 'pageview');
 </ul>
 <p>所以，我从这两个角度入手：<br>将教程中关于这两部分的步骤检查并重新进行了一遍，设置完后让服务器nginx 运行reload指令一下。之后我访问我的服务器的80端口，在失望透底之下竟然出现柳暗花明——访问成功了。</p>
 <hr>
+<p>最终解释：写的钩子没有运行，在服务器手动运行一下折衷。还在找解决办法！</p>
+<hr>
+<hr>
 <p>之后的工作就是等域名的证书验证好了配置HTTPS</p>
 <hr>
 <p>Ok，HTTPS配置好了，具体没有踩太大的坑。主要参考以下文章：</p>
@@ -233,6 +236,8 @@ ga('send', 'pageview');
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
+        <span class="nav-previous"><a href="autoSubmitTableSystem.html" rel="prev"><span class="meta-nav">←</span> autoSubmitTableSystem</a></span>
+    
     
         <span class="nav-next"><a href="accelerateMyLife.html" rel="next">三省吾身，一往无前 <span class="meta-nav">→</span></a></span>
     
@@ -264,6 +269,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="autoSubmitTableSystem.html">autoSubmitTableSystem</a>
+          </li>
+        
+          <li>
             <a href="">将Hexo博客部署至腾讯云服务器初体验</a>
           </li>
         
@@ -281,10 +290,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="Python-list.html">Python append()方法与深、浅拷贝</a>
-          </li>
-        
-          <li>
-            <a href="NeteaseMusicOutchainPlayer.html">关于网易云音乐外链播放器的一些问题</a>
           </li>
         
       </ul>
@@ -393,7 +398,7 @@ ga('send', 'pageview');
   <aside class="widget">
     <h3 class="widget-title">一眼千山</h3>
     <div class="widget-content">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/03/">March 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/02/">February 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/02/">February 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/10/">October 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/07/">July 2018</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/06/">June 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/03/">March 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/02/">February 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/02/">February 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/10/">October 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/07/">July 2018</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </aside>
 

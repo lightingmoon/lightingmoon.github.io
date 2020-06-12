@@ -14,21 +14,18 @@
   <meta name="baidu-site-verification" content="true">
   <meta name="msvalidate.01" content="BBA0F05A054A52937A445B0457B5D099">
   
-  <title style="text-align:center">并查集入门 | 月之燃梦</title>
+  <title style="text-align:center">autoSubmitTableSystem | 月之燃梦</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="description" content="在《算法基础》书中，并查集又被称为不相交集结构：假设有1到N个对象，希望将这些对象分成不相交的集合，在任意给定时间里，每个对象都恰好在一个集合里。对于每个集合，选择一个成员作为集合的标签。例如决定用最小的对象作为标签，可以用“集合2”来表示集合{2,5,7,10}。 抽象结束。">
-<meta name="keywords" content="并查集">
+  <meta name="keywords" content="blog.IT.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="并查集入门">
-<meta property="og:url" content="https://www.lightdream.xyz/unionFindSet.html">
+<meta property="og:title" content="autoSubmitTableSystem">
+<meta property="og:url" content="https://www.lightdream.xyz/autoSubmitTableSystem.html">
 <meta property="og:site_name" content="月之燃梦">
-<meta property="og:description" content="在《算法基础》书中，并查集又被称为不相交集结构：假设有1到N个对象，希望将这些对象分成不相交的集合，在任意给定时间里，每个对象都恰好在一个集合里。对于每个集合，选择一个成员作为集合的标签。例如决定用最小的对象作为标签，可以用“集合2”来表示集合{2,5,7,10}。 抽象结束。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-25T06:11:43.582Z">
+<meta property="og:updated_time" content="2020-06-12T01:55:27.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="并查集入门">
-<meta name="twitter:description" content="在《算法基础》书中，并查集又被称为不相交集结构：假设有1到N个对象，希望将这些对象分成不相交的集合，在任意给定时间里，每个对象都恰好在一个集合里。对于每个集合，选择一个成员作为集合的标签。例如决定用最小的对象作为标签，可以用“集合2”来表示集合{2,5,7,10}。 抽象结束。">
+<meta name="twitter:title" content="autoSubmitTableSystem">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -117,14 +114,14 @@ ga('send', 'pageview');
 </header>
       <div id="main" class="wrapper">
         <div id="primary" class="site-content">
-			<div id="content" role="main"><article id="post-unionFindSet" class="post-unionFindSet post type-post status-publish format-standard hentry">
+			<div id="content" role="main"><article id="ww-autoSubmitTableSystem" class="ww-autoSubmitTableSystem post type-post status-publish format-standard hentry">
 		
       <center><header class="entry-header">
         
         
   
     <h1 class="entry-title article-title">
-      并查集入门
+      autoSubmitTableSystem
     </h1>
   
 
@@ -133,7 +130,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">1,114字</span>
+        <span class="post-count">0字</span>
       </span>
     </span>
 	&nbsp;|
@@ -141,7 +138,7 @@ ga('send', 'pageview');
     <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">阅读时长:约</span>
-        <span class="post-count">4&nbsp;分钟</span>
+        <span class="post-count">1&nbsp;分钟</span>
       </span>
     </span>
 </div>
@@ -154,152 +151,17 @@ ga('send', 'pageview');
 		总阅读量<span id="busuanzi_value_page_pv"></span>次
 		</span></center>
 		</br></br>
-        <script src="\assets\js\APlayer.min.js"> </script><p>在《算法基础》书中，<strong>并查集</strong>又被称为<strong>不相交集结构</strong>：假设有1到N个对象，希望将这些对象分成不相交的集合，在任意给定时间里，每个对象都恰好在一个集合里。对于每个集合，选择一个成员作为集合的标签。例如决定用最小的对象作为标签，可以用“集合2”来表示集合{2,5,7,10}。 抽象结束。<br><a id="more"></a><br>作为一个受益者，我强烈建议先看这篇　<strong><a href="https://blog.csdn.net/niushuai666/article/details/6662911">超有爱的并查集~</a></strong> 。　虽不能说是后无来者，但绝对是前无古人，能将知识讲得如此活泼有趣，清晰透彻。望洋兴叹，心向往之。所以在这里只谈一些总结。<br>先看题，<a href="https://pintia.cn/problem-sets/994805046380707840/problems/994805117167976448">原题链接</a>  </p>
-<hr>
-<pre><code>当芸芸众生忙着在朋友圈中发照片的时候，
-总有一些人因为太帅而没有朋友。  
-本题就要求你找出那些帅到没有朋友的人。  
-输入格式：  
-输入第一行给出一个正整数N（≤100），是已知朋友圈的个数；  
-随后N行，每行首先给出一个正整数K（≤1000）,  
-为朋友圈中的人数，  
-然后列出一个朋友圈内的所有人——为方便起见，  
-每人对应一个ID号，为5位数字  
-（从00000到99999），ID间以空格分隔；  
-之后给出一个正整数M（≤10000），为待查询的人数；  
-随后一行中列出M个待查询的ID，以空格分隔。  
-注意：没有朋友的人可以是根本没安装“朋友圈”，  
-也可以是只有自己一个人在朋友圈的人。  
-虽然有个别自恋狂会自己把自己反复加进朋友圈，  
-但题目保证所有K超过1的朋友圈里都至少有2个不同的人。    
-
-输出格式：  
-按输入的顺序输出那些帅到没朋友的人。ID间用1个空格分隔，  
-行的首尾不得有多余空格。如果没有人太帅，  
-则输出No one is handsome。  
-注意：同一个人可以被查询多次，但只输出一次。  
-
-输入样例1：  
-3  
-3 11111 22222 55555  
-2 33333 44444  
-4 55555 66666 99999 77777  
-8  
-55555 44444 10000 88888 22222 11111 23333 88888  
-
-输出样例1：  
-10000 88888 23333  
-
-输入样例2：  
-3  
-3 11111 22222 55555  
-2 33333 44444  
-4 55555 66666 99999 77777  
-4  
-55555 44444 22222 11111    
-
-输出样例2：  
-No one is handsome
-</code></pre><hr>
-<p>这一题考虑用并查集做，现在考虑算法，可以将列举的每一个朋友圈的第一个人作为标签，并将这些标签加入set集合,以便于进行查询。另外再开一个数组为每一个ID置0，默认为未访问标记，查询过的标记置1,如是往复，直到查询结束，因为此题有大量查询语句，所以路径压缩是必须的。且这道题有一个细节：虽然ID号为5位数，但是输入与输出不处理的话，就不满足为5位数，例如00000，存入int型变量输出就会成为0（1位数），所以要固定占位5位，不足5位用0补足。下面是代码：</p>
-<pre><code class="lang-C++">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int pre[100003];
-int visit[100003] = {0};
-set&lt;int&gt; p;
-int finder(int x)
-{
-    int r = x;
-    while(pre[r] != r)
-        r = pre[r];
-    int y = x,z;
-    while(pre[y]!= r){  // 路径压缩
-        z = pre[y];
-        pre[y] = r;
-        y = z;
-    }
-    return r;
-}
-void join(int x, int y)
-{
-    int fx = finder(x);
-    int fy = finder(y);
-    if(fx != fy)  pre[fx] = fy;
-}
-int main()
-{
-    ios::sync_with_stdio(false);
-    // 初始化前导节点
-    for(int i = 0;i&lt;100003;i++)
-        pre[i] = i;
-    // 数据
-    int n,m,k,id,rt;
-    bool flag = true;
-    cin&gt;&gt;n;
-    while(n--){
-        cin&gt;&gt;m&gt;&gt;rt;          //指定根节点
-        for(int i = 1;i&lt;m;i++){
-            cin&gt;&gt;id;
-            join(rt,id);    // 连接该id与根节点。
-        }
-        if(m != 1)
-            p.insert(finder(pre[rt]));// 保存根节点
-    }
-    cin&gt;&gt;k;
-    for(int i = 0;i&lt;k;i++){
-        cin&gt;&gt;id;
-        if(!visit[id]){
-            visit[id] = 1;
-            int res = finder(pre[id]);
-            auto sig = p.find(res);
-            if(sig == p.end()) {    // 没有在某个朋友圈里
-                if(!flag) cout&lt;&lt;&#39; &#39;;
-                cout&lt;&lt;setw(5)&lt;&lt;setfill(&#39;0&#39;)&lt;&lt;id;
-                flag = 0;
-            }
-        }
-    }
-    if(flag) cout&lt;&lt;&quot;No one is handsome&quot;&lt;&lt;&#39;\n&#39;;
-    else cout&lt;&lt;&#39;\n&#39;;
-    return 0;
-}
-</code></pre>
-<p>对于并查集，</p>
-<ul>
-<li>需要对根节点操作时，可以在录入数据时，指定某个点为为根节点，并将该节点加入set(红黑树)中，以备查找。</li>
-<li>当题目存在大量节点查询时，此时路径压缩算法能起到很大的作用，而题目并没有大量查询时，路径压缩算法作用则不明显，反而会有额外时间开销。</li>
-</ul>
-	
+        <script src="\assets\js\APlayer.min.js"> </script>	
 		</br>
 		<footer style="text-align: center" class="entry-meta">雪林于
 		<a href="">
-   <time datetime="2018-07-31T06:43:38.174Z" class="entry-date">
-        2018年07月31日 14:43
+   <time datetime="2020-06-12T01:55:27.000Z" class="entry-date">
+        2020年06月12日 09:55
     </time>
 </a>
 		
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="categories/算法与数据结构/">算法与数据结构</a>
-  </div>
-
 		
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/并查集/">并查集</a></li></ul>
-
 		
-			<div id="lv-container" data-id="city" data-uid="MTAyMC8zODM0Mi8xNDg3MA==">
-<div> </br> 抛砖引玉 亦或 他山之石，可以攻玉。
-</div>
-<div id="vcomments"></div>
-    <script>
-        new Valine({
-            el: '#vcomments',
-            appId: 'BcwJfKAtl8xeKihdgIxxzKUN-gzGzoHsz',
-            appKey: 'YmFEsmcyLDgy8AaXNjFoY9Ge'
-        })
-    </script>
-			
 		</footer>
 		
     </div>
@@ -310,10 +172,8 @@ int main()
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="BinarySearchTree.html" rel="prev"><span class="meta-nav">←</span> 二叉搜索树BST</a></span>
     
-    
-        <span class="nav-next"><a href="BigIntegerSamulation.html" rel="next">C++建立大整数类头文件及源文件 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="deployHexoProjecttoTencentCloud.html" rel="next">将Hexo博客部署至腾讯云服务器初体验 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
@@ -343,7 +203,7 @@ int main()
       <ul>
         
           <li>
-            <a href="autoSubmitTableSystem.html">autoSubmitTableSystem</a>
+            <a href="">autoSubmitTableSystem</a>
           </li>
         
           <li>

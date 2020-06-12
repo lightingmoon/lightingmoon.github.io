@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>autoSubmitTableSystem</title>
+    <url>/autoSubmitTableSystem.html</url>
+    <content><![CDATA[<script src="\assets\js\APlayer.min.js"> </script>]]></content>
+  </entry>
+  <entry>
     <title>将Hexo博客部署至腾讯云服务器初体验</title>
     <url>/deployHexoProjecttoTencentCloud.html</url>
     <content><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>　　最近根据相关法律法规要求：域名在哪个云服务提供商备案就必须将该域名解析到云服务提供商的服务器，这波操作秀啊。这下白嫖了两年的Github Pages服务也用不了了，为了不放弃我这个域名。😐。弱弱地买了一个弱弱的学生(qióngbi)版低配服务器，花了一天时间将博客弱弱的部署到服务器上了。在这里总结一下自己踩的坑。<br><a id="more"></a></p>
@@ -32,6 +37,9 @@
 </li>
 </ul>
 <p>所以，我从这两个角度入手：<br>将教程中关于这两部分的步骤检查并重新进行了一遍，设置完后让服务器nginx 运行reload指令一下。之后我访问我的服务器的80端口，在失望透底之下竟然出现柳暗花明——访问成功了。</p>
+<hr>
+<p>最终解释：写的钩子没有运行，在服务器手动运行一下折衷。还在找解决办法！</p>
+<hr>
 <hr>
 <p>之后的工作就是等域名的证书验证好了配置HTTPS</p>
 <hr>
