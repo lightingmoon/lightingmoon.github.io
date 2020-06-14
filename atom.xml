@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lightdream.xyz/"/>
-  <updated>2020-06-14T10:01:14.000Z</updated>
+  <updated>2020-06-14T10:47:31.377Z</updated>
   <id>https://www.lightdream.xyz/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://www.lightdream.xyz/autoSubmitTableSystem.html"/>
     <id>https://www.lightdream.xyz/autoSubmitTableSystem.html</id>
     <published>2020-06-12T15:06:37.000Z</published>
-    <updated>2020-06-14T10:01:14.000Z</updated>
+    <updated>2020-06-14T10:47:31.377Z</updated>
     
-    <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>疫情期间，学校要求每天都要提交体温等相关信息（如果不按时提交就会被全院通报😳，为了写脚本付出了仅有的一次），就想着写一个脚本放到服务器上每天定时自动提交，付诸自己好几个月前的想法。在这里记录自己学习、写脚本的过程，同时可怜一下学校的服务器。<br><a id="more"></a><br>写这个脚本用到的技术就我经过研究，可以用Python的selenim库或者urllib、requests库，但是后者需要更多的Web相关背景知识，由于我用进废退，脑中残存的Web相关知识只剩那些最基础的了，慢慢学吧。</p><h3 id="1-尝试用selenium库"><a href="#1-尝试用selenium库" class="headerlink" title="1. 尝试用selenium库"></a>1. 尝试用selenium库</h3><p>　　这个库的学习成本极其低，一篇博客就可以入门了。<a href="https://www.jianshu.com/p/6c82c965c014">selenium教程</a>。<br>看完之后就着手写脚本了。<br>疫情通的整个填报流程如下：</p><pre><code>登录-&gt;获取地理位置-&gt;提交-&gt;确认提交</code></pre><hr><p>但是在脚本写完后却遇到了两个致命的问题，使我不得不转向使用urllib库或requests库。</p><ul><li>问题1：Windows系统获取地理位置信息具有不稳定性，每次脚本运行到获取地理位置时大多数都是要么定位失败，要么定位不准，在这种情况下只能放弃这个方法了，况且这个项目最终还要在linux系统上运行的。</li><li>问题2：js里面弹出的确认框wapconfirm并不能被识别，好了，一朝回到解放前。<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/wapconfirmCode.png" alt="mark"><h3 id="2-尝试用urllib库，硬核"><a href="#2-尝试用urllib库，硬核" class="headerlink" title="2.尝试用urllib库，硬核"></a>2.尝试用urllib库，硬核</h3><h4 id="i-分析整个表单的提交过程"><a href="#i-分析整个表单的提交过程" class="headerlink" title="i. 分析整个表单的提交过程"></a>i. 分析整个表单的提交过程</h4>据我现有的Web知识，从登录界面开始分析：<br>根据观察，在登录界面点击登录之前该网站下只有1个Cookie，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/cookiesList0.png" alt="cookie"><br>点击登录后，会将username和password用ajax技术通过post方式提交到验证登录网站，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/login00.png" alt="pic"><br>验证通过后，该网站下的cookies由1个变成了4个，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/cookiesList.png" alt="cookies"><br>接着跳转向填报界面，在填报界面根据新增的Cookie，后台获取该用户的前一天的填报信息并填好，留下地理位置需要手动获取。获取位置信息后，将之以post方式提交到服务器。</li></ul><hr><h4 id="ii-大致思路"><a href="#ii-大致思路" class="headerlink" title="ii. 大致思路"></a>ii. 大致思路</h4><p>　　直接复制出整个data包，以post方式提交至目标地址。但是中间还是有一些复杂的问题待解决。</p>]]></content>
+    <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>疫情期间，学校要求每天都要提交体温等相关信息（如果不按时提交就会被全院通报😳，为了写脚本付出了仅有的一次），就想着写一个脚本放到服务器上每天定时自动提交，付诸自己好几个月前的想法。在这里记录自己学习、写脚本的过程，同时可怜一下学校的服务器。<br><a id="more"></a><br>写这个脚本用到的技术，经过研究，可以用Python的selenim库或者urllib、requests库，但是后者需要更多的Web相关背景知识，由于我用进废退，脑中残存的Web相关知识只剩那些最基础的了，还是在实践中增长知识吧吧。</p><h3 id="1-尝试用selenium库"><a href="#1-尝试用selenium库" class="headerlink" title="1. 尝试用selenium库"></a>1. 尝试用selenium库</h3><p>　　这个库的学习成本极其低，一篇博客就可以入门了。<a href="https://www.jianshu.com/p/6c82c965c014">selenium教程</a>。<br>看完之后就着手写脚本了。<br>疫情通的整个填报流程如下：</p><pre><code>登录-&gt;获取地理位置-&gt;提交-&gt;确认提交</code></pre><hr><p>但是在脚本写完后却遇到了两个致命的问题，使我不得不转向使用urllib库或requests库。</p><ul><li>问题1：Windows系统获取地理位置信息具有不稳定性，每次脚本运行到获取地理位置时大多数都是要么定位失败，要么定位不准，在这种情况下只能放弃这个方法了，况且这个项目最终还要在linux系统上运行的。</li><li>问题2：js里面弹出的确认框wapconfirm并不能被识别，好了，一朝回到解放前。<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/wapconfirmCode.png" alt="mark"><h3 id="2-尝试用urllib库，硬核"><a href="#2-尝试用urllib库，硬核" class="headerlink" title="2.尝试用urllib库，硬核"></a>2.尝试用urllib库，硬核</h3><h4 id="i-分析整个表单的提交过程"><a href="#i-分析整个表单的提交过程" class="headerlink" title="i. 分析整个表单的提交过程"></a>i. 分析整个表单的提交过程</h4>据我现有的Web知识，从登录界面开始分析：<br>根据观察，在登录界面点击登录之前该网站下只有1个Cookie，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/cookiesList0.png" alt="cookie"><br>点击登录后，会将username和password用ajax技术通过post方式提交到验证登录网站，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/login00.png" alt="pic"><br>验证通过后，该网站下的cookies由1个变成了4个，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/cookiesList.png" alt="cookies"><br>接着跳转向填报界面，在填报界面根据新增的Cookie，后台获取该用户的前一天的填报信息并填好，留下地理位置需要手动获取。获取位置信息后，将之以post方式提交到服务器。</li></ul><hr><h4 id="ii-大致思路"><a href="#ii-大致思路" class="headerlink" title="ii. 大致思路"></a>ii. 大致思路</h4><p>　　直接复制出整个data包，以post方式提交至目标地址。但是中间还是有一些复杂的问题待解决。</p>]]></content>
     
     <summary type="html">
     
@@ -36,8 +36,6 @@
     
     
       <category term="Python" scheme="https://www.lightdream.xyz/tags/Python/"/>
-    
-      <category term="模拟登陆" scheme="https://www.lightdream.xyz/tags/%E6%A8%A1%E6%8B%9F%E7%99%BB%E9%99%86/"/>
     
       <category term="表单提交" scheme="https://www.lightdream.xyz/tags/%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4/"/>
     
