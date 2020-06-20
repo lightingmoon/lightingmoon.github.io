@@ -119,29 +119,36 @@
  {0 < \lambda < 2 + 2\omega}\right.</script><p> 且个体极值、高斯扰动值和全局极值保持不变时，算法在$E[x]^{*}$处渐进稳定</p>
 <h2 id="算法进化模式分析"><a href="#算法进化模式分析" class="headerlink" title="算法进化模式分析"></a>算法进化模式分析</h2><p>令$c_1 = c_2$， $r_1 = r_2 = r_3 = r$，那么种群所有粒子可分以下情况：    </p>
 <ol>
-<li><p>粒子$i$当前位置为其历史最优位置，但不是全局最优位置，即<br>$x<em>{id} = p</em>{id}, x<em>{id} \not= p</em>{gd}$。<br>则算法进化模式为 ：</p>
-<p> $v<em>{id}^{(t+1)} = \omega v</em>{id}^{(t)} + c<em>{1}r(p</em>{id}^{(t)} + rgauss<em>{id}^{(t)}-x</em>{id}^{(t)})\<br> +c<em>{2}r(p</em>{gd}^{(t)}-x<em>{id}^{(t)})\<br> =  \omega v</em>{id}^{(t)} + c<em>1r^2gauss</em>{id}^{(t)} + c<em>{2}r(p</em>{gd}^{(t)}-x_{id}^{(t)}) $</p>
-<p> 此时GDPSO速度增量比PSO更大，其全局搜索能力更强，收敛速度更快，且高斯扰动选项能帮助算法逃离局部最优。</p>
-</li>
-<li><p>粒子$i$当前位置为其历史最优位置，同时又是全局最优位置，即$x<em>{id} = p</em>{id} = p_{gd}$。<br>则算法进化模式为：</p>
-<p> $v<em>{id}^{(t+1)} = \omega v</em>{id}^{(t)} + c<em>{1}r(p</em>{id}^{(t)} + rgauss<em>{id}^{(t)}-x</em>{id}^{(t)})\<br> +c<em>{2}r(p</em>{gd}^{(t)}-x<em>{id}^{(t)})\<br>  = \omega v</em>{id}^{(t)} + c<em>1r^2gauss</em>{id}^{(t)}$</p>
-<p>  此时GDPSO速度项比标准PSO增加了一个高斯扰动值，有助于算法跳出当前局部最优解。</p>
-</li>
-<li><p>粒子$i$当前位置不是其历史最优位置，同时又不是全局最优位置，但是粒子$i$的历史最优位置恰好是全局最优位置，即<br>$x<em>{id} \not= p</em>{id}，x<em>{id} \not= p</em>{gd}, 且p<em>{id} = p</em>{gd}$。<br>此时算法的进化模式为：</p>
-<p> $v<em>{id}^{(t+1)} = \omega v</em>{id}^{(t)} + c<em>{1}r(p</em>{id}^{(t)} + rgauss<em>{id}^{(t)}-x</em>{id}^{(t)})\<br> +c<em>{2}r(p</em>{gd}^{(t)}-x<em>{id}^{(t)})\<br> =\omega v</em>{id}^{(t)} + 2c<em>1r(p</em>{gd}^{(t)} - x<em>{id}^{(t)} + \frac{1}{2}rgauss</em>{id}^{(t)})$</p>
-<p> 此时，对于PSO，种群中粒子完全向当前全局最优值移动，很容易陷入局部最优值。而GDPSO一方面保证其收敛速度比PSO更快，另一方面由于增加了高斯扰动项，很好的避免了算法陷入局部最优值。</p>
-</li>
-<li><p>粒子 $i$当前位置不是其历史最优位置，同时又不是全局最优位置，且粒子$i$的历史最优位置不是当前种群全局最优位置，即<br>$x<em>{id} \not= p</em>{id}，x<em>{id} \not= p</em>{gd}，且 p<em>{id} \not= p</em>{gd}$ 。算法的进化模式为：</p>
-<p> $v<em>{id}^{(t+1)} = \omega v</em>{id}^{(t)} + c<em>{1}r(p</em>{id}^{(t)} + rgauss<em>{id}^{(t)}-x</em>{id}^{(t)})\<br> +c<em>{2}r(p</em>{gd}^{(t)}-x<em>{id}^{(t)})\<br> = \omega v</em>{id}^{(t)} + c<em>{1}r(p</em>{id}^{(t)}-x<em>{id}^{(t)})+c</em>{2}r(p<em>{gd}^{(t)}-x</em>{id}^{(t)})\<br> +c<em>1r^2gauss</em>{id}^{(t)}$</p>
-<p> 此时相比于PSO的速度项，GDPSO增加了一个高斯扰动项，其可以帮助粒子扩大搜索范围，增强全局寻优能力，且提高了算法收敛速度。</p>
-</li>
+<li>粒子$i$当前位置为其历史最优位置，但不是全局最优位置，即$ x<em>{id} = p</em>{id}, x<em>{id} \not= p</em>{gd}$。<br>则算法进化模式为 ：    <script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
++c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
+=  \omega v_{id}^{(t)} + c_1r^2gauss_{id}^{(t)} + c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})</script></li>
 </ol>
+<p>此时GDPSO速度增量比PSO更大，其全局搜索能力更强，收敛速度更快，且高斯扰动选项能帮助算法逃离局部最优。</p>
+<ol>
+<li>粒子$i$当前位置为其历史最优位置，同时又是全局最优位置，即$x<em>{id} = p</em>{id} = p_{gd}$。<br>则算法进化模式为：</li>
+</ol>
+<script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
++c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
+ = \omega v_{id}^{(t)} + c_1r^2gauss_{id}^{(t)}</script><p> 此时GDPSO速度项比标准PSO增加了一个高斯扰动值，有助于算法跳出当前局部最优解。</p>
+<ol>
+<li>粒子$i$当前位置不是其历史最优位置，同时又不是全局最优位置，但是粒子$i$的历史最优位置恰好是全局最优位置，即$x<em>{id} \not= p</em>{id}，x<em>{id} \not= p</em>{gd}, 且p<em>{id} = p</em>{gd}$。<br>此时算法的进化模式为：<script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
++c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
+=\omega v_{id}^{(t)} + 2c_1r(p_{gd}^{(t)} - x_{id}^{(t)} + \frac{1}{2}rgauss_{id}^{(t)})</script></li>
+</ol>
+<p>此时，对于PSO，种群中粒子完全向当前全局最优值移动，很容易陷入局部最优值。而GDPSO一方面保证其收敛速度比PSO更快，另一方面由于增加了高斯扰动项，很好的避免了算法陷入局部最优值。</p>
+<ol>
+<li>粒子 $i$当前位置不是其历史最优位置，同时又不是全局最优位置，且粒子$i$的历史最优位置不是当前种群全局最优位置，即<br>$x<em>{id} \not= p</em>{id}，x<em>{id} \not= p</em>{gd}，且 p<em>{id} \not= p</em>{gd}$ 。算法的进化模式为：</li>
+</ol>
+<script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
++c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
+= \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)}-x_{id}^{(t)})+c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
++c_1r^2gauss_{id}^{(t)}</script><p>此时相比于PSO的速度项，GDPSO增加了一个高斯扰动项，其可以帮助粒子扩大搜索范围，增强全局寻优能力，且提高了算法收敛速度。</p>
 <h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><ol>
 <li>选择测试函数<br>$Griewank$函数(取值范围为$[一600，600]$，理论最优值为0)：<script type="math/tex; mode=display">f(x) = \frac{1}{4000}\sum_{i=1}^{D}x_i^2 - \prod_{i=1}^{D}cos(\frac{x_i}{\sqrt{i}}) + 1</script></li>
 <li>环境<br>JetBrains PyCharm + Python3.7</li>
 <li>参数设置</li>
 </ol>
-<pre><code class="lang-Python3">W = 0.6  # 惯性权重，根据论文会随着迭代次数改变
+<pre><code class="lang-python">W = 0.6  # 惯性权重，根据论文会随着迭代次数改变
 C1 = 2.0  # 认知
 C2 = 2.0  # 社会
 P = []  # 第i个粒子搜索到的历史最优位值
