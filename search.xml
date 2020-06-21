@@ -60,8 +60,8 @@
 
   # 用正则表达式处理响应的文本，并返回解析出来的data包
   tstr= res.text
-  x = re.findall(r&#39;.*?oldInfo: (.*),.*?&#39;, tstr)
-  data = eval(x[0])
+  group = re.findall(r&#39;.*?oldInfo: (.*),.*?&#39;, tstr)
+  data = eval(group[0])
   return data
 </code></pre>
 </li>

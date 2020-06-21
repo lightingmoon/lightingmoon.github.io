@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/diff.png">
 <meta property="og:image" content="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/submit.png">
 <meta property="og:image" content="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/getauthoritiedCode.png">
-<meta property="og:updated_time" content="2020-06-21T15:21:07.890Z">
+<meta property="og:updated_time" content="2020-06-21T15:27:32.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信疫情通自动提交">
 <meta name="twitter:description" content="疫情期间，学校要求每天都要提交体温等相关信息（如果不按时提交就会被全院通报😳，为了写脚本付出了仅有的一次），就想着写一个脚本放到服务器上每天定时自动提交，付诸自己好几个月前的想法。在这里记录自己学习、写脚本的过程，同时可怜一下学校的服务器。">
@@ -220,8 +220,8 @@ ga('send', 'pageview');
 
   # 用正则表达式处理响应的文本，并返回解析出来的data包
   tstr= res.text
-  x = re.findall(r&#39;.*?oldInfo: (.*),.*?&#39;, tstr)
-  data = eval(x[0])
+  group = re.findall(r&#39;.*?oldInfo: (.*),.*?&#39;, tstr)
+  data = eval(group[0])
   return data
 </code></pre>
 </li>
