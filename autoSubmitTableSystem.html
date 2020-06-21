@@ -14,13 +14,13 @@
   <meta name="baidu-site-verification" content="true">
   <meta name="msvalidate.01" content="BBA0F05A054A52937A445B0457B5D099">
   
-  <title style="text-align:center">自动提交表单系统 | 月之燃梦</title>
+  <title style="text-align:center">疫情通自动提交 | 月之燃梦</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="description" content="疫情期间，学校要求每天都要提交体温等相关信息（如果不按时提交就会被全院通报😳，为了写脚本付出了仅有的一次），就想着写一个脚本放到服务器上每天定时自动提交，付诸自己好几个月前的想法。在这里记录自己学习、写脚本的过程，同时可怜一下学校的服务器。">
 <meta name="keywords" content="Python,表单提交,模拟登录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自动提交表单系统">
+<meta property="og:title" content="疫情通自动提交">
 <meta property="og:url" content="https://www.lightdream.xyz/autoSubmitTableSystem.html">
 <meta property="og:site_name" content="月之燃梦">
 <meta property="og:description" content="疫情期间，学校要求每天都要提交体温等相关信息（如果不按时提交就会被全院通报😳，为了写脚本付出了仅有的一次），就想着写一个脚本放到服务器上每天定时自动提交，付诸自己好几个月前的想法。在这里记录自己学习、写脚本的过程，同时可怜一下学校的服务器。">
@@ -30,9 +30,9 @@
 <meta property="og:image" content="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/login00.png">
 <meta property="og:image" content="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/cookiesList.png">
 <meta property="og:image" content="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/diff.png">
-<meta property="og:updated_time" content="2020-06-20T10:11:06.337Z">
+<meta property="og:updated_time" content="2020-06-21T12:46:31.847Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自动提交表单系统">
+<meta name="twitter:title" content="疫情通自动提交">
 <meta name="twitter:description" content="疫情期间，学校要求每天都要提交体温等相关信息（如果不按时提交就会被全院通报😳，为了写脚本付出了仅有的一次），就想着写一个脚本放到服务器上每天定时自动提交，付诸自己好几个月前的想法。在这里记录自己学习、写脚本的过程，同时可怜一下学校的服务器。">
 <meta name="twitter:image" content="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/wapconfirmCode.png">
   
@@ -131,7 +131,7 @@ ga('send', 'pageview');
         
   
     <h1 class="entry-title article-title">
-      自动提交表单系统
+      疫情通自动提交
     </h1>
   
 
@@ -140,7 +140,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">798字</span>
+        <span class="post-count">802字</span>
       </span>
     </span>
 	&nbsp;|
@@ -162,7 +162,7 @@ ga('send', 'pageview');
 		</span></center>
 		</br></br>
         <script src="\assets\js\APlayer.min.js"> </script><p>疫情期间，学校要求每天都要提交体温等相关信息（如果不按时提交就会被全院通报😳，为了写脚本付出了仅有的一次），就想着写一个脚本放到服务器上每天定时自动提交，付诸自己好几个月前的想法。在这里记录自己学习、写脚本的过程，同时可怜一下学校的服务器。<br><a id="more"></a><br>写这个脚本用到的技术，经过研究，可以用Python的selenim库或者urllib、requests库，但是后者需要更多的Web相关背景知识，由于我用进废退，脑中残存的Web相关知识只剩那些最基础的了，还是在实践中增长知识吧。</p>
-<h3 id="1-尝试用selenium库"><a href="#1-尝试用selenium库" class="headerlink" title="1. 尝试用selenium库"></a>1. 尝试用selenium库</h3><p>　　这个库的学习成本极其低，一篇博客就可以入门了。<a href="https://www.jianshu.com/p/6c82c965c014">selenium教程</a>。看完之后就着手写脚本了。疫情通的整个填报流程如下：</p>
+<h3 id="1-尝试用selenium库"><a href="#1-尝试用selenium库" class="headerlink" title="1. 尝试用selenium库"></a>1. 尝试用selenium库</h3><p>　　这个库的学习成本极其低，一篇博客就可以入门了。<a href="https://www.jianshu.com/p/6c82c965c014">selenium教程</a>。看完之后就着手写脚本了。疫情通的整个填报动作分解如下：</p>
 <pre><code>登录-&gt;获取地理位置-&gt;提交-&gt;确认提交
 </code></pre><hr>
 <p>但是在脚本写完后却遇到了两个致命的问题，使我不得不转向使用urllib或requests库。</p>
@@ -170,9 +170,9 @@ ga('send', 'pageview');
 <li>问题1：Windows系统获取地理位置信息具有不稳定性，每次脚本运行到获取地理位置时大多数都是要么定位失败，要么定位不准，在这种情况下只能放弃这个方法了。</li>
 <li>问题2：js里面弹出的确认框wapconfirm并不能被识别，好了，一朝回到解放前。<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/wapconfirmCode.png" alt="mark"></li>
 </ul>
-<h3 id="2-尝试用urllib库"><a href="#2-尝试用urllib库" class="headerlink" title="2.尝试用urllib库"></a>2.尝试用urllib库</h3><h4 id="i-分析整个表单的提交过程"><a href="#i-分析整个表单的提交过程" class="headerlink" title="i. 分析整个表单的提交过程"></a>i. 分析整个表单的提交过程</h4><p>据我现有的Web知识，从登录界面开始分析：<br>根据观察，在登录界面点击登录之前该网站下只有1个Cookie，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/cookiesList0.png" alt="cookie"><br>点击登录后，会将username和password用ajax技术通过post方式提交到验证登录网站，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/login00.png" alt="pic"><br>验证通过后，该网站下的cookies由1个变成了4个，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/cookiesList.png" alt="cookies"><br>接着跳转向填报界面，在填报界面根据新增的Cookie，后台获取该用户的前一天的填报信息并填好，留下地理位置需要手动获取。获取位置信息后，将之以post方式提交到服务器。</p>
+<h3 id="2-尝试用requests库"><a href="#2-尝试用requests库" class="headerlink" title="2.尝试用requests库"></a>2.尝试用requests库</h3><h4 id="i-分析整个表单的提交过程"><a href="#i-分析整个表单的提交过程" class="headerlink" title="i. 分析整个表单的提交过程"></a>i. 分析整个表单的提交过程</h4><p>据我现有的Web知识，从登录界面开始分析：<br>根据观察，在登录界面点击登录之前该网站下只有1个Cookie，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/cookiesList0.png" alt="cookie"><br>点击登录后，会将username和password用ajax技术通过post方式提交到验证登录网站，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/login00.png" alt="pic"><br>验证通过后，该网站下的cookies由1个变成了4个，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/cookiesList.png" alt="cookies"><br>接着跳转向填报界面，在填报界面根据新增的Cookie，后台获取该用户的前一天的填报信息并填好，留下地理位置需要手动获取。获取位置信息后，将之以post方式提交到服务器。</p>
 <hr>
-<h4 id="ii-大致思路"><a href="#ii-大致思路" class="headerlink" title="ii. 大致思路"></a>ii. 大致思路</h4><h5 id="1-尝试直接复制出整个data包，以post方式提交至目标地址。"><a href="#1-尝试直接复制出整个data包，以post方式提交至目标地址。" class="headerlink" title="1)尝试直接复制出整个data包，以post方式提交至目标地址。"></a>1)尝试直接复制出整个data包，以post方式提交至目标地址。</h5><p>经过观察，data包算是解析出来了，但是这个数据命名实在是惨不忍睹（变量每个汉字拼音的首字母，现在是知道了阅读程序变量命令不清晰的感觉，骂娘的感觉）。用Notepad++的Compare插件对比 def（今天的数据） 和 oldInfo（昨天的数据），发现多了后面4行数据，在页面找了一番后无果，索性在处理了一下def数据包，直接提交至目标网址，但服务器响应返回的却是整个填报系统的登录入口页面，说明在提交时，可能服务器还对提交者的身份进行验证，具体应该是通过验证请求头的Cookie，最终还是要进行模拟登录。<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/diff.png" alt="pic"></p>
+<h4 id="ii-大致思路"><a href="#ii-大致思路" class="headerlink" title="ii. 大致思路"></a>ii. 大致思路</h4><h5 id="1-尝试直接复制出整个data包，以post方式提交至目标地址。"><a href="#1-尝试直接复制出整个data包，以post方式提交至目标地址。" class="headerlink" title="1)尝试直接复制出整个data包，以post方式提交至目标地址。"></a>1)尝试直接复制出整个data包，以post方式提交至目标地址。</h5><p>经过观察，data包算是解析出来了，但是这个数据命名实在是惨不忍睹（变量每个汉字拼音的首字母，现在是知道了阅读程序变量命令不清晰的感觉，<del>口吐芬芳</del>）。用Notepad++的Compare插件对比 def（今天要提交的数据） 和 oldInfo（昨天的数据），发现多了后面4行数据，在页面找了一番后无果，索性在处理了一下def数据包，直接提交至目标网址，但服务器响应返回的却是整个填报系统的登录入口页面，说明在提交时，可能服务器还对提交者的身份进行验证，具体应该是通过验证请求头的Cookie，最终还是要进行模拟登录。<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/diff.png" alt="pic"></p>
 <h5 id="2-进行模拟登陆，获取cookies后再提交信息，最后编写接口程序"><a href="#2-进行模拟登陆，获取cookies后再提交信息，最后编写接口程序" class="headerlink" title="2)进行模拟登陆，获取cookies后再提交信息，最后编写接口程序"></a>2)进行模拟登陆，获取cookies后再提交信息，最后编写接口程序</h5>	
 		</br>
 		<footer style="text-align: center" class="entry-meta">雪林于
@@ -245,7 +245,7 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="">自动提交表单系统</a>
+            <a href="">疫情通自动提交</a>
           </li>
         
           <li>
@@ -421,40 +421,7 @@ ga('send', 'pageview');
 		search_path = "search.xml";
 	}
 </script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 <script>
 hljs.initHighlightingOnLoad();
