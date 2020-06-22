@@ -152,8 +152,7 @@ def main(argv):
     submit(data, username, receiver)
     session.close()
 </code></pre>
-<p>邮箱授权码获取如下图：<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/getauthoritiedCode.png" alt="pic"></p>
-<p>提取用户昨天提交的信息的正则表达式来自以下大佬博客，其中发送邮件方法也来自这篇博客：<br><a href="https://blog.csdn.net/solitudi/article/details/105066215">记一次SCU疫情期间每日健康报送任务的自动化处理（一）</a></p>
+<p>邮箱授权码获取如下图：<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/getauthoritiedCode.png" alt="pic"><br>参考资料：<br>提取用户昨天提交的信息的正则表达式来自以下大佬博客，其中发送邮件方法也来自这篇博客：<br><a href="https://blog.csdn.net/solitudi/article/details/105066215">记一次SCU疫情期间每日健康报送任务的自动化处理（一）</a></p>
 ]]></content>
       <categories>
         <category>自动化脚本</category>
