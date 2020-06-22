@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.lightdream.xyz/image/GDPSO_2000.png">
 <meta property="og:image" content="https://www.lightdream.xyz/image/GDPSO_20000.png">
-<meta property="og:updated_time" content="2020-06-20T11:40:25.410Z">
+<meta property="og:updated_time" content="2020-06-22T14:18:49.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于高斯扰动的粒子群优化算法算法">
 <meta name="twitter:description" content="在碎片时间被智能手机APP大肆压榨的时代，我们只能从增强自我管理开始。以上是自己最近的一些思考。欢迎一起来讨论（👉👇）。下面开始本篇主题">
@@ -137,7 +137,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">929字</span>
+        <span class="post-count">883字</span>
       </span>
     </span>
 	&nbsp;|
@@ -145,7 +145,7 @@ ga('send', 'pageview');
     <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">阅读时长:约</span>
-        <span class="post-count">4&nbsp;分钟</span>
+        <span class="post-count">3&nbsp;分钟</span>
       </span>
     </span>
 </div>
@@ -167,25 +167,25 @@ ga('send', 'pageview');
  {0 < \lambda < 2 + 2\omega}\right.</script><p> 且个体极值、高斯扰动值和全局极值保持不变时，算法在$E[x]^{*}$处渐进稳定</p>
 <h2 id="算法进化模式分析"><a href="#算法进化模式分析" class="headerlink" title="算法进化模式分析"></a>算法进化模式分析</h2><p>令$c_1 = c_2$， $r_1 = r_2 = r_3 = r$，那么种群所有粒子可分以下情况：    </p>
 <ol>
-<li>粒子$i$当前位置为其历史最优位置，但不是全局最优位置，即$ x<em>{id} = p</em>{id}, x<em>{id} \not= p</em>{gd}$。<br>则算法进化模式为 ：    <script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
+<li>粒子$i$当前位置为其历史最优位置，但不是全局最优位置，即<script type="math/tex">x_{id} = p_{id}, x_{id} \not= p_{gd}</script>。<br>则算法进化模式为 ：    <script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
 +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
 =  \omega v_{id}^{(t)} + c_1r^2gauss_{id}^{(t)} + c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})</script></li>
 </ol>
 <p>此时GDPSO速度增量比PSO更大，其全局搜索能力更强，收敛速度更快，且高斯扰动选项能帮助算法逃离局部最优。</p>
 <ol>
-<li>粒子$i$当前位置为其历史最优位置，同时又是全局最优位置，即$x<em>{id} = p</em>{id} = p_{gd}$。<br>则算法进化模式为：</li>
+<li>粒子$i$当前位置为其历史最优位置，同时又是全局最优位置，即<script type="math/tex">x_{id} = p_{id} = p_{gd}</script>。<br>则算法进化模式为：</li>
 </ol>
 <script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
 +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
  = \omega v_{id}^{(t)} + c_1r^2gauss_{id}^{(t)}</script><p> 此时GDPSO速度项比标准PSO增加了一个高斯扰动值，有助于算法跳出当前局部最优解。</p>
 <ol>
-<li>粒子$i$当前位置不是其历史最优位置，同时又不是全局最优位置，但是粒子$i$的历史最优位置恰好是全局最优位置，即$x<em>{id} \not= p</em>{id}，x<em>{id} \not= p</em>{gd}, 且p<em>{id} = p</em>{gd}$。<br>此时算法的进化模式为：<script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
+<li>粒子$i$当前位置不是其历史最优位置，同时又不是全局最优位置，但是粒子$i$的历史最优位置恰好是全局最优位置，即<script type="math/tex">x_{id} \not= p_{id}，x_{id} \not= p_{gd}, 且p_{id} = p_{gd}</script>。<br>此时算法的进化模式为：<script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
 +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
 =\omega v_{id}^{(t)} + 2c_1r(p_{gd}^{(t)} - x_{id}^{(t)} + \frac{1}{2}rgauss_{id}^{(t)})</script></li>
 </ol>
 <p>此时，对于PSO，种群中粒子完全向当前全局最优值移动，很容易陷入局部最优值。而GDPSO一方面保证其收敛速度比PSO更快，另一方面由于增加了高斯扰动项，很好的避免了算法陷入局部最优值。</p>
 <ol>
-<li>粒子 $i$当前位置不是其历史最优位置，同时又不是全局最优位置，且粒子$i$的历史最优位置不是当前种群全局最优位置，即<br>$x<em>{id} \not= p</em>{id}，x<em>{id} \not= p</em>{gd}，且 p<em>{id} \not= p</em>{gd}$ 。算法的进化模式为：</li>
+<li>粒子 $i$当前位置不是其历史最优位置，同时又不是全局最优位置，且粒子$i$的历史最优位置不是当前种群全局最优位置，即<br><script type="math/tex">x_{id} \not= p_{id}，x_{id} \not= p_{gd}，且 p_{id} \not= p_{gd}</script> 。算法的进化模式为：</li>
 </ol>
 <script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
 +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
@@ -477,40 +477,7 @@ D = 30  # 粒子的维度
 		search_path = "search.xml";
 	}
 </script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 <script>
 hljs.initHighlightingOnLoad();

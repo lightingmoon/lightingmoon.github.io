@@ -14,7 +14,7 @@
 </ul>
 <h3 id="2-尝试用requests库"><a href="#2-尝试用requests库" class="headerlink" title="2.尝试用requests库"></a>2.尝试用requests库</h3><h4 id="i-分析整个表单的提交过程"><a href="#i-分析整个表单的提交过程" class="headerlink" title="i. 分析整个表单的提交过程"></a>i. 分析整个表单的提交过程</h4><p>据我现有的Web知识，从登录界面开始分析：<br>根据观察，在登录界面点击登录之前该网站下只有1个Cookie，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/cookiesList0.png" alt="cookie"><br>点击登录后，会将username和password用ajax技术通过post方式提交到验证登录网站，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/login00.png" alt="pic"><br>验证通过后，该网站下的cookies由1个变成了4个，<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/cookiesList.png" alt="cookies"><br>接着跳转向填报界面，在填报界面根据新增的Cookie，后台获取该用户的前一天的填报信息并填好，留下地理位置需要手动获取。获取位置信息后，将之以post方式提交到服务器。</p>
 <hr>
-<h4 id="ii-大致思路"><a href="#ii-大致思路" class="headerlink" title="ii. 大致思路"></a>ii. 大致思路</h4><h5 id="1-尝试直接复制出整个data包，以post方式提交至目标地址。"><a href="#1-尝试直接复制出整个data包，以post方式提交至目标地址。" class="headerlink" title="1)尝试直接复制出整个data包，以post方式提交至目标地址。"></a>1)尝试直接复制出整个data包，以post方式提交至目标地址。</h5><p>经过观察，data包算是解析出来了，但是这个数据命名实在是惨不忍睹（变量每个汉字拼音的首字母，现在是知道了阅读程序变量命令不清晰的感觉，<del>口吐芬芳</del>）。用Notepad++的Compare插件对比 def（今天要提交的数据） 和 oldInfo（昨天的数据），发现多了后面4行数据，在页面找了一番后无果，索性在处理了一下def数据包，直接提交至目标网址，但服务器响应返回的却是整个填报系统的登录入口页面，说明在提交时，可能服务器还对提交者的身份进行验证，具体应该是通过验证请求头的Cookie，最终还是要进行模拟登录。<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/diff.png" alt="pic"></p>
+<h4 id="ii-大致思路"><a href="#ii-大致思路" class="headerlink" title="ii. 大致思路"></a>ii. 大致思路</h4><h5 id="1-尝试直接复制出整个data包，以post方式提交至目标地址。"><a href="#1-尝试直接复制出整个data包，以post方式提交至目标地址。" class="headerlink" title="1)尝试直接复制出整个data包，以post方式提交至目标地址。"></a>1)尝试直接复制出整个data包，以post方式提交至目标地址。</h5><p>经过观察，data包算是解析出来了，但是这个数据命名实在是惨不忍睹（变量每个汉字拼音的首字母，现在是知道了阅读变量命令不清晰的程序的感觉，<del>口吐芬芳</del>）。用Notepad++的Compare插件对比 def（今天要提交的数据） 和 oldInfo（昨天的数据），发现多了后面4行数据，在页面找了一番后无果，索性在处理了一下def数据包，直接提交至目标网址，但服务器响应返回的却是整个填报系统的登录入口页面，说明在提交时，可能服务器还对提交者的身份进行验证，具体应该是通过验证请求头的Cookie，最终还是要进行模拟登录。<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/diff.png" alt="pic"></p>
 <h5 id="2-进行模拟登陆，获取cookies后再提交信息，最后编写接口程序"><a href="#2-进行模拟登陆，获取cookies后再提交信息，最后编写接口程序" class="headerlink" title="2)进行模拟登陆，获取cookies后再提交信息，最后编写接口程序"></a>2)进行模拟登陆，获取cookies后再提交信息，最后编写接口程序</h5><p>经过分析，整个脚本流程图绘制如下：<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/submit.png" alt="flowchart"><br>下面放部分代码：</p>
 <ul>
 <li>1.登录</li>
@@ -59,7 +59,7 @@
     cookies = requests.utils.dict_from_cookiejar(res.cookies)
     session.cookies.update(cookies)
 
-    # 用正则表达式处理响应的文本，并返回解析出来的data包
+    # 用正则表达式处理响应的文本，并返回解析出来的data包，此处的方法借鉴了一位大佬的思路
     tstr= res.text
     group = re.findall(r&#39;.*?oldInfo: (.*),.*?&#39;, tstr)
     data = eval(group[0])
@@ -84,7 +84,7 @@
                }
     res = session.post(url, headers=headers, data=data)
 
-    if res.json()[&#39;e&#39;] != &#39;0&#39;:
+    if res.json()[&#39;e&#39;] != 0:
         print(&quot;提交异常！&quot; + res.text)
         smtp(&quot;用户[&quot; + username + &quot;]提交信息失败。\n\n提交信息：&quot; + res.text, receiver)
     else:
@@ -153,6 +153,7 @@ def main(argv):
     session.close()
 </code></pre>
 <p>邮箱授权码获取如下图：<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/getauthoritiedCode.png" alt="pic"></p>
+<p>提取用户昨天提交的信息的正则表达式来自以下大佬博客，其中发送邮件方法也来自这篇博客：<br><a href="https://blog.csdn.net/solitudi/article/details/105066215"></a></p>
 ]]></content>
       <categories>
         <category>自动化脚本</category>
@@ -257,25 +258,25 @@ def main(argv):
  {0 < \lambda < 2 + 2\omega}\right.</script><p> 且个体极值、高斯扰动值和全局极值保持不变时，算法在$E[x]^{*}$处渐进稳定</p>
 <h2 id="算法进化模式分析"><a href="#算法进化模式分析" class="headerlink" title="算法进化模式分析"></a>算法进化模式分析</h2><p>令$c_1 = c_2$， $r_1 = r_2 = r_3 = r$，那么种群所有粒子可分以下情况：    </p>
 <ol>
-<li>粒子$i$当前位置为其历史最优位置，但不是全局最优位置，即$ x<em>{id} = p</em>{id}, x<em>{id} \not= p</em>{gd}$。<br>则算法进化模式为 ：    <script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
+<li>粒子$i$当前位置为其历史最优位置，但不是全局最优位置，即<script type="math/tex">x_{id} = p_{id}, x_{id} \not= p_{gd}</script>。<br>则算法进化模式为 ：    <script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
 +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
 =  \omega v_{id}^{(t)} + c_1r^2gauss_{id}^{(t)} + c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})</script></li>
 </ol>
 <p>此时GDPSO速度增量比PSO更大，其全局搜索能力更强，收敛速度更快，且高斯扰动选项能帮助算法逃离局部最优。</p>
 <ol>
-<li>粒子$i$当前位置为其历史最优位置，同时又是全局最优位置，即$x<em>{id} = p</em>{id} = p_{gd}$。<br>则算法进化模式为：</li>
+<li>粒子$i$当前位置为其历史最优位置，同时又是全局最优位置，即<script type="math/tex">x_{id} = p_{id} = p_{gd}</script>。<br>则算法进化模式为：</li>
 </ol>
 <script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
 +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
  = \omega v_{id}^{(t)} + c_1r^2gauss_{id}^{(t)}</script><p> 此时GDPSO速度项比标准PSO增加了一个高斯扰动值，有助于算法跳出当前局部最优解。</p>
 <ol>
-<li>粒子$i$当前位置不是其历史最优位置，同时又不是全局最优位置，但是粒子$i$的历史最优位置恰好是全局最优位置，即$x<em>{id} \not= p</em>{id}，x<em>{id} \not= p</em>{gd}, 且p<em>{id} = p</em>{gd}$。<br>此时算法的进化模式为：<script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
+<li>粒子$i$当前位置不是其历史最优位置，同时又不是全局最优位置，但是粒子$i$的历史最优位置恰好是全局最优位置，即<script type="math/tex">x_{id} \not= p_{id}，x_{id} \not= p_{gd}, 且p_{id} = p_{gd}</script>。<br>此时算法的进化模式为：<script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
 +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
 =\omega v_{id}^{(t)} + 2c_1r(p_{gd}^{(t)} - x_{id}^{(t)} + \frac{1}{2}rgauss_{id}^{(t)})</script></li>
 </ol>
 <p>此时，对于PSO，种群中粒子完全向当前全局最优值移动，很容易陷入局部最优值。而GDPSO一方面保证其收敛速度比PSO更快，另一方面由于增加了高斯扰动项，很好的避免了算法陷入局部最优值。</p>
 <ol>
-<li>粒子 $i$当前位置不是其历史最优位置，同时又不是全局最优位置，且粒子$i$的历史最优位置不是当前种群全局最优位置，即<br>$x<em>{id} \not= p</em>{id}，x<em>{id} \not= p</em>{gd}，且 p<em>{id} \not= p</em>{gd}$ 。算法的进化模式为：</li>
+<li>粒子 $i$当前位置不是其历史最优位置，同时又不是全局最优位置，且粒子$i$的历史最优位置不是当前种群全局最优位置，即<br><script type="math/tex">x_{id} \not= p_{id}，x_{id} \not= p_{gd}，且 p_{id} \not= p_{gd}</script> 。算法的进化模式为：</li>
 </ol>
 <script type="math/tex; mode=display">v_{id}^{(t+1)} = \omega v_{id}^{(t)} + c_{1}r(p_{id}^{(t)} + rgauss_{id}^{(t)}-x_{id}^{(t)})\\
 +c_{2}r(p_{gd}^{(t)}-x_{id}^{(t)})\\
