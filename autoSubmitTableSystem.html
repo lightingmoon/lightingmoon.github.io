@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/diff.png">
 <meta property="og:image" content="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/submit.png">
 <meta property="og:image" content="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/getauthoritiedCode.png">
-<meta property="og:updated_time" content="2020-06-26T01:48:09.187Z">
+<meta property="og:updated_time" content="2020-06-26T02:50:54.031Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信疫情通自动提交">
 <meta name="twitter:description" content="疫情期间，学校要求每天都要提交体温等相关信息（如果不按时提交就会被全院通报😳，为了写脚本付出了仅有的一次），就想着写一个脚本放到服务器上每天定时自动提交，付诸自己好几个月前的想法。在这里记录自己学习、写脚本的过程，同时可怜一下学校的服务器。">
@@ -143,7 +143,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">1,610字</span>
+        <span class="post-count">930字</span>
       </span>
     </span>
 	&nbsp;|
@@ -151,7 +151,7 @@ ga('send', 'pageview');
     <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">阅读时长:约</span>
-        <span class="post-count">7&nbsp;分钟</span>
+        <span class="post-count">3&nbsp;分钟</span>
       </span>
     </span>
 </div>
@@ -179,143 +179,8 @@ ga('send', 'pageview');
 <p>接着跳转向填报界面，在填报界面根据新增的Cookie，后台获取该用户的前一天的填报信息并填好，留下地理位置需要手动获取。获取位置信息后，将之以post方式提交到服务器。</p>
 <hr>
 <h4 id="ii-大致思路"><a href="#ii-大致思路" class="headerlink" title="ii. 大致思路"></a>ii. 大致思路</h4><h5 id="1-尝试直接复制出整个data包，以post方式提交至目标地址。"><a href="#1-尝试直接复制出整个data包，以post方式提交至目标地址。" class="headerlink" title="1)尝试直接复制出整个data包，以post方式提交至目标地址。"></a>1)尝试直接复制出整个data包，以post方式提交至目标地址。</h5><p>经过观察，data包算是解析出来了，但是这个数据命名实在是惨不忍睹（变量每个汉字拼音的首字母，现在是知道了阅读变量命令不清晰的程序的感觉，<del>口吐芬芳</del>）。用Notepad++的Compare插件对比 def（今天要提交的数据） 和 oldInfo（昨天的数据），发现多了后面4行数据，在页面找了一番后无果，索性在处理了一下def数据包，直接提交至目标网址，但服务器响应返回的却是整个填报系统的登录入口页面，说明在提交时，可能服务器还对提交者的身份进行验证，具体应该是通过验证请求头的Cookie，最终还是要进行模拟登录。<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/diff.png" alt=""></p>
-<h5 id="2-进行模拟登陆，获取cookies后再提交信息，最后编写接口程序"><a href="#2-进行模拟登陆，获取cookies后再提交信息，最后编写接口程序" class="headerlink" title="2)进行模拟登陆，获取cookies后再提交信息，最后编写接口程序"></a>2)进行模拟登陆，获取cookies后再提交信息，最后编写接口程序</h5><p>经过分析，整个脚本流程图绘制如下：<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/submit.png" alt=""><br>下面放部分代码：</p>
-<ul>
-<li>1.登录</li>
-</ul>
-<pre><code class="lang-python">def login(username, password):
-    # 登录网址
-    url = &quot;提交用户名/密码目标地址&quot;
-    ua = UserAgent()
-    headers = {
-        &quot;User-Agent&quot;: ua.chrome
-    }
-    data = {
-        &quot;username&quot;: username,
-        &quot;password&quot;: password
-    }
-
-    # 登陆界面获取标识cookie
-    res = session.get(url=&quot;登录页面地址&quot;)
-    # print(&quot;当前cookies: &quot; + str(res.cookies))
-    cookies = requests.utils.dict_from_cookiejar(res.cookies)
-    session.cookies.update(cookies) # 将cookie保存至Session
-
-    # 请求提交表单
-    res = session.post(url=url, data=data, headers=headers, cookies=cookies)
-    if res.json()[&#39;e&#39;] != 0:
-        print(&quot;登录失败，账号或密码错误&quot;)
-        sys.exit(-1)
-
-    cookies = requests.utils.dict_from_cookiejar(res.cookies)
-    session.cookies.update(cookies)
-
-    cookies = requests.utils.dict_from_cookiejar(session.cookies)
-    print(&quot;重定向前cookie内容：&quot; + str(cookies))
-
-    # 请求重定向至提交当日信息页面
-    res = session.get(url=&quot;疫情通信息提交页面&quot;, headers=headers, cookies=cookies)
-    print(res.status_code)
-    print(&quot;当前cookies: &quot; + str(res.cookies))
-    print(res.text)
-    cookies = requests.utils.dict_from_cookiejar(res.cookies)
-    session.cookies.update(cookies)
-
-    # 用正则表达式处理响应的文本，并返回解析出来的data包，此处的方法借鉴了一位大佬的思路
-    tstr= res.text
-    group = re.findall(r&#39;.*?oldInfo: (.*),.*?&#39;, tstr)
-    data = eval(group[0])
-    return data
-</code></pre>
-<ul>
-<li>2.提交信息</li>
-</ul>
-<pre><code class="lang-python">def submit(data, username, receiver):
-    # 提交的目标地址
-    url = &quot;每日上报目标地址&quot;
-
-    #复制出来的data包
-    headers = {&#39;Accept&#39;: &#39;application/json,text/javascript,*/*;q=0.01&#39;,
-               &#39;Accept-Language&#39;: &#39;zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2&#39;,
-               &#39;Accept-Encoding&#39;: &#39;gzip,deflate,br&#39;,
-               &#39;Content-Type&#39;: &#39;application/x-www-form-urlencoded;&#39;,
-               &#39;X-Requested-With&#39;: &#39;XMLHttpRequest&#39;,
-               &#39;Content-Length&#39;: &#39;2082&#39;,
-               &#39;Connection&#39;: &#39;keep-alive&#39;,
-
-               }
-    res = session.post(url, headers=headers, data=data)
-
-    if res.json()[&#39;e&#39;] != 0:
-        print(&quot;提交异常！&quot; + res.text)
-        smtp(&quot;用户[&quot; + username + &quot;]提交信息失败。\n\n提交信息：&quot; + res.text, receiver)
-    else:
-        print(&quot;提交成功！&quot; + res.text)
-        smtp(&quot;用户[&quot; + username + &quot;]提交信息成功。\n\n 提交信息：&quot; + res.text, receiver)
-    session.close()
-</code></pre>
-<ul>
-<li>3.发送邮件部分代码和主函数</li>
-</ul>
-<pre><code class="lang-python">mail_user = &quot;邮箱用户名&quot;  # 用户名
-mail_pass = &quot;邮箱授权码&quot;  # 授权码
-sender = &#39;发送方邮箱&#39;  # 发送者
-def smtp(info, receiver):
-    mail_host = &quot;smtp.qq.com&quot;   # 设置服务器
-
-    message = MIMEText(info, &#39;plain&#39;, &#39;utf-8&#39;)
-    message[&#39;From&#39;] = Header(&#39;从天堂来&#39;, &#39;utf-8&#39;)
-    message[&#39;To&#39;] = Header(&#39;到地狱去&#39;, &#39;utf-8&#39;)
-
-    subject = &#39;正路过人间&#39;
-    message[&#39;Subject&#39;] = Header(subject, &#39;utf-8&#39;)
-
-    try:
-        smtpObj = smtplib.SMTP()
-        smtpObj.connect(mail_host, 25)  # smtp服务器端口号，腾讯云服务器还需要解封25号端口
-        smtpObj.login(mail_user, mail_pass)
-        smtpObj.sendmail(sender, [receiver], message.as_string())
-        smtpObj.close()
-        print(&quot;邮件发送成功...&quot;)
-    except smtplib.SMTPException as e:
-        print(e)
-        print(&quot;邮件发送失败&quot;)
-
-def main(argv):
-    username = &#39;&#39;
-    passwrod = &#39;&#39;
-    receiver = &#39;&#39;
-
-    if len(argv) &lt; 1:
-        print(&#39;Error: autoSubmitForm.py -u &lt;username&gt; -p &lt;password&gt; -m &lt;your e-mail&gt;&#39;)
-        print(&quot;or autoSubmitForm.py --username=&lt;username&gt; --passwrod=&lt;passwrod&gt; --mail=&lt;your e-mail&gt;&quot;)
-        sys.exit(-2)
-
-    try:
-        opts, args = getopt.getopt(argv, &quot;hu:p:m:&quot;, [&quot;help&quot;, &quot;username=&quot;, &quot;password=&quot;, &quot;e-mail=&quot;])
-
-    except getopt.GetoptError:
-        print(&#39;Error: autoSubmitForm.py -u &lt;username&gt; -p &lt;password&gt; -m &lt;your e-mail&gt;&#39;)
-        print(&quot;or autoSubmitForm.py --username=&lt;username&gt; --passwrod=&lt;passwrod&gt; --mail=&lt;your e-mail&gt;&quot;)
-        sys.exit(-1)
-    for opt, arg in opts:
-        if opt in  (&quot;-h&quot;, &quot;help&quot;):
-            print(&#39;Error: autoSubmitForm.py -u &lt;username&gt; -p &lt;password&gt; -m &lt;your e-mail&gt;&#39;)
-            print(&quot;or autoSubmitForm.py --username=&lt;username&gt; --passwrod=&lt;passwrod&gt; --mail=&lt;your e-mail&gt;&quot;)
-        elif opt in (&quot;-u&quot;, &quot;--username&quot;):
-            username = arg
-        elif opt in (&quot;-p&quot;, &quot;--password&quot;):
-            passwrod = arg
-        elif opt in (&quot;-m&quot;, &quot;--mail&quot;):
-            receiver = arg
-
-    data = login(username, passwrod)
-    print(&#39;开始提交...&#39;)
-    submit(data, username, receiver)
-    session.close()
-</code></pre>
-<p>邮箱授权码获取如下图：<br><a class="fancybox" href="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/getauthoritiedCode.png" title=""><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/getauthoritiedCode.png" alt=""></p>
-<p>参考资料：<br>提取用户昨天提交的信息的正则表达式来自以下大佬博客，其中发送邮件方法也来自这篇博客：<br><a href="https://blog.csdn.net/solitudi/article/details/105066215">记一次SCU疫情期间每日健康报送任务的自动化处理（一）</a></p>
+<h5 id="2-进行模拟登陆，获取cookies后再提交信息，最后编写接口程序"><a href="#2-进行模拟登陆，获取cookies后再提交信息，最后编写接口程序" class="headerlink" title="2)进行模拟登陆，获取cookies后再提交信息，最后编写接口程序"></a>2)进行模拟登陆，获取cookies后再提交信息，最后编写接口程序</h5><p>经过分析，整个脚本流程图绘制如下：<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/submit.png" alt=""><br>完整代码见我的github<a href="https://github.com/lightingmoon/BlogResourceCode/tree/master/%E5%BE%AE%E4%BF%A1%E7%96%AB%E6%83%85%E9%80%9A%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4">明月光</a></p>
+<p>邮箱授权码获取方法如下图：<br><img src="https://lightpicture-1257032496.cos.ap-chengdu.myqcloud.com/blog/getauthoritiedCode.png" alt=""><br>参考资料：<br>提取用户昨天提交的信息的正则表达式来自以下大佬博客，自己也该好好学一学正则表达式了。其中发送邮件方法也来自这篇博客，丰富了我的见识：<br><a href="https://blog.csdn.net/solitudi/article/details/105066215">记一次SCU疫情期间每日健康报送任务的自动化处理（一）</a></p>
 	
 		</br>
 		<footer style="text-align: center" class="entry-meta">雪林于
