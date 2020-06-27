@@ -14,21 +14,21 @@
   <meta name="baidu-site-verification" content="true">
   <meta name="msvalidate.01" content="BBA0F05A054A52937A445B0457B5D099">
   
-  <title style="text-align:center">预处理和词法分析器 | 月之燃梦</title>
+  <title style="text-align:center">对数几率回归 | 月之燃梦</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="description" content="结合课程实验和课程设计，时间跨度为一个月，完成预处理，词法分析器。(词法分析器已作为JavaSwing项目上传至GitHub。)">
-<meta name="keywords" content="编译原理,预处理,词法分析">
+  <meta name="description" content="对率回归原理及其编程实现">
+<meta name="keywords" content="机器学习算法,对率回归">
 <meta property="og:type" content="article">
-<meta property="og:title" content="预处理和词法分析器">
-<meta property="og:url" content="https://www.lightdream.xyz/CompilerPrinciple-preProcessAndLexAnalysis.html">
+<meta property="og:title" content="对数几率回归">
+<meta property="og:url" content="https://www.lightdream.xyz/MachineLearningAlgorithm-logisticRegression.html">
 <meta property="og:site_name" content="月之燃梦">
-<meta property="og:description" content="结合课程实验和课程设计，时间跨度为一个月，完成预处理，词法分析器。(词法分析器已作为JavaSwing项目上传至GitHub。)">
+<meta property="og:description" content="对率回归原理及其编程实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-25T06:10:55.286Z">
+<meta property="og:updated_time" content="2020-06-27T11:16:29.176Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="预处理和词法分析器">
-<meta name="twitter:description" content="结合课程实验和课程设计，时间跨度为一个月，完成预处理，词法分析器。(词法分析器已作为JavaSwing项目上传至GitHub。)">
+<meta name="twitter:title" content="对数几率回归">
+<meta name="twitter:description" content="对率回归原理及其编程实现">
   
   
     <link rel="icon" href="/image/favicon.ico">
@@ -119,14 +119,14 @@ ga('send', 'pageview');
 </header>
       <div id="main" class="wrapper">
         <div id="primary" class="site-content">
-			<div id="content" role="main"><article id="post-CompilerPrinciple-preProcessAndLexAnalysis" class="post-CompilerPrinciple-preProcessAndLexAnalysis post type-post status-publish format-standard hentry">
+			<div id="content" role="main"><article id="post-MachineLearningAlgorithm-logisticRegression" class="post-MachineLearningAlgorithm-logisticRegression post type-post status-publish format-standard hentry">
 		
       <center><header class="entry-header">
         
         
   
     <h1 class="entry-title article-title">
-      预处理和词法分析器
+      对数几率回归
     </h1>
   
 
@@ -135,7 +135,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">670字</span>
+        <span class="post-count">380字</span>
       </span>
     </span>
 	&nbsp;|
@@ -143,7 +143,7 @@ ga('send', 'pageview');
     <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">阅读时长:约</span>
-        <span class="post-count">3&nbsp;分钟</span>
+        <span class="post-count">1&nbsp;分钟</span>
       </span>
     </span>
 </div>
@@ -156,143 +156,34 @@ ga('send', 'pageview');
 		总阅读量<span id="busuanzi_value_page_pv"></span>次
 		</span></center>
 		</br></br>
-        <script src="\assets\js\APlayer.min.js"> </script><p>结合课程实验和课程设计，时间跨度为一个月，完成预处理，词法分析器。(词法分析器已作为JavaSwing项目上传至<a href="https://github.com/lightingmoon/My-project">GitHub</a>。)<br><a id="more"></a></p>
-<h3 id="预处理程序"><a href="#预处理程序" class="headerlink" title="预处理程序"></a>预处理程序</h3><pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;fstream&gt;
-using namespace std;
-
-void processSpace(ifstream &amp;fin, const char);    // 处理空格
-void processMargin(ifstream &amp;fin, const char);    // 处理注释
-void processCrLf(ifstream &amp;fin, const char);    // 处理回车换行
-int main()
-{
-    ifstream fin(&quot;F:\\CompilerPrinciple\\Test1\\demo.cpp&quot;, ios::in);    // 预处理源代码文件
-    freopen(&quot;F:\\CompilerPrinciple\\Test1\\out.cpp&quot;,&quot;w&quot;,stdout);    // 输出结果文件
-    char now, last;
-    fin.get(last);
-
-    while(!fin.eof() &amp;&amp; isspace(last))    // 一个字符测试空文件
-        fin.get(last);
-    fin.unget();
-    while(!fin.eof())
-    {
-        fin.get(now);
-        switch(now)
-        {
-        case &#39; &#39;:
-            processSpace(fin, last);
-            fin.unget();    // 超前搜索回退
-            break;
-        case &#39;/&#39;:
-            processMargin(fin, last);
-            break;
-        case &#39;\n&#39;:          // 只存在Mac和windows下\r\n,\r
-            processCrLf(fin, last);
-            last = &#39;\n&#39;;
-            break;
-        case &#39;\t&#39;: break;
-        default:
-            putchar(now);
-        }
-        last = now;
-    }
-    return 0;
-}
-void processSpace(ifstream &amp;fin, const char st)
-{
-    /*         一.去多余空格:
-    *            1.判定当前字符，是空格则转第二步；否则输出
-    *            2.判定记录的上一个字符，如果是换行符，则是行首空格，不输出；
-    *                   如果是赋值号，则是多余空格，不输出
-    *                   继续判定下一个字符，如果是斜线，则是行末与注释间的空格，不输出
-    *                   如果是分号，则是行末多余字符，不输出。
-    *                   如果是空格，则是多余空格，不输出
-    */
-
-    char next;
-    fin.get(next);
-    while(!fin.eof() &amp;&amp; isspace(next))  // 去多个连续空格
-        fin.get(next);
-    if(st != &#39;\n&#39; &amp;&amp; st != &#39;=&#39;
-        &amp;&amp; next != &#39;/&#39; &amp;&amp; next != &#39;;&#39; &amp;&amp; next != &#39;=&#39;)
-        putchar(&#39; &#39;);
-}
-
-void processCrLf(ifstream &amp;fin, const char st)
-{
-    /* 二. 去回车换行
-    *    1.超前搜索：如果下一个字符不是换行符，为Mac下源文件，回退文件指针，输出一个空格。否则
-    *      不回退，输出一个空格
-    *   考虑到兼容性，windows下\r\n，unix下 \n ，Mac下是 \r，过滤
-    */
-    char next;
-    if(!fin.eof())
-    {
-        fin.get(next);
-        if(next != &#39;\n&#39;)
-            fin.unget();
-        putchar(&#39; &#39;);
-    }
-}
-
-void processMargin(ifstream &amp;fin, const char st)
-{
-    /*          三. 去注释
-    *             1.判定当前字符是否为  / ，是则进入第2步；否则输出
-    *             2.超前搜索下一个字符是否为  / ，是则为单行注释，直接结束本行；否则转第3步
-    *             3.超前搜索下一个字符是否为  * ，进入下一次循环，转第4步
-    *             4.判定当前字符是否为  *  ，是则进入第5步；否则放弃当前字符，进入下一次循环
-    *             5.超前搜索下一个字符是否为 &#39;/&#39;，是则结束循环退出子程序；
-    *               否则进入下一次循环，转第4步
-    */
-    char next, now;
-    fin.get(next);
-    if(!fin.eof())
-    {
-        if(next == &#39;/&#39;)     // 单行注释
-        {
-            while(!fin.eof())
-            {
-                fin.get(now);
-                if(now == &#39;\r&#39; || now == &#39;\n&#39;)
-                    break;
-            }
-            if(now == &#39;\n&#39;)     // 不是回车换行符，回退
-                fin.unget();
-        }
-        else if(next == &#39;*&#39;)    //多行注释
-        {
-            while(!fin.eof())
-            {
-                fin.get(next);
-                if(next == &#39;*&#39;)
-                {
-                    fin.get(next);
-                    if(next == &#39;/&#39;)
-                        break;
-                }
-            }
-        }
-    }
-}
-</code></pre>	
+        <script src="\assets\js\APlayer.min.js"> </script><p>对率回归原理及其编程实现<br><a id="more"></a></p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>用线性模型解决分类问题，只需找一个单调可微函数将分类任务的标记y与线性回归模型的预测值联系起来。而对数几率函数正是这样的一个常用替代函数：</p>
+<script type="math/tex; mode=display">y = \frac{1}{1+e^{-z}}</script><p>令$z = \vec{\omega}^T\vec{x}+b$，则可得到：</p>
+<script type="math/tex; mode=display">ln\frac{y}{1-y} = \vec{\omega}^T\vec{x} + b</script><p>，令 $p(y = 1 | \vec{x}) = y$，则$p(y=0|\vec{x}) = 1-p(y = 1 | \vec{x})$，这里假定为二分类任务，则有：</p>
+<script type="math/tex; mode=display">p(y = 1 | \vec{x}) = \frac{e^{\vec{\omega}^T\vec{x}+b}}{1+e^{\vec{\omega}^T\vec{x}+b}}</script><script type="math/tex; mode=display">p(y = 0 | \vec{x}) = \frac{1}{1+e^{\vec{\omega}^T\vec{x}+b}}</script><p>，运用“极大似然法”，则对率回归模型最大似然函数如下：</p>
+<script type="math/tex; mode=display">\ell(\vec{\omega},b) = \sum_{i=1}^{m}{lnp(y_{i}|\vec{x}_{i};\vec{\omega},b)}</script><p>令$\beta = ({\vec{w};b})$，令$\dot{x} = (\vec{x};1)$，则$\vec{\omega}^T\vec{x}+b = \beta^T\dot{x}$。再令$p<em>{1}(\dot{x};\beta) = p(y=1|\dot{x};\beta)$，则$p</em>{0}(\dot{x};\beta)=p(y=0|\dot{x};\beta)=1-p_{1}(\dot{x};\beta)$，则上式为：</p>
+<script type="math/tex; mode=display">p(\vec{y_i}|\vec{x_i},\vec{\omega},b)=y_{i}p_{1}(\vec{x}_i;\beta) + (1-y_i)(p_{0}(\vec{x}_i;\beta))</script><p>最大化上式等价于最小化下式，</p>
+<script type="math/tex; mode=display">\ell(\beta) = \sum_{i=1}^{m}{(-y_i\beta^T\dot{x}_i+ln(1+e^{\beta^T\dot{x}_i}))}</script><p>上式是关于$\beta$的高阶可导连续凸函数，根据凸优化理论，可用梯度下降法和牛顿法求得其最优解。<br>这里给出第$t+1$代牛顿迭代法公式：</p>
+<script type="math/tex; mode=display">\beta^{t+1} = \beta^t - (\frac{\partial^2\ell{(\beta)}}{\partial\beta \partial\beta^T})^{-1}\frac{\partial\ell{(\beta)}}{\partial\beta}</script><p>其中$\ell(\beta)$的一阶，二阶导如下：</p>
+<script type="math/tex; mode=display">\frac{\partial\ell{(\beta)}}{\partial\beta} = -\sum_{i=1}^{m}{\dot{x}_i(y_i-p_1(\dot{x}_i;\beta))}</script><script type="math/tex; mode=display">\frac{\partial^2\ell{(\beta)}}{\partial\beta \partial\beta^T} = \sum_{i=1}^{m}\dot{x}_i\dot{x}_i^Tp_1(\dot{x}_i;\beta)(1-p_1(\dot{x}_i;\beta))</script><h3 id="代码所用算法与数据结构分析"><a href="#代码所用算法与数据结构分析" class="headerlink" title="代码所用算法与数据结构分析"></a>代码所用算法与数据结构分析</h3><p>因为目标函数是凸函数，所以可以直接将数据代入目标函数，用经典最优化算法进行求解。    </p>
+<h5 id="Python语言实现"><a href="#Python语言实现" class="headerlink" title="Python语言实现"></a>Python语言实现</h5><p>可以将格式化后的数据集存入文件（数据集较小），每次运行读取数据放入内存进行迭代最优化求解即可。</p>
+	
 		</br>
 		<footer style="text-align: center" class="entry-meta">雪林于
 		<a href="">
-   <time datetime="2019-05-21T13:51:20.000Z" class="entry-date">
-        2019年05月21日 21:51
+   <time datetime="2020-06-26T10:07:47.000Z" class="entry-date">
+        2020年06月26日 18:07
     </time>
 </a>
 		
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="categories/编译原理/">编译原理</a>
+  <a class="article-category-link" href="categories/机器学习/">机器学习</a>
   </div>
 
 		
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/编译原理/">编译原理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/词法分析/">词法分析</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/预处理/">预处理</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/对率回归/">对率回归</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/机器学习算法/">机器学习算法</a></li></ul>
 
 		
 			<div id="lv-container" data-id="city" data-uid="MTAyMC8zODM0Mi8xNDg3MA==">
@@ -317,10 +208,8 @@ void processMargin(ifstream &amp;fin, const char st)
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="Lookbacktothepast.html" rel="prev"><span class="meta-nav">←</span> 回望</a></span>
     
-    
-        <span class="nav-next"><a href="AssemblyLanguage-SwapSort.html" rel="next">汇编语言实现冒泡排序算法 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="autoSubmitTableSystem.html" rel="next">微信疫情通自动提交 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
@@ -350,7 +239,7 @@ void processMargin(ifstream &amp;fin, const char st)
       <ul>
         
           <li>
-            <a href="MachineLearningAlgorithm-logisticRegression.html">对数几率回归</a>
+            <a href="">对数几率回归</a>
           </li>
         
           <li>
