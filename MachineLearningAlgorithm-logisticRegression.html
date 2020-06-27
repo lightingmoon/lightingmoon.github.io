@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="月之燃梦">
 <meta property="og:description" content="对率回归原理及其编程实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-27T11:16:29.176Z">
+<meta property="og:updated_time" content="2020-06-27T11:25:24.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对数几率回归">
 <meta name="twitter:description" content="对率回归原理及其编程实现">
@@ -135,7 +135,7 @@ ga('send', 'pageview');
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">字数统计:</span>
-        <span class="post-count">380字</span>
+        <span class="post-count">352字</span>
       </span>
     </span>
 	&nbsp;|
@@ -159,14 +159,14 @@ ga('send', 'pageview');
         <script src="\assets\js\APlayer.min.js"> </script><p>对率回归原理及其编程实现<br><a id="more"></a></p>
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>用线性模型解决分类问题，只需找一个单调可微函数将分类任务的标记y与线性回归模型的预测值联系起来。而对数几率函数正是这样的一个常用替代函数：</p>
 <script type="math/tex; mode=display">y = \frac{1}{1+e^{-z}}</script><p>令$z = \vec{\omega}^T\vec{x}+b$，则可得到：</p>
-<script type="math/tex; mode=display">ln\frac{y}{1-y} = \vec{\omega}^T\vec{x} + b</script><p>，令 $p(y = 1 | \vec{x}) = y$，则$p(y=0|\vec{x}) = 1-p(y = 1 | \vec{x})$，这里假定为二分类任务，则有：</p>
-<script type="math/tex; mode=display">p(y = 1 | \vec{x}) = \frac{e^{\vec{\omega}^T\vec{x}+b}}{1+e^{\vec{\omega}^T\vec{x}+b}}</script><script type="math/tex; mode=display">p(y = 0 | \vec{x}) = \frac{1}{1+e^{\vec{\omega}^T\vec{x}+b}}</script><p>，运用“极大似然法”，则对率回归模型最大似然函数如下：</p>
-<script type="math/tex; mode=display">\ell(\vec{\omega},b) = \sum_{i=1}^{m}{lnp(y_{i}|\vec{x}_{i};\vec{\omega},b)}</script><p>令$\beta = ({\vec{w};b})$，令$\dot{x} = (\vec{x};1)$，则$\vec{\omega}^T\vec{x}+b = \beta^T\dot{x}$。再令$p<em>{1}(\dot{x};\beta) = p(y=1|\dot{x};\beta)$，则$p</em>{0}(\dot{x};\beta)=p(y=0|\dot{x};\beta)=1-p_{1}(\dot{x};\beta)$，则上式为：</p>
-<script type="math/tex; mode=display">p(\vec{y_i}|\vec{x_i},\vec{\omega},b)=y_{i}p_{1}(\vec{x}_i;\beta) + (1-y_i)(p_{0}(\vec{x}_i;\beta))</script><p>最大化上式等价于最小化下式，</p>
+<script type="math/tex; mode=display">ln\frac{y}{1-y} = \vec{\omega}^T\vec{x} + b</script><p>令 $p(y = 1 | \vec{x}) = y$，则$p(y=0|\vec{x}) = 1-p(y = 1 | \vec{x})$，这里假定为二分类任务，则有：</p>
+<script type="math/tex; mode=display">p(y = 1 | \vec{x}) = \frac{e^{\vec{\omega}^T\vec{x}+b}}{1+e^{\vec{\omega}^T\vec{x}+b}}</script><script type="math/tex; mode=display">p(y = 0 | \vec{x}) = \frac{1}{1+e^{\vec{\omega}^T\vec{x}+b}}</script><p>运用“极大似然法”，则对率回归模型最大似然函数如下：</p>
+<script type="math/tex; mode=display">\ell(\vec{\omega},b) = \sum_{i=1}^{m}{lnp(y_{i}|\vec{x}_{i};\vec{\omega},b)}</script><p>令$\beta = ({\vec{w};b})$，令$\dot{x} = (\vec{x};1)$，则$\vec{\omega}^T\vec{x}+b = \beta^T\dot{x}$。再令<script type="math/tex">p_{1}(\dot{x};\beta) = p(y=1|\dot{x};\beta)</script>，则<script type="math/tex">p_{0}(\dot{x};\beta)=p(y=0|\dot{x};\beta)=1-p_{1}(\dot{x};\beta)</script>，则上式为：</p>
+<script type="math/tex; mode=display">p(\vec{y}_i|\vec{x}_i,\vec{\omega},b)=y_{i}p_{1}(\vec{x}_i;\beta) + (1-y_i)(p_{0}(\vec{x}_i;\beta))</script><p>最大化上式等价于最小化下式，</p>
 <script type="math/tex; mode=display">\ell(\beta) = \sum_{i=1}^{m}{(-y_i\beta^T\dot{x}_i+ln(1+e^{\beta^T\dot{x}_i}))}</script><p>上式是关于$\beta$的高阶可导连续凸函数，根据凸优化理论，可用梯度下降法和牛顿法求得其最优解。<br>这里给出第$t+1$代牛顿迭代法公式：</p>
 <script type="math/tex; mode=display">\beta^{t+1} = \beta^t - (\frac{\partial^2\ell{(\beta)}}{\partial\beta \partial\beta^T})^{-1}\frac{\partial\ell{(\beta)}}{\partial\beta}</script><p>其中$\ell(\beta)$的一阶，二阶导如下：</p>
 <script type="math/tex; mode=display">\frac{\partial\ell{(\beta)}}{\partial\beta} = -\sum_{i=1}^{m}{\dot{x}_i(y_i-p_1(\dot{x}_i;\beta))}</script><script type="math/tex; mode=display">\frac{\partial^2\ell{(\beta)}}{\partial\beta \partial\beta^T} = \sum_{i=1}^{m}\dot{x}_i\dot{x}_i^Tp_1(\dot{x}_i;\beta)(1-p_1(\dot{x}_i;\beta))</script><h3 id="代码所用算法与数据结构分析"><a href="#代码所用算法与数据结构分析" class="headerlink" title="代码所用算法与数据结构分析"></a>代码所用算法与数据结构分析</h3><p>因为目标函数是凸函数，所以可以直接将数据代入目标函数，用经典最优化算法进行求解。    </p>
-<h5 id="Python语言实现"><a href="#Python语言实现" class="headerlink" title="Python语言实现"></a>Python语言实现</h5><p>可以将格式化后的数据集存入文件（数据集较小），每次运行读取数据放入内存进行迭代最优化求解即可。</p>
+<h4 id="Python语言实现"><a href="#Python语言实现" class="headerlink" title="Python语言实现"></a>Python语言实现</h4><p>可以将格式化后的数据集存入文件（数据集较小），每次运行读取数据放入内存进行迭代最优化求解即可。</p>
 	
 		</br>
 		<footer style="text-align: center" class="entry-meta">雪林于
