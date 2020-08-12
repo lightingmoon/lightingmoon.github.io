@@ -2,20 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.lightdream.xyz/model/model.html</loc>
-    
-    <lastmod>2020-08-12T13:10:28.315Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.lightdream.xyz/model/fonts/index.html</loc>
-    
-    <lastmod>2020-08-06T07:59:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.lightdream.xyz/MachineLearningAlgorithm-logisticRegression.html</loc>
     
     <lastmod>2020-07-05T07:07:24.534Z</lastmod>
@@ -187,13 +173,6 @@
     <loc>https://www.lightdream.xyz/ParticleSwamOptimization.html</loc>
     
     <lastmod>2020-04-27T13:20:41.672Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.lightdream.xyz/model/fonts/helvetiker_regular.typeface.json</loc>
-    
-    <lastmod>2020-04-17T07:59:44.000Z</lastmod>
     
   </url>
   
