@@ -1,185 +1,377 @@
-<!DOCTYPE html>
-<html lang="en">
- <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Demo</title>
-  <link rel="shortcut icon" href="https://www.bos.xyz/favicon.ico" />
-  <link rel="stylesheet" href="https://xhz3d.bos.xyz/v1/Xhz.min.css">
-  <script src="https://xhz3d.bos.xyz/v1/Xhz.min.js"></script>
- </head>
- <body>
-  <div id="viewport"></div>   
- </body>
- <script>
-  Xhz.init(function () {
-   const options = {
-    modelKey: "509396040", // 文件key
-    devcode: "ac429135053c84cc718159001ec59ecf", // 开发密钥
-    toolbar: {
-     list: [
-      "home", // 初始化
-      "reset", // 复位
-      "roam", // 路径漫游
-      "focus", // 构件聚焦
-      "select", // 构件框选
-      "hide", // 构件隐藏
-      "isolate", // 构件隔离
-      "color", // 构件变色
-      "sectioning", // 模型剖切
-      "decompose", // 模型分解
-      "wire", // 构件线框化
-      "tree", // 模型树 
-      "attribute", // 构件属性
-      "measure", // 模型测量
-      "mark", // 添加标签
-      "snapshoot", // 快照
-      "backgroundcolor", // 背景颜色
-      "fullscreen", // 全屏
-     ]
-    }
-   };
-	const app = new Xhz.App(options);
-    const { model, view, camera } = app;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="/css/images/favicon.ico">
+<title>求索</title> 
 
-    const scene = view.getScene();
-	model.on("load", function (event) {
-        addText("1 4 5 1 1 4 5 1 9 0", "509396040_3DtBi08dD8088X4TTzPs7H");
-    });
-	
-   const addText = (content, componentId) => {
-	// 获取当前构件的包围盒中心
-	const centerObj = new THREE.Vector3();
-	const viewer = view.getViewer3d();
-	const position = viewer
-		.getViewerImpl()
-		.modelManager.getComponent(componentId)[0]
-		.boundingBox.getCenter(centerObj);
+<style type="text/css">
+html {
+	overflow:hidden; 
+	-ms-touch-action:none;
+	-ms-content-zooming:none;
+}
+body {
+	position:absolute;
+	margin:0px;
+	padding:0px;
+	background:#fff;
+	width:100%;
+	height:100%;
+}
+#canvas {
+	position:absolute;
+	width:100%;
+	height:100%;
+	background:#fff;
+}
+</style>
 
-		addThreeDimensionalText(
-			{
-				content,
-				color: 0xff0000,
-				position: [position.x + 100, position.y + 30, position.z + 50],
-				scale: 0.1,
-				textpath: "fonts/helvetiker_regular.typeface.json", // 三维字体路径
-			},
-			(text) => {
-				scene.add(text); // 创建字体后，将三维字体添加进三维场景
+
+
+<script type="text/javascript" src="js/ge1doot.js"></script>
+<script type="text/javascript">
+
+"use strict";
+
+(function () {
+	/* ==== definitions ==== */
+	var diapo = [], layers = [], ctx, pointer, scr, camera, light, fps = 0, quality = [1,2],
+	// ---- poly constructor ----
+	Poly = function (parent, face) {
+		this.parent = parent;
+		this.ctx    = ctx;
+		this.color  = face.fill || false;
+		this.points = [];
+		if (!face.img) {
+			// ---- create points ----
+			for (var i = 0; i < 4; i++) {
+				this.points[i] = new ge1doot.transform3D.Point(
+					parent.pc.x + (face.x[i] * parent.normalZ) + (face.z[i] * parent.normalX),
+					parent.pc.y +  face.y[i],
+					parent.pc.z + (face.x[i] * parent.normalX) + (-face.z[i] * parent.normalZ)
+				);
+			}
+			this.points[3].next = false;
+		}
+	},
+	// ---- diapo constructor ----
+	Diapo = function (path, img, structure) {
+		// ---- create image ----
+		this.img = new ge1doot.transform3D.Image(
+			this, path + img.img, 1, {
+				isLoaded: function(img) {
+					img.parent.isLoaded = true;
+					img.parent.loaded(img);
+				}
 			}
 		);
+		this.visible  = false;
+		this.normalX  = img.nx;
+		this.normalZ  = img.nz;
+		// ---- point center ----
+		this.pc = new ge1doot.transform3D.Point(img.x, img.y, img.z);
+		// ---- target positions ----
+		this.tx = img.x + (img.nx * Math.sqrt(camera.focalLength) * 20);
+		this.tz = img.z - (img.nz * Math.sqrt(camera.focalLength) * 20);
+		// ---- create polygons ----
+		this.poly = [];
+		for (var i = -1, p; p = structure[++i];) {
+			layers[i] = (p.img === true ? 1 : 2);
+			this.poly.push(
+				new Poly(this, p)
+			);
+		}
+	},
+	// ---- init section ----
+	init = function (json) {
+		// draw poly primitive
+		Poly.prototype.drawPoly = ge1doot.transform3D.drawPoly;
+		// ---- init screen ----
+		scr = new ge1doot.Screen({
+			container: "canvas"
+		});
+		ctx = scr.ctx;
+		scr.resize();
+		// ---- init pointer ----
+		pointer = new ge1doot.Pointer({
+			tap: function () {
+				if (camera.over) {
+					if (camera.over === camera.target.elem) {
+						// ---- return to the center ----
+						camera.target.x = 0;
+						camera.target.z = 0;
+						camera.target.elem = false;
+					} else {
+						// ---- goto diapo ----
+						camera.target.elem = camera.over;
+						camera.target.x = camera.over.tx;
+						camera.target.z = camera.over.tz;
+						// ---- adapt tesselation level to distance ----
+						for (var i = 0, d; d = diapo[i++];) {
+							var dx = camera.target.x - d.pc.x;
+							var dz = camera.target.z - d.pc.z;
+							var dist = Math.sqrt(dx * dx + dz * dz);
+							var lev = (dist > 1500) ? quality[0] : quality[1];
+							d.img.setLevel(lev);
+						}
+					}
+				}
+			}
+		});
+		// ---- init camera ----
+		camera = new ge1doot.transform3D.Camera({
+			focalLength: Math.sqrt(scr.width) * 10,
+			easeTranslation: 0.025,
+			easeRotation: 0.06,
+			disableRz: true
+		}, {
+			move: function () {
+				this.over = false;
+				// ---- rotation ----
+				if (pointer.isDraging) {
+					this.target.elem = false;
+					this.target.ry = -pointer.Xi * 0.01;
+					this.target.rx = (pointer.Y - scr.height * 0.5) / (scr.height * 0.5);
+				} else {
+					if (this.target.elem) {
+						this.target.ry = Math.atan2(
+							this.target.elem.pc.x - this.x,
+							this.target.elem.pc.z - this.z
+						);
+					}
+				}
+				this.target.rx *= 0.9;
+			}
+		});
+		camera.z  = -10000;
+		camera.py = 0;
+		// ---- create images ----
+		for (var i = 0, img; img = json.imgdata[i++];) {
+			diapo.push(
+				new Diapo(
+					json.options.imagesPath, 
+					img, 
+					json.structure
+				)
+			);
+		}	
+		// ---- start engine ---- >>>
+		setInterval(function() {
+			quality = (fps > 50) ? [2,3] : [1,2];
+			fps = 0;
+		}, 1000);
+		run();
+	},
+	// ---- main loop ----
+	run = function () {
+		// ---- clear screen ----
+		ctx.clearRect(0, 0, scr.width, scr.height);
+		// ---- camera ----
+		camera.move();
+		// ---- draw layers ----
+		for (var k = -1, l; l = layers[++k];) {
+			light = false;
+			for (var i = 0, d; d = diapo[i++];) {
+				(l === 1 && d.draw()) || 
+				(d.visible && d.poly[k].draw());
+			}
+		}
+		// ---- cursor ----
+		if (camera.over && !pointer.isDraging) {
+			scr.setCursor("pointer");
+		} else {
+			scr.setCursor("move");
+		}
+		// ---- loop ----
+		fps++;
+		requestAnimFrame(run);
 	};
-	
-	/**
-     * 该方法用来通过给出内容加载出来3d字体，暂不支持中文
-     * @params:  componentid {string}
-     * @params:  callback {function} 回调函数
-     * @param [options] {object} 参数
-     * @param [options.color]{16进制颜色}  字体的颜色 例如0xff0000
-     * @param [options.content]{String}  三维字体的内容
-     * @param [options.textpath]{String}  三维字体的路径
-     * @param [options.position]{Array}  三维字体的相对于构件位置的偏移X
-     * @param [options.depthTest]{boolen}  是否关闭字体的深度测试
-     * @param [options.textLength]{number}  三维字体的长度
-     * @param [options.textWidth]{boolen}  三维字体的宽度
-     * @param [options.componentId]{String}  三维构件的id，如果传入，默认位置为构件位置
-     * @params:
-     * @return:
-     */
-    const addThreeDimensionalText = function (options, callback) {
-        var xMid, text, message;
-        var loader = new THREE.FontLoader();
-        var defaultSetting = {
-            color: 0xff0000,
-            content: "https://xhz.bos.xyz/",
-            textpath:
-                "https://www.bos.xyz/vizbim/fonts/helvetiker_regular.typeface.json",
-            position: [0, 0, 0],
-            depthTest: false,
-            textLength: 1000,
-            textWidth: 1000,
-            scale: 1,
-            defaultPosition: [0, 0, 0],
-            key: "",
-        };
-        var option = {};
-        option = Object.assign(defaultSetting, options);
-        loader.load(option.textpath, function (font) {
-            var textShape = new THREE.BufferGeometry();
+	/* ==== prototypes ==== */
+	Poly.prototype.draw = function () {
+		// ---- color light ----
+		var c = this.color;
+		if (c.light || !light) {
+			var s = c.light ? this.parent.light : 1;
+			// ---- rgba color ----
+			light = "rgba(" + 
+				Math.round(c.r * s) + "," +
+				Math.round(c.g * s) + "," + 
+				Math.round(c.b * s) + "," + (c.a || 1) + ")";
+			ctx.fillStyle = light;
+		}
+		// ---- paint poly ----
+		if (!c.light || this.parent.light < 1) {
+			// ---- projection ----
+			for (
+				var i = 0; 
+				this.points[i++].projection();
+			);
+			this.drawPoly();
+			ctx.fill();
+		}
+	}
+	/* ==== image onload ==== */
+	Diapo.prototype.loaded = function (img) {
+		// ---- create points ----
+		var d = [-1,1,1,-1,1,1,-1,-1];
+		var w = img.texture.width  * 0.5;
+		var h = img.texture.height * 0.5;
+		for (var i = 0; i < 4; i++) {
+			img.points[i] = new ge1doot.transform3D.Point(
+				this.pc.x + (w * this.normalZ * d[i]),
+				this.pc.y + (h * d[i + 4]),
+				this.pc.z + (w * this.normalX * d[i])
+			);
+		}
+	}
+	/* ==== images draw ==== */
+	Diapo.prototype.draw = function () {
+		// ---- visibility ----
+		this.pc.projection();
+		if (this.pc.Z > -(camera.focalLength >> 1) && this.img.transform3D(true)) {
+			// ---- light ----
+			this.light = 0.5 + Math.abs(this.normalZ * camera.cosY - this.normalX * camera.sinY) * 0.6;
+			// ---- draw image ----
+			this.visible = true;
+			this.img.draw();
+			// ---- test pointer inside ----
+			if (pointer.hasMoved || pointer.isDown) {
+				if (
+					this.img.isPointerInside(
+						pointer.X,
+						pointer.Y
+					)
+				) camera.over = this;
+			}
+		} else this.visible = false;
+		return true;
+	}
+	return {
+		// --- load data ----
+		load : function (data) {
+			window.addEventListener('load', function () {
+				ge1doot.loadJS(
+					"js/imageTransform3D.js",
+					init, data
+				);
+			}, false);
+		}
+	}
+})().load({
+	imgdata:[
+		// north
+		{img:'image/onceYou.jpg', x:-1000, y:0, z:1500, nx:0, nz:1},
+		// east
+		{img:'image/srbmn.jpg', x:1500, y:0, z:1000, nx:-1, nz:0},
+		// south
+		{img:'image/universe.jpg', x:1000, y:0, z:-1500, nx:0, nz:-1},
+		// west
+		{img:'image/BreakAndStandUp.jpg', x:-1500, y:0, z:-1000, nx:1, nz:0},
+	],
+	structure:[
+		{
+			// wall
+			fill: {r:255, g:255, b:255, light:1},
+			x: [-1001,-490,-490,-1001],
+			z: [-500,-500,-500,-500],
+			y: [500,500,-500,-500]
+		},{
+			// wall
+			fill: {r:255, g:255, b:255, light:1},
+			x: [-501,2,2,-500],
+			z: [-500,-500,-500,-500],
+			y: [500,500,-500,-500]
+		},{
+			// wall
+			fill: {r:255, g:255, b:255, light:1},
+			x: [0,502,502,0],
+			z: [-500,-500,-500,-500],
+			y: [500,500,-500,-500]
+		},{
+			// wall
+			fill: {r:255, g:255, b:255, light:1},
+			x: [490,1002,1002,490],
+			z: [-500,-500,-500,-500],
+			y: [500,500,-500,-500]
+		},{
+			// shadow
+			fill: {r:0, g:0, b:0, a:0.2},
+			x: [-420,420,420,-420],
+			z: [-500,-500,-500,-500],
+			y: [150, 150,-320,-320]
+		},{
+			// shadow
+			fill: {r:0, g:0, b:0, a:0.2},
+			x: [-20,20,20,-20],
+			z: [-500,-500,-500,-500],
+			y: [250, 250,150,150]
+		},{
+			// shadow
+			fill: {r:0, g:0, b:0, a:0.2},
+			x: [-20,20,20,-20],
+			z: [-500,-500,-500,-500],
+			y: [-320, -320,-500,-500]
+		},{
+			// shadow
+			fill: {r:0, g:0, b:0, a:0.2},
+			x: [-20,20,10,-10],
+			z: [-500,-500,-100,-100],
+			y: [-500, -500,-500,-500]
+		},{
+			// base
+			fill: {r:32, g:32, b:32},
+			x: [-50,50,50,-50],
+			z: [-150,-150,-50,-50],
+			y: [-500,-500,-500,-500]
+		},{
+			// support
+			fill: {r:16, g:16, b:16},
+			x: [-10,10,10,-10],
+			z: [-100,-100,-100,-100],
+			y: [300,300,-500,-500]
+		},{
+			// frame
+			fill: {r:255, g:255, b:255},
+			x: [-320,-320,-320,-320],
+			z: [0,-20,-20,0],
+			y: [-190,-190,190,190]
+		},{
+			// frame
+			fill: {r:255, g:255, b:255},
+			x: [320,320,320,320],
+			z: [0,-20,-20,0],
+			y: [-190,-190,190,190]
+		},
+		{img:true},
+		{
+			// ceilingLight
+			fill: {r:255, g:128, b:0},
+			x: [-50,50,50,-50],
+			z: [450,450,550,550],
+			y: [500,500,500,500]
+		},{
+			// groundLight
+			fill: {r:255, g:128, b:0},
+			x: [-50,50,50,-50],
+			z: [450,450,550,550],
+			y: [-500,-500,-500,-500]
+		}
+	],
+	options:{
+		imagesPath: ""
+	}
+});
+</script>
 
-            var color = option.color;
+</head> 
+<body>
+<div style="text-align:center;clear:both;">
+<script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+<script src="/follow.js" type="text/javascript"></script>
+</div>
 
-            var matDark = new THREE.LineBasicMaterial({
-                color: color,
-                side: THREE.DoubleSide,
-            });
+<canvas id="canvas">你的浏览器不支持HTML5画布技术，请使用谷歌浏览器。</canvas>
 
-            var matLite = new THREE.MeshBasicMaterial({
-                color: color,
-                transparent: true,
-                opacity: 0.4,
-                side: THREE.DoubleSide,
-            });
-
-            message = option.content;
-
-            var shapes = font.generateShapes(
-                message,
-                option.textLength * option.scale,
-                option.textWidth * option.scale
-            );
-
-            var geometry = new THREE.ShapeGeometry(shapes);
-
-            geometry.computeBoundingBox();
-
-            xMid =
-                -0.5 *
-                (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
-
-            geometry.translate(xMid, 0, 0);
-
-            // make shape ( N.B. edge view not visible )
-
-            textShape.fromGeometry(geometry);
-
-            text = new THREE.Mesh(textShape, matLite);
-            text.key = option.key;
-
-            text.position.x = option.position[0];
-            text.position.y = option.position[1];
-            text.position.z = option.position[2];
-            // text.rotation.x+=Math.PI/2;
-            // text.rotation.y+=Math.PI/2;
-			text.material.depthTest = option.depthTest;
-			const viewer = view.getViewer3d();
-			
-            viewer
-                .getViewerImpl()
-                .cameraControl.addEventListener(
-                    "ON_CAMERA_CHANGE",
-                    function () {
-                        updateTextView();
-                    }
-                );
-            viewer
-                .getViewerImpl()
-                .modelManager.addEventListener("ON_LOAD_COMPLETE", function () {
-					updateTextView();
-                });
-            // 更新三维字体视角，始终面向相机
-            function updateTextView() {
-				const cameraObj = viewer.getViewerImpl().camera;
-                text.rotation.x = cameraObj.rotation.x;
-                text.rotation.y = cameraObj.rotation.y;
-                text.rotation.z = cameraObj.rotation.z;
-                view.render();
-            }
-            callback(text);
-        });
-	};
-	
-  });
- </script>
+</body>
 </html>
