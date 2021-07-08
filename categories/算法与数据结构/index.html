@@ -498,21 +498,40 @@ ga('send', 'pageview');
   
     
 	<aside class="widget">
+		<h3 class="widget-title">Stark悠扬</h3>
 		<div id="aplayer"></div>
+		<script type="text/javascript">
 		const ap = new APlayer({
 			container: document.getElementById('aplayer'),
+			listMaxHeight: 90,
 			theme: '#e9e9e9',
 			audio: [{
-				name: 'Sky High',
-				artist: 'Thomas Prime',
-				url: 'https://m8.music.126.net/20210708220650/049c4b5d11b04c95c84a05c2c7a9706e/ymusic/f6Ruy0v030L5YYikXVpBLg==/509951162914586889',
-				cover: 'http://p1.music.126.net/xiSkYsT7xcvqh2bauJ1E1w==/871912720871539.jpg?param=130y130'
-			}, {
-				name: 'Theme of Laura',
-				artist: '山岡晃',
-				url: 'https://m8.music.126.net/20210708220510/b586585149a316df3b190ec3d30713e2/ymusic/12dd/bf0d/7eb4/6ea92228ec9241b57906bb0c65b8668c.mp3',
-				cover: 'http://p2.music.126.net/QbadLxlMMmb4iStV4JnKLA==/6664139976590904.jpg?param=130y130'
-			}]
+					name: 'Sky High',
+					artist: 'Thomas Prime',
+					url: 'https://m8.music.126.net/20210708220650/049c4b5d11b04c95c84a05c2c7a9706e/ymusic/f6Ruy0v030L5YYikXVpBLg==/509951162914586889',
+					cover: 'http://p1.music.126.net/xiSkYsT7xcvqh2bauJ1E1w==/871912720871539.jpg?param=130y130'
+				},  {
+					name: 'Suprematica',
+					artist: 'Edelis',
+					url: 'https://m8.music.126.net/20210708223452/87f0a7c349bbd8509907454a91a31b8a/ymusic/8604/e0f0/6a64/af007322ac547c55507fd18f8826c6ba.mp3',
+					cover: 'http://p2.music.126.net/Uu3RvCdp9EeKtzbqszAt9g==/109951164058202557.jpg?param=130y130'
+				}, {
+					name: 'Alchemy',
+					artist: 'Amure',
+					url: 'https://m7.music.126.net/20210708222729/35f9562500f120c98072f756730df86e/ymusic/vGv4OGj8vxbZ5gmRJ0yZFw==/509951162932162743',
+					cover: 'http://p1.music.126.net/Fz2AVlNP_oicXyc8WLolYQ==/1297423720882543.jpg?param=130y130'
+				}, {
+					name: 'Dance Little Elves',
+					artist: 'Amure',
+					url: 'https://m7.music.126.net/20210708223133/36b7b0c975178b782e10b4d954c14715/ymusic/dcb1/87b9/434d/c1c22d5f3af1bdd90a87d1830a560b42.mp3',
+					cover: 'http://p2.music.126.net/Fz2AVlNP_oicXyc8WLolYQ==/1297423720882543.jpg?param=130y130'
+				}, {
+					name: 'Theme of Laura',
+					artist: '山岡晃',
+					url: 'https://m8.music.126.net/20210708220510/b586585149a316df3b190ec3d30713e2/ymusic/12dd/bf0d/7eb4/6ea92228ec9241b57906bb0c65b8668c.mp3',
+					cover: 'http://p2.music.126.net/QbadLxlMMmb4iStV4JnKLA==/6664139976590904.jpg?param=130y130'
+				}
+			]
 		});
 		
 		const colorThief = new ColorThief();
@@ -538,6 +557,7 @@ ga('send', 'pageview');
 		ap.on('listswitch', (index) => {
 			setTheme(index);
 		});
+	</script>
 	</aside>
 	
   
